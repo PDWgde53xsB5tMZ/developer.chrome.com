@@ -1,45 +1,37 @@
-# Top-level files
-/.editorconfig
-/.eslintignore
-/.eslintrc.js
-/.gcloudignore
-/.gitignore
-/.huskyrc.js
-/.nvmrc
-/.percy.js
-/.prettierrc.js
-/.remarkrc.js
-/.stylelintrc.js
-/algolia.js
-/ava.config.js
-/cloud-secrets.js
-/CODE_OF_CONDUCT.md
-/CONTRIBUTING.md
-/database.rules.json
-/gulp-tasks
-/gulpfile.js
-/LICENSE
-/lighthouserc.js
-/netlify.toml
-/README.md
-/rollup.config.js
-/tsconfig.json
-/version-check.js
+# ---------------------------------- FILES ----------------------------------- #
 
-# Top-level directories
-/.cloudbuild
-/.git
-/.github
-/.nyc_output
-/node_modules
-/gulp-tasks
-/tests
-/tools
-/types
+# .editorconfig: Config file for enforcing consistent coding styles across
+# different text editors and IDEs.
 
-# Source files already compiled in /dist
-/site/**/*.md
-/site/**/*.html
-/site/**/*.png
-/site/_scss
+# .eslintignore: List of files and directories that should be ignored by ESLint,
+# a pluggable linting utility for JavaScript.
+
+# .eslintrc.js: Configuration file for ESLint, specifying the rules and standards
+# to be enforced.
+
+# .gcloudignore: List of files and directories that should be ignored when
+# deploying to Google Cloud Platform.
+
+# .gitignore: List of files and directories that should be ignored by Git,
+# the version control system.
+
+# .huskyrc.js: Configuration file for Husky, a tool for running Git hooks.
+
+# .nvmrc: File specifying the Node.js version to be used in the project.
+
+# .percy.js: Configuration file for Percy, a tool for visual testing.
+
+# .prettierrc.js: Configuration file for Prettier, a code formatter.
+
+# .remarkrc.js: Configuration file for Remark, a markdown processing tool.
+
+# .stylelintrc.js: Configuration file for Stylelint, a pluggable linting tool
+# for CSS.
+
+# algolia.js: Configuration file for Algolia search.
+
+# ava.config.js: Configuration file for Ava, a test runner.
+
+# cloud-secrets.js: File for storing sensitive information such as API keys
+# and passwords.
 
