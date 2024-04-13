@@ -1,84 +1,68 @@
+// Hides the navigation rail by default
 navigation-rail {
   display: none;
   outline: 0;
 
+  // Sets border and displays the navigation rail on large screens
   @include media-query('lg') {
     border-right: 1px solid var(--color-hairline);
     display: block;
+    // Sets the width of the navigation rail to 72px on large screens
     // width: px-to-rem(72px);
   }
 }
 
+// Positioning and styling for the links within the navigation rail
 .navigation-rail__links {
+  // Positions the links as sticky and sets the top position to 0 on large screens
   @include media-query('lg') {
     position: sticky;
     top: 0;
   }
 }
 
+// Styling for the individual links within the navigation rail
 .navigation-rail__link {
+  // Inherits styles from the generic navigation link
   @extend %navigation__link;
+  // Sets the font size and line-height for the link text
   @include font-setup(14px, 28px);
+  // Sets the color of the link text
   color: var(--color-secondary-text);
+  // Sets the padding for the top and bottom of the link
   padding-bottom: px-to-rem(12px);
   padding-top: px-to-rem(12px);
 
+  // Styling for the links on large screens
   @include media-query('lg') {
+    // Changes the flex direction of the link to column and removes padding
     flex-direction: column;
     padding: 0;
     position: relative;
 
+    // Styling for the icon within the link on large screens
     .navigation-rail__icon {
+      // Removes the static positioning of the icon
       position: static;
     }
 
+    // Styling for subsequent links within the navigation rail on large screens
     + .navigation-rail__link {
+      // Sets the margin between links to 1.5rem on large screens
       --flow-space: 1.5rem;
       margin-top: var(--flow-space);
     }
   }
 
+  // Styling for the hover state of the link
   &:hover {
     @include media-query('lg') {
+      // Sets the background color and z-index of the link on hover
       background: transparent;
-      // Define an explicit z-index so we can position the ::before
-      // element behind it.
       z-index: 0;
 
-      // stylelint-disable max-nesting-depth
+      // Styling for the ::before pseudo-element on hover
       &::before {
+        // Sets the size, background color, border radius, and positioning of the ::before pseudo-element
         $hover-size: 40px;
-        background: var(--color-side-nav-hover);
-        border-radius: 50%;
-        content: '';
-        height: $hover-size;
-        position: absolute;
-        top: -(($hover-size - 28px) / 2); // 28px is line-height
-        width: $hover-size;
-        z-index: -1;
-      }
-    }
-  }
-
-  &[data-state='active'] {
-    color: var(--color-side-nav-active);
-
-    @include media-query('lg') {
-      background: transparent;
-    }
-  }
-
-  > :last-child {
-    margin-left: 4rem;
-
-    @include media-query('lg') {
-      margin-left: 0;
-    }
-  }
-}
-
-.navigation-rail__icon {
-  @extend %navigation__icon;
-
-  width: 4rem;
-}
+        background: var(
