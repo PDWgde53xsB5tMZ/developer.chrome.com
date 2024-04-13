@@ -7,10 +7,12 @@
 {% extends 'layouts/base.njk' %}
 
 {% block css %}
+{# Inline the CSS from /css/overview.css into the page #}
 {% InlineCss '/css/overview.css' %}
 {% endblock %}
 
 {% block title_bar %}
+  {# Set a flag to include breadcrumbs and render them using the partials/breadcrumbs.njk template #}
   {% set headingBreadcrumb = true %}
   {% include 'partials/breadcrumbs.njk' %}
 {% endblock %}
