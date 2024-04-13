@@ -1,7 +1,25 @@
-- title: i18n.docs.migration.version
-  sections:
-    - url: /docs/workbox/migration/migrate-from-v5
-    - url: /docs/workbox/migration/migrate-from-v4
-    - url: /docs/workbox/migration/migrate-from-v3
-    - url: /docs/workbox/migration/migrate-from-v2
-    - url: /docs/workbox/migration/migrate-from-sw
+# This is a list of documentation pages for migrating from different versions of Workbox
+# to the latest version. Each item in the list is a dictionary with a 'url' key pointing
+# to the relevant documentation page.
+
+# The list is currently ordered by version, starting from v5 and going back to the
+# original sw-precache and sw-toolbox libraries.
+
+# Users who are upgrading from a previous version of Workbox should consult the
+# appropriate migration guide to ensure a smooth transition. Each guide includes
+# information about breaking changes, new features, and any necessary code updates.
+
+# For example, if a user is migrating from Workbox v5 to v6, they would follow the
+# instructions at /docs/workbox/migration/migrate-from-v5.
+
+# By providing clear and detailed migration guides, we can help users upgrade to the
+# latest version of Workbox with confidence and ease.
+
+title = "i18n.docs.migration.version"
+sections = [
+    {"url": "/docs/workbox/migration/migrate-from-v5"},
+    {"url": "/docs/workbox/migration/migrate-from-v4"},
+    {"url": "/docs/workbox/migration/migrate-from-v3"},
+    {"url": "/docs/workbox/migration/migrate-from-v2"},
+    {"url": "/docs/workbox/migration/migrate-from-sw"},
+]
