@@ -1,17 +1,21 @@
+// Import the 'striptags' module to remove HTML tags and newlines
 const striptags = require('striptags');
 
 /**
  * Strips HTML tags and newlines for use as a meta attribute.
  *
- * @param {string|undefined} raw
- * @return {string}
+ * @param {string|undefined} raw - The raw HTML string to be stripped.
+ * @return {string} - The stripped string.
  */
 function stripForMeta(raw) {
+  // If 'raw' is not provided, return an empty string
   if (!raw) {
     return '';
   }
   let work = striptags(raw);
+  // Replace all newline characters with a space
   work = work.replace(/\n/g, ' ');
+  // Replace all sequences of one or more whitespace characters with a single space
   work = work.replace(/\s+/g, ' ');
   return work;
 }
@@ -19,23 +23,25 @@ function stripForMeta(raw) {
 /**
  * Finds the RenderNamespace for the specified API.
  *
- * @param {{api: string, chromeApiNamespaces: {[name: string]: any}}} data
- * @return {any=}
+ * @param {{api: string, chromeApiNamespaces: {[name: string]: any}}} data - An object containing the API name and an object of chrome API namespaces.
+ * @return {any=} - The RenderNamespace object or undefined if the API is not provided.
  */
 function namespaceForData(data) {
-  const {api, chromeApiNamespaces} = data;
+  const { api, chromeApiNamespaces } = data;
   if (!api) {
     return undefined;
   }
 
-  // This can be called several times by Eleventy because the data gets resolved in an odd order.
+  // This function can be called several times by Eleventy due to the odd order of data resolution.
   // It's fine to return undefined here, and we don't want to log (since it'll be spammy), and
   // we'll be called again if we previously returned undefined.
   return chromeApiNamespaces[api];
 }
 
+// Export an object containing computed properties for Eleventy
 module.exports = {
   eleventyComputed: {
+    // Compute the RenderNamespace for the data object
     namespace: data => {
       return namespaceForData(data);
     },
@@ -44,12 +50,13 @@ module.exports = {
      * Finds all permissions, both specified in the .d.ts and any additional permissions
      * specified here inside the front matter.
      *
-     * @return {string[]}
+     * @return {string[]} - An array of permission strings.
      */
     permissions: data => {
       const extraPermissions = data.extra_permissions ?? [];
       const namespacePermissions = data.namespace?.permissions ?? [];
 
+      // Combine and remove duplicates from the permission arrays
       const all = new Set([...extraPermissions, ...namespacePermissions]);
       const out = [...all];
       out.sort();
@@ -57,14 +64,14 @@ module.exports = {
     },
 
     /**
-     * @return {string}
+     * @return {string} - The layout string.
      */
     layout: data => {
       if (data.layout) {
         return data.layout; // don't clobber existing values
       }
 
-      // Otherwise, if we're a namespace, use a predefined layout.
+      // If the data object has an API, use a predefined layout
       if (data.api) {
         return 'layouts/namespace-reference.njk';
       }
@@ -75,7 +82,7 @@ module.exports = {
     },
 
     /**
-     * @return {string}
+     * @return {string} - The title string.
      */
     title: data => {
       const namespace = namespaceForData(data);
@@ -86,7 +93,7 @@ module.exports = {
     },
 
     /**
-     * @return {string}
+     * @return {string} - The description string.
      */
     description: data => {
       if (!data.api || data.description) {
@@ -97,3 +104,4 @@ module.exports = {
     },
   },
 };
+
