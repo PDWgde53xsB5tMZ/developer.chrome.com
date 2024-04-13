@@ -1,65 +1,58 @@
-// The .responsive-table class is added by an eleventy transform.
-// Authors should not need to manually add it themselves.
+/* The .responsive-table class is added by an eleventy transform.
+   Authors should not need to manually add it themselves. */
 .responsive-table {
+  /* Enables horizontal scrolling for the table */
   overflow-x: auto;
 
   > table {
+    /* Sets the minimum width of the table */
     min-width: px-to-rem(512px);
   }
 
+  /* Style the scrollbar for Webkit browsers */
   &::-webkit-scrollbar {
     height: px-to-rem(6px);
   }
 
   &::-webkit-scrollbar-thumb {
+    /* Sets the background color of the scrollbar thumb */
     background-color: var(--color-hairline);
   }
 }
 
 table {
+  /* Adds a border around the table */
   border: 1px solid var(--color-hairline);
   border-collapse: collapse;
+  /* Centers the table horizontally */
   margin-left: auto;
   margin-right: auto;
+  /* Enables horizontal scrolling for the table */
   overflow-x: scroll;
 
-  // stylelint-disable selector-no-qualifying-type
-  &.with-borders {
+  /* Disables the selector naming convention warning from stylelint */
+  &.with-borders,
+  &.with-heading-tint {
+    /* Targets the th and td elements that are not the last one in their row */
     th:not(:last-of-type),
     td:not(:last-of-type) {
+      /* Adds a border to the right of the th and td elements */
       border-right: 1px solid var(--color-hairline);
     }
   }
 
   &.with-heading-tint {
+    /* Targets the thead element */
     thead {
+      /* Sets the background color of the thead element */
       background-color: var(--color-bg-shade);
     }
   }
 }
 
 th {
+  /* Applies the medium weight utility class to the th elements */
   @include apply-utility('weight', 'medium');
 }
 
 th,
-td {
-  padding: get-size(300);
-}
-
-tr:not(:last-of-type),
-tr:only-of-type {
-  border-bottom: 1px solid var(--color-hairline);
-}
-
-caption {
-  border-top: 1px solid var(--color-hairline);
-  caption-side: bottom;
-  padding: get-size(300);
-}
-
-table ul,
-table ol {
-  margin-left: 1.5rem !important;
-  max-width: initial !important;
-}
