@@ -1,1 +1,4 @@
-The logic checks for an index.html file, so this file is not sufficient.
+# The following line of code checks for the presence of an 'index.html' file.
+# If the file is not found, the code will raise a FileNotFoundError.
+# This check is likely performed to ensure that the 'index.html' file is present
+# in the current working directory before proceeding with further operations.
