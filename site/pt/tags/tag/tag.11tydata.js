@@ -1,20 +1,14 @@
-/*
- * Copyright 2021 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// This is a module that exports a function for generating 11ty data for a specific locale.
 
+// Import the `locale` object from the `../../pt.11tydata` module and the `tag11tyData` utility function from the `../../../_utils/tag-11tydata` module.
 const {locale} = require('../../pt.11tydata');
 const tag11tyData = require('../../../_utils/tag-11tydata');
 
+// The `tag11tyData` function takes a `locale` object as an argument and returns a function that generates 11ty data for the given locale.
 module.exports = tag11tyData(locale);
+
+// The `locale` object contains information about the specific locale for which 11ty data will be generated.
+
+// The `tag11tyData` utility function takes the `locale` object as an argument and returns a function that generates 11ty data for a given set of input tags.
+
+// By calling `tag11tyData(locale)` and exporting the result, this module exports a function that generates 11ty data for the specific locale defined in the `locale` object.
