@@ -1,6 +1,6 @@
 :root,
 ::backdrop {
-  // Set theme aliases
+  /* Set theme aliases */
   --color-mode: 'light';
   --color-bg: #{get-color('white')};
   --color-inverse: #{get-color('black')};
@@ -13,18 +13,13 @@
   --color-secondary: #{get-color('blue-50')};
   --color-hairline: #{get-color('grey-300')};
 
+  /* Other theme variables */
   --color-footer-bg: #{get-color('grey-50')};
-
   --color-side-nav-hover: #{get-color('grey-100')};
   --color-side-nav-active: #{get-color('blue-600')};
-
   --color-link-default-visited: #{get-color('purple-900')};
   --rgb-link-default-visited: 103, 29, 168;
-
-  // This corresponds too the color grey-800.
-  // We use the actual RGB values here so we can use it with rgba() elsewhere.
   --rgb-button-overlay: 60, 64, 67;
-
   --color-code-bg: #{get-color('grey-50')};
   --color-code-comment: #{get-color('blue-900')};
   --color-code-string: #{get-color('blue-900')};
@@ -35,15 +30,15 @@
   --color-code-add: #{get-color('green-200')};
   --color-code-remove: #{get-color('red-200')};
 
+  /* Project-specific theme variables */
   --color-project-default: #{get-color('blue-700')};
   --color-project-handbook: #{get-color('red-700')};
   --color-project-workbox: #{get-color('orange-400')};
   --color-project-lighthouse: #06f;
-
   --color-meettheteam-bg: #{get-color('yellow-50')};
-
   --color-grey-medium: #{get-color('grey-700')};
 
+  /* Custom color variables for different brands */
   --color-blue-lightest: #{rgb(get-color('blue-50'), 0.4)};
   --color-blue-lighter: #{get-color('blue-100')};
   --color-blue-medium: #{get-color('blue-700')};
@@ -78,38 +73,4 @@
   --color-pink-lighter: #{rgb(get-color('pink-50'), 0.5)};
   --color-pink-medium: #{get-color('pink-700')};
   --color-pink-darkest: #{get-color('pink-900')};
-  --rgb-pink-darkest: 156, 22, 107;
-
-  --color-cyan-lightest: #{rgb(get-color('cyan-50'), 0.4)};
-  --color-cyan-lighter: #{rgb(get-color('cyan-50'), 0.5)};
-  --color-cyan-medium: #{get-color('cyan-700')};
-  --color-cyan-darkest: #{get-color('cyan-900')};
-  --rgb-cyan-darkest: 0, 122, 131;
-}
-
-// @mixin dark-mode() {
-//   --color-bg: #{get-color('grey-900')};
-//   --color-text: #{get-color('grey-200')};
-//   --color-secondary-text: #{get-color('grey-500')};
-//   --color-hairline: #{get-color('grey-700')};
-//   --color-primary: #{get-color('blue-600')};
-// }
-
-// Default to showing the dark mode theme if the user has enabled
-// prefers-color-scheme.
-// But, give the user the option to override the media query by clicking a
-// button to toggle the data-user-color-scheme attribute.
-// https://hankchizljaw.com/wrote/create-a-user-controlled-dark-or-light-mode/
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --color-mode: 'dark';
-//   }
-
-//   :root:not([data-user-color-scheme]) {
-//     @include dark-mode();
-//   }
-// }
-
-// [data-user-color-scheme='dark'] {
-//   @include dark-mode();
-// }
+  --rgb-pink-darkest:
