@@ -2,25 +2,27 @@ const {default: fetch} = require('node-fetch');
 const fs = require('fs').promises;
 const path = require('path');
 
+// The endpoint for fetching deprecation data
 const DEPRECATION_ENDPOINT =
   'https://chromestatus.com/api/v0/features?q=feature_type=3';
 
+// The endpoint for fetching channel data
 const CHANNELS_ENDPOINT = 'https://chromestatus.com/api/v0/channels';
 
 /**
  * Fetches channel data from an endpoint URL.
- * @async
- * @param {string} endpoint - The URL of the endpoint to fetch data from.
- * @returns {Promise<object>} - An array of channel data objects.
+ *  @async
+ *  @param {string} endpoint - The URL of the endpoint to fetch data from.
+ *  @returns {Promise<object>} - An array of channel data objects.
  **/
-
 async function fetchData(endpoint) {
   let data = {};
 
   try {
+    // Fetch data from the provided endpoint
     data = await fetch(endpoint);
 
-    // Remove first 5 chars to have a correctly formatted JSON
+    // Remove the first 5 characters (which are 'data:'), resulting in a correctly formatted JSON
     data = (await data.text()).substring(5);
     data = JSON.parse(data.toString());
   } catch (error) {
@@ -58,6 +60,7 @@ async function fetchChannels(start, end) {
   }
   const queryString = params.toString();
 
+  // Fetch channel data based on the provided start and end versions
   const channels = fetchData(`${CHANNELS_ENDPOINT}?${queryString}`);
 
   return channels;
@@ -97,12 +100,11 @@ function deprecationsSort(deprecations) {
 }
 
 /**
- *Formats an array of deprecations using the given channels data.
+ * Formats an array of deprecations using the given channels data.
  * @param {Object[]} deprecations - An array of deprecations to format.
  * @param {Object} channels - An object containing channel data.
  * @returns {Object[]} - An array of formatted deprecations.
  **/
-
 function formatDeprecations(deprecations, channels) {
   const formattedDeprecations = deprecations.map(deprecation => {
     const channel = channels[deprecation.browsers.chrome.desktop];
@@ -124,6 +126,10 @@ function formatDeprecations(deprecations, channels) {
   return formattedDeprecations;
 }
 
+/**
+ * The main function that fetches deprecations, channels, and formats
+ * the deprecations before writing them to a JSON file
+ */
 async function run() {
   const deprecations = await fetchDeprecations();
   const versions = getVersions(deprecations);
@@ -131,6 +137,7 @@ async function run() {
 
   const targetFile = path.join(__dirname, '../data/chrome-deprecations.json');
   try {
+    // Write the formatted deprecations to a JSON file
     fs.writeFile(
       targetFile,
       JSON.stringify(formatDeprecations(deprecations, channels))
