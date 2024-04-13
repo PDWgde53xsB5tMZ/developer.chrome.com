@@ -1,3 +1,6 @@
+{# Include the 'macros/post-author.njk' file, which contains reusable code for displaying post authors #}
 {% from "macros/post-author.njk" import postAuthor with context %}
 
-{{ postAuthor(authors, locale) }}
+{{ 									// Call the 'postAuthor' macro, passing in the 'authors' and 'locale' variables as arguments
+postAuthor(authors, locale) 			// This macro is likely used to display the post author's name, profile picture, and other relevant information
+}}
