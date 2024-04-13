@@ -1,19 +1,37 @@
-{% from 'macros/icon.njk' import icon with context %}
-{% from 'macros/card-authors.njk' import cardAuthors with context %}
-
 {% macro featuredPostCard(post, options) %}
+{# The macro receives a post object and an options object as arguments #}
+
 {% set pd = post.data %}
+{# Extract the data from the post object #}
+
 {% set cardIcon = options.icon or 'blog' %}
+{# Set the card icon to the provided value or 'blog' if not provided #}
+
 {% set cardTitle = options.title or 'i18n.common.featured' | i18n(locale) %}
+{# Set the card title to the provided value or a localized 'Featured' string #}
+
 {% set actionText = options.actionText %}
 {% set actionUrl = options.actionUrl %}
+{# Extract the optional action button text and URL #}
+
 {% set class = options.class or 'hairline rounded-lg width-full' %}
+{# Set the class for the card container based on the provided value or a default value #}
 
 <div class="featured-card {{ class }}">
+{# Start the card container with the specified class #}
+
   <div class="card-title-bar color-blue-medium">
+  {# Start the card title bar with a blue medium color #}
+
     {{ icon(cardIcon, {hidden: true}) }}
+    {# Display the card icon (if provided) with the 'hidden' attribute set to true #}
+
     <span class="gap-left-200 flex-1 user-select-none">
+    {# Start a span for the card title with some styling classes #}
+
       {{ cardTitle }}
+      {# Display the card title #}
+
     </span>
   </div>
 
@@ -22,7 +40,11 @@
 
   {% if thumbnail %}
     <div class="featured-card__thumbnail gap-top-300">
+  {# Start the thumbnail container if a thumbnail is provided #}
+
       <a class="display-block" href="{{ post.url }}" {% if not alt %}aria-hidden="true" tabindex="-1"{% endif %}>
+  {# Start a link to the post with some attributes #}
+
         {% Img
           class="rounded-100 object-fit-cover width-full",
           src=thumbnail,
@@ -32,31 +54,11 @@
           sizes="(min-width: 592px) 391px, calc(100vw - 82px)"
         %}
       </a>
+  {# Display the thumbnail image #}
+
     </div>
   {% endif %}
 
   <h2 class="type--h3-card gap-top-300">
-    <a class="color-text surface display-inline-flex" href="{{ post.url }}">
-      {{ pd.title | md | safe }}
-    </a>
-  </h2>
+  {# Start the post title container #}
 
-  <p class="type--caption gap-top-200">
-    {{ pd.description | md | safe }}
-  </p>
-
-  {% if pd.authors and pd.authors.length %}
-  <div class="gap-top-400">
-    {{ cardAuthors(pd.authors, pd.date) }}
-  </div>
-  {% endif %}
-
-  {% if actionText and actionUrl %}
-    <div class="gap-top-400">
-      <a href="{{ actionUrl }}" class="material-button button-text display-inline-flex color-primary">
-        {{ actionText }}
-      </a>
-    </div>
-  {% endif %}
-</div>
-{% endmacro %}
