@@ -1,22 +1,31 @@
+# This is a configuration file that defines various labels for a website.
+# Each label has an English (en) and Spanish (es) translation.
+
+# The 'home' label points to the homepage of the website.
 home:
   en: 'Home'
   es: 'Inicio'
 
+# The 'docs' label points to the documentation section of the website.
 docs:
   en: 'Docs'
   es: 'Docs'
 
+# The 'blog' label points to the blog section of the website.
 blog:
   en: 'Blog'
   es: 'Blog'
 
+# The '100' label is a special label that refers to the Chrome 100 release.
 100:
   en: 'Chrome 100'
 
+# The 'releases' label points to a page listing all the releases of the website or product.
 releases:
   en: 'Releases'
   es: 'Versiones'
 
+# The 'articles' label points to a page listing all the articles available on the website.
 articles:
   en: 'Articles'
   es: 'Artículos'
