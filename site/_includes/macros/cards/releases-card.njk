@@ -14,39 +14,33 @@
     {% if chrome.channels.stable %}
       <div class="flex-1 gap-300">
         <div class="release-card__icon release-card__icon-stable">
-          <span class="visually-hidden">{{ 'i18n.common.current_release_description' | i18n(locale) }}</span>
-          {{ chrome.channels.stable.mstone }}
+          <span class="visually-hidden">{{ 'i18n.common.current_release_description' | i18n(locale) }}</span>  {# Displays the current release description #}
+          {{ chrome.channels.stable.mstone }}  {# Displays the stable channel version #}
         </div>
         <p class="type--caption text-align-center gap-top-300">
-          {{ 'i18n.common.current_release_label' | i18n(locale) }}
+          {{ 'i18n.common.current_release_label' | i18n(locale) }}  {# Displays the current release label #}
         </p>
       </div>
     {% endif %}
+
     {% if chrome.channels.pending %}
       <div class="flex-1 gap-300">
         <div class="release-card__icon release-card__icon-pending">
-          <span class="visually-hidden">{{ 'i18n.common.pending_release_description' | i18n(locale) }}</span>
-          {{ chrome.channels.pending.mstone }}
+          <span class="visually-hidden">{{ 'i18n.common.pending_release_description' | i18n(locale) }}</span>  {# Displays the pending release description #}
+          {{ chrome.channels.pending.mstone }}  {# Displays the pending channel version #}
         </div>
         <p class="type--caption text-align-center gap-top-300">
-          {{ 'i18n.common.pending_release_label' | i18n(locale) }}
+          {{ 'i18n.common.pending_release_label' | i18n(locale) }}  {# Displays the pending release label #}
         </p>
       </div>
     {% endif %}
+
     {% if chrome.channels.beta %}
       <div class="flex-1 gap-300">
         <div class="release-card__icon release-card__icon-beta">
-          <span class="visually-hidden">{{ 'i18n.common.future_release_description' | i18n(locale) }}</span>
-          {{ chrome.channels.beta.mstone }}
+          <span class="visually-hidden">{{ 'i18n.common.future_release_description' | i18n(locale) }}</span>  {# Displays the future release description #}
+          {{ chrome.channels.beta.mstone }}  {# Displays the beta channel version #}
         </div>
         <p class="type--caption text-align-center gap-top-300">
-          {{ 'i18n.common.future_release_label' | i18n(locale) }}
-          {{ chrome.channels.beta.stableDate.toLocaleDateString(locale, {day: 'numeric', month: 'long'}) }}
-        </p>
-      </div>
-    {% endif %}
-
-  </div>
-
-</div>
-{% endmacro %}
+          {{ 'i18n.common.future_release_label' | i18n(locale) }}  {# Displays the future release label #}
+          {{ chrome.channels.beta.stableDate.toLocaleDateString(locale, {day: 'numeric', month: 'long'}) }}  {# Dis
