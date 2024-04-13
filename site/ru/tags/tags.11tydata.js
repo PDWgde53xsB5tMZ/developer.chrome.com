@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
+// Import the `locale` object from the `ru.11tydata` module.
 const {locale} = require('../ru.11tydata');
+
+// Import the `tags11tyData` function from the `_utils/tags-11tydata` module.
 const tags11tyData = require('../../_utils/tags-11tydata');
 
+// Call the `tags11tyData` function with the `locale` object as its argument,
+// and export the result.
 module.exports = tags11tyData(locale);
+
