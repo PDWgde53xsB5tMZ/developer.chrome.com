@@ -1,17 +1,19 @@
 .aside {
+  /* Sets default link and background colors for the aside element */
   --link-color: var(--color-blue-darkest);
   --link-visited-color: var(--color-blue-darkest);
   --link-rgb-background: var(--rgb-blue-darkest);
   background-color: var(--color-blue-lightest);
   border-radius: 6px;
   color: var(--color-blue-darkest);
-  padding: get-size(400);
+  padding: get-size(400); /* Sets padding using the get-size utility function */
 
   > * + * {
-    margin-top: get-size(300);
+    /* Sets margin between sibling elements */
+    margin-top: get-size(300); /* Sets margin using the get-size utility function */
   }
 
-  // This duplicates the above ".aside" for users who just want colors.
+  /* Duplicates the above .aside styles for users who just want colors */
   &--default {
     --link-color: var(--color-blue-darkest);
     --link-visited-color: var(--color-blue-darkest);
@@ -20,6 +22,7 @@
     color: var(--color-blue-darkest);
   }
 
+  /* Sets caution-specific link and background colors */
   &--caution {
     --link-color: var(--color-yellow-darkest);
     --link-visited-color: var(--color-yellow-darkest);
@@ -28,6 +31,7 @@
     color: var(--color-yellow-darkest);
   }
 
+  /* Sets warning-specific link and background colors */
   &--warning {
     --link-color: var(--color-red-darkest);
     --link-visited-color: var(--color-red-darkest);
@@ -36,6 +40,7 @@
     color: var(--color-red-darkest);
   }
 
+  /* Sets success-specific link and background colors */
   &--success {
     --link-color: var(--color-green-darkest);
     --link-visited-color: var(--color-green-darkest);
@@ -44,6 +49,7 @@
     color: var(--color-green-darkest);
   }
 
+  /* Sets important-specific link and background colors */
   &--important {
     --link-color: var(--color-purple-darkest);
     --link-visited-color: var(--color-purple-darkest);
@@ -52,6 +58,7 @@
     color: var(--color-purple-darkest);
   }
 
+  /* Sets update-specific link and background colors */
   &--update {
     --link-color: var(--color-blue-darkest);
     --link-visited-color: var(--color-blue-darkest);
@@ -60,6 +67,7 @@
     color: var(--color-blue-darkest);
   }
 
+  /* Sets key-term-specific link and background colors */
   &--key-term {
     --link-color: var(--color-pink-darkest);
     --link-visited-color: var(--color-pink-darkest);
@@ -68,6 +76,7 @@
     color: var(--color-pink-darkest);
   }
 
+  /* Sets codelab-specific and example-specific link and background colors */
   &--codelab,
   &--example {
     --link-color: var(--color-cyan-darkest);
@@ -78,23 +87,6 @@
   }
 }
 
-
-// The .aside__label is added by _transforms/asides.js
 .aside__label {
+  /* Centers the contents of the element */
   align-items: center;
-  display: flex;
-
-  > svg {
-    fill: currentColor;
-  }
-
-  > span {
-    @extend %type--headline;
-    @include apply-utility('weight', 'medium');
-    @include font-setup(16px, 28px);
-  }
-
-  > * + * {
-    margin-left: px-to-rem(12px);
-  }
-}
