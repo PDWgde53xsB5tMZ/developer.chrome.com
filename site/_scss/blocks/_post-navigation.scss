@@ -1,92 +1,76 @@
+/* The container for the post navigation links */
 .post-navigation {
+  /* Adds a thin border at the top and bottom of the container */
   border-bottom: 1px solid var(--color-hairline);
   border-top: 1px solid var(--color-hairline);
+  /* Centers the child elements horizontally and distributes them evenly */
   display: flex;
-  font-family: 'Google Sans';
   justify-content: space-between;
+  /* Positions the container vertically */
   margin-bottom: px-to-rem(-72px);
   margin-top: px-to-rem(80px);
+  /* Makes the container take up the full width available */
   width: 100%;
 
+  /* Media query for screens with a maximum width of 767.99px */
   @include media-query('md-max') {
+    /* Changes the flex direction to column */
     flex-direction: column;
   }
 
+  /* The styles for the individual post navigation links */
   &__link {
+    /* Makes the link a block element, takes up the full width available */
     display: block;
+    /* Sets the font size and line height */
     font-size: px-to-rem(20px);
-    height: 100%;
     line-height: px-to-rem(28px);
+    /* Adds some padding around the link */
     padding: px-to-rem(40px);
+    /* Removes the default underline from the link */
     text-decoration: none;
 
+    /* Media query for screens with a maximum width of 767.99px */
     @include media-query('md-max') {
+      /* Makes the link take up the full width available */
       width: 100%; 
     }
 
+    /* Media query for screens with a maximum width of 1023.99px */
     @include media-query('lg-max') {
+      /* Adds some more padding around the link */
       padding: px-to-rem(40px) px-to-rem(24px); 
     }
   }
 
-
+  /* The styles for the hover state of the post navigation links */
   &__link:hover {
+    /* Adds a light blue background color */
     background-color: var(--color-blue-lightest);
+    /* Makes the link take up the full height available */
     height: 100%;
   }
 
+  /* The styles for the previous post navigation link */
   &__prev {
+    /* Adds a border to the right of the link */
     border-right: 1px solid var(--color-hairline);
 
+    /* Media query for screens with a maximum width of 767.99px */
     @include media-query('md-max') {
+      /* Changes the border to bottom */
       border-bottom: 1px solid var(--color-hairline);
+      /* Removes the top border */
       border-top: unset; 
     }
   }
-  
+
+  /* The styles for the previous and next post navigation links */
   &__prev,
   &__next {
+    /* Makes the links take up half the width of the container */
     width: 50%;
 
+    /* Media query for screens with a maximum width of 767.99px */
     @include media-query('md-max') {
-      width: 100%; 
-    }
-  }
-
-  
-  &__label {
-    color: var(--color-primary);
-    display: inline-block;
-    font-size: px-to-rem(14px);
-    line-height: px-to-rem(20px);
-    margin-bottom: px-to-rem(16px);
-  }
-
-  &__label::before {
-    background-position: center center;
-    background-repeat: no-repeat no-repeat;
-    background-size: cover;
-    content: '';
-    display: inline-block;
-    height: px-to-rem(16px);
-    margin-right: px-to-rem(20px);
-    margin-top: px-to-rem(-2px);
-    vertical-align: middle;
-    width: px-to-rem(16px);
-  }
-  
-  &__label::before {
-    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z' fill='%231A73E8'/%3E%3C/svg%3E%0A");
-  }
-
-  &__prev &__label::before {
-    transform: scaleX(-1);
-  }
-
-  &__title {
-    color: var(--color-text);
-    display: block;
-    max-width: 70ch;
-    text-decoration: none;
-  }
-}
+      /* Makes the
