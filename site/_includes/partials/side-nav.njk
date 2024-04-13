@@ -1,13 +1,25 @@
 <side-nav type="{{ 'project' if project_key else 'site' }}">
+  <!-- The 'side-nav' component is used to create a navigation sidebar.
+       The 'type' attribute determines whether the sidebar displays
+       project-specific or site-wide navigation links. It can be set
+       to 'project' if a project key is present, or 'site' if not. -->
   <div class="side-nav__container lg:display-flex">
+    <!-- The 'side-nav__container' div is used to apply styling to the
+         navigation sidebar. The 'lg:display-flex' class is a utility
+         class that applies flexbox styling to the div when the viewport
+         is at least 'large' size. -->
     {% include 'partials/navigation-rail.njk' %}
-    {#
-      If there's a toc in the global data scope then it implies that we're
-      on an individual doc page and need to display the project's ToC on
-      the left-hand side.
-    #}
+    <!-- This line includes the 'navigation-rail.njk' partial, which
+         likely contains the markup for the project's navigation rail. -->
     {% if project_key %}
+      {#
+        If a project key is present in the global data scope, then the
+        following code block will be executed.
+      #}
       {% include 'partials/navigation-tree.njk' %}
+      <!-- This line includes the 'navigation-tree.njk' partial, which
+           likely contains the markup for the project's table of contents.
+      #}
     {% endif %}
   </div>
 </side-nav>
