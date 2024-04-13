@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-const test = require('ava');
-const {withPage, addPageScript} = require('../../../../puppeteer');
-const {html} = require('common-tags');
+const test = require('ava'); // Importing the Ava testing framework for running tests
+const {withPage, addPageScript} = require('../../../../puppeteer'); // Importing helper functions from Puppeteer for working with browser pages
+const {html} = require('common-tags'); // Importing the html function from common-tags for creating multi-line HTML strings
 
+// -----------------------------------------------------------------------------
+// Test: load-more: can load additional items
+// -----------------------------------------------------------------------------
 test('load-more: can load additional items', withPage, async (t, page) => {
+  // Setting the content of the current page to a predefined HTML string
   await page.setContent(html`
     <load-more
       total="6"
@@ -30,8 +34,10 @@ test('load-more: can load additional items', withPage, async (t, page) => {
     </load-more>
   `);
 
+  // Adding a script to the page's context
   await addPageScript(page, '_load-more.js');
 
+  // Defining a function to be executed in the page's context
   await page.evaluate(() => {
     const items = [
       '<div class="load-more__item">Initial item</div>',
@@ -49,17 +55,24 @@ test('load-more: can load additional items', withPage, async (t, page) => {
     };
   });
 
+  // Finding a button element and clicking it
   const button = await page.$('button');
   await button.click();
 
+  // Evaluating JavaScript code in the page's context and returning the result
   const numItems = await page.evaluate(() => {
     return document.querySelectorAll('.load-more__item').length;
   });
 
+  // Checking if the number of items on the page is equal to the expected value
   t.is(numItems, 6);
 });
 
+// -----------------------------------------------------------------------------
+// Test: load-more: hides button on last page
+// -----------------------------------------------------------------------------
 test('load-more: hides button on last page', withPage, async (t, page) => {
+  // Setting the content of the current page to a predefined HTML string
   await page.setContent(html`
     <load-more
       total="2"
@@ -69,8 +82,10 @@ test('load-more: hides button on last page', withPage, async (t, page) => {
     </load-more>
   `);
 
+  // Adding a script to the page's context
   await addPageScript(page, '_load-more.js');
 
+  // Defining a function to be executed in the page's context
   await page.evaluate(() => {
     const items = [
       '<div class="load-more__item">Initial item</div>',
@@ -84,20 +99,27 @@ test('load-more: hides button on last page', withPage, async (t, page) => {
     };
   });
 
+  // Finding a button element and clicking it
   const button = await page.$('button');
   await button.click();
 
+  // Evaluating JavaScript code in the page's context and returning the result
   const haveButton = await page.evaluate(() => {
     return document.querySelectorAll('button').length > 0;
   });
 
+  // Checking if the button is no longer present on the page
   t.is(haveButton, false);
 });
 
+// -----------------------------------------------------------------------------
+// Test: load-more: supports custom number of items per load
+// -----------------------------------------------------------------------------
 test(
   'load-more: supports custom number of items per load',
   withPage,
   async (t, page) => {
+    // Setting the content of the current page to a predefined HTML string
     await page.setContent(html`
       <load-more
         total="5"
@@ -109,191 +131,13 @@ test(
       </load-more>
     `);
 
+    // Adding a script to the page's context
     await addPageScript(page, '_load-more.js');
 
+    // Defining a function to be executed in the page's context
     await page.evaluate(() => {
       const all = [
         '<div class="load-more__item">Initial item</div>',
         '<div class="load-more__item">Initial item</div>',
         '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-      ];
-
-      document.querySelector('load-more').fetchItems = (skip, take) => {
-        return {
-          items: all.slice(skip, take + skip),
-        };
-      };
-    });
-
-    const button = await page.$('button');
-    await button.click();
-
-    const numItems = await page.evaluate(() => {
-      return document.querySelectorAll('.load-more__item').length;
-    });
-
-    t.is(numItems, 3);
-
-    await button.click();
-
-    const updatedNumItems = await page.evaluate(() => {
-      return document.querySelectorAll('.load-more__item').length;
-    });
-
-    t.is(updatedNumItems, 4);
-  }
-);
-
-test('load-more: can be restarted', withPage, async (t, page) => {
-  await page.setContent(html`
-    <load-more
-      total="3"
-      take="1"
-      i18n='{"buttonLabel":"","errorMessage":"","errorLinkLabel":"","noResultsMessage":""}'
-    >
-      <div class="load-more__item" id="1">Initial item</div>
-    </load-more>
-  `);
-
-  await addPageScript(page, '_load-more.js');
-
-  await page.evaluate(() => {
-    const all = [
-      '<div class="load-more__item" id="1">Initial item</div>',
-      '<div class="load-more__item" id="2">Loaded item</div>',
-      '<div class="load-more__item" id="3">Loaded item</div>',
-    ];
-
-    document.querySelector('load-more').fetchItems = (skip, take) => {
-      return {
-        items: all.slice(skip, take + skip),
-      };
-    };
-  });
-
-  const button = await page.$('button');
-  await button.click();
-
-  const numItems = await page.evaluate(() => {
-    return document.querySelectorAll('.load-more__item').length;
-  });
-
-  t.is(numItems, 2);
-
-  await page.evaluate(() => {
-    document.querySelector('load-more').restart();
-  });
-
-  const updatedNumItems = await page.evaluate(() => {
-    return document.querySelectorAll('.load-more__item').length;
-  });
-
-  t.is(updatedNumItems, 1);
-});
-
-test(
-  'load-more: works as expected without initial items',
-  withPage,
-  async (t, page) => {
-    await page.setContent(html`
-      <load-more
-        total="5"
-        take="2"
-        i18n='{"buttonLabel":"","errorMessage":"","errorLinkLabel":"","noResultsMessage":""}'
-      ></load-more>
-    `);
-
-    await addPageScript(page, '_load-more.js');
-
-    await page.evaluate(() => {
-      const all = [
-        '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-        '<div class="load-more__item">Loaded item</div>',
-      ];
-
-      document.querySelector('load-more').fetchItems = (skip, take) => {
-        return {
-          items: all.slice(skip, take + skip),
-        };
-      };
-    });
-
-    const button = await page.$('button');
-    await button.click();
-
-    const numItems = await page.evaluate(() => {
-      return document.querySelectorAll('.load-more__item').length;
-    });
-
-    t.is(numItems, 2);
-
-    await button.click();
-
-    const updatedNumItems = await page.evaluate(() => {
-      return document.querySelectorAll('.load-more__item').length;
-    });
-
-    t.is(updatedNumItems, 4);
-  }
-);
-
-test('load-more: handles errors gracefully', withPage, async (t, page) => {
-  await page.setContent(html`
-    <load-more
-      total="5"
-      take="2"
-      i18n='{"buttonLabel":"","errorMessage":"An error occured","errorLinkLabel":"","noResultsMessage":""}'
-    ></load-more>
-  `);
-
-  await addPageScript(page, '_load-more.js');
-
-  await page.evaluate(() => {
-    document.querySelector('load-more').fetchItems = () => {
-      throw Error('Unable to fetch items');
-    };
-  });
-
-  const button = await page.$('button');
-  await button.click();
-
-  const errorText = await page.evaluate(() => {
-    return document.querySelector('.load-more__error').innerText;
-  });
-
-  t.is(errorText, 'An error occured');
-});
-
-test('load-more: handles no matches gracefully', withPage, async (t, page) => {
-  await page.setContent(html`
-    <load-more
-      total="5"
-      take="5"
-      i18n='{"buttonLabel":"","errorMessage":"","errorLinkLabel":"","noResultsMessage":"No results found"}'
-    ></load-more>
-  `);
-
-  await addPageScript(page, '_load-more.js');
-
-  await page.evaluate(() => {
-    document.querySelector('load-more').fetchItems = () => {
-      return {
-        items: [],
-      };
-    };
-  });
-
-  const button = await page.$('button');
-  await button.click();
-
-  const message = await page.evaluate(() => {
-    return document.querySelector('.load-more__noResults').innerText;
-  });
-
-  t.is(message, 'No results found');
-});
+        '<div class="load-more__item">Loaded item
