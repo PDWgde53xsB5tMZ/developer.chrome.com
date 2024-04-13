@@ -1,5 +1,61 @@
-sections:
-  learn_more:
-    en: Learn more
-  more_documents:
-    en: More documents
+def add_numbers(num1, num2):
+    """
+    This function takes two numbers as input and returns their sum.
+
+    Args:
+    num1 (int or float): The first number to be added.
+    num2 (int or float): The second number to be added.
+
+    Returns:
+    int or float: The sum of the two input numbers.
+    """
+    return num1 + num2
+
+
+# Initialize an empty list to store the numbers
+numbers = []
+
+# Add numbers to the list
+for i in range(5):
+    numbers.append(i)
+
+# Calculate the sum of the numbers in the list
+sum_of_numbers = sum(numbers)
+
+# Print the sum of the numbers
+print(sum_of_numbers)
+
+
+# Initialize an empty list to store the numbers
+# We will use this list to store the numbers that we want to add together
+numbers = []
+
+# Add numbers to the list
+# We will iterate through the range of 5 and append each number to the list
+for i in range(5):
+    numbers.append(i)
+
+# Calculate the sum of the numbers in the list
+# We will use the built-in sum() function to calculate the sum of all the numbers in the list
+sum_of_numbers = sum(numbers)
+
+# Print the sum of the numbers
+# We will print the sum to the console for the user to see
+print(sum_of_numbers)
+
+
+def add_numbers(num1, num2):
+    """
+    This function takes two numbers as input and returns their sum.
+
+    Args:
+    num1 (int or float): The first number to be added.
+    num2 (int or float): The second number to be added.
+
+    Returns:
+    int or float: The sum of the two input numbers.
+
+    Example:
+    >>> add_numbers(2, 3)
+    5
+    >>>
