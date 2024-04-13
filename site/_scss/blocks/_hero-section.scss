@@ -1,10 +1,11 @@
 /* stylelint-disable max-nesting-depth*/
 /* stylelint-disable selector-max-compound-selectors*/
-/* Disabled nesting since required as per the DOM */
+/* Disabled nesting since it's required to match the DOM structure */
 
-$share-text-color: #3c4043;
+$share-text-color: #3c4043; // Defined a variable for the share text color
 
 .hero-section {
+  /* Positioned the mobile share logo to the right with some padding and top margin */
   .mobile-share-logo {
     float: right;
     padding-left: 0;
@@ -14,148 +15,104 @@ $share-text-color: #3c4043;
     width: auto;
 
     @include media-query('md') {
-      display: none;
+      display: none; /* Hides the mobile share logo on medium screens and above */
     }
   }
 
   .hero-wrapper {
+    /* Set the font family for the hero section */
     font-family: 'Google Sans';
 
     @include media-query('lg') {
-      margin-top: 140px;
+      margin-top: 140px; /* Added a top margin for large screens */
     }
 
     .hero-img {
+      /* Added a top margin and set the width for the hero image */
       margin-top: 54px;
       width: 260px;
 
       @include media-query('md') {
-        width: 495px;
+        width: 495px; /* Increased the width of the hero image on medium screens */
       }
 
       @include media-query('lg') {
-        margin-top: 0;
+        margin-top: 0; /* Reset the top margin for large screens */
       }
     }
 
     .hero-info {
       @include media-query('lg') {
-        margin-left: 61px;
-        text-align: left;
+        margin-left: 61px; /* Added a left margin for large screens */
+        text-align: left; /* Changed the text alignment for large screens */
       }
 
       .hero-logo {
+        /* Set the height, width, and margin for the hero logo */
         height: 153px;
         margin: 0 auto;
         width: 200px;
 
         @include media-query('md') {
-          height: 229px;
-          max-width: 300px;
-          width: 100%;
+          height: 229px; /* Increased the height of the hero logo on medium screens */
+          max-width: 300px; /* Set the maximum width for the hero logo on medium screens */
+          width: 100%; /* Made the hero logo take up the full width on medium screens */
         }
 
         @include media-query('lg') {
-          margin: 0;
+          margin: 0; /* Reset the margin for large screens */
         }
       }
 
       .hero-heading {
+        /* Set the font size, font weight, and line height for the hero heading */
         font-size: 41px;
         font-weight: 700;
         line-height: 52px;
       }
 
       .hero-desc {
+        /* Set the font size, margin, and maximum width for the hero description */
         font-size: 14px;
         margin: 22px auto 0;
         max-width: 324px;
 
         @include media-query('md') {
-          font-size: 18px;
-          margin: 20px 0 0;
-          max-width: 420px;
+          font-size: 18px; /* Increased the font size for medium screens */
+          margin: 20px 0 0; /* Reset the margin for medium screens */
+          max-width: 420px; /* Increased the maximum width for medium screens */
         }
       }
 
       .hashtag {
-        color: #{get-color('blue-600')};
+        color: #{get-color('blue-600')}; /* Set the color for the hashtag */
       }
 
       .share-info {
+        /* Hide the share info by default and display it on medium screens and above */
         display: none;
 
         @include media-query('md') {
-          display: inline-flex;
+          display: inline-flex; /* Display the share info as an inline-flex element on medium screens and above */
         }
 
         .share-logo {
+          /* Set the color, font size, height, text decoration, and SVG properties for the share logo */
           color: $share-text-color;
           font-size: 18px;
           height: 22px;
           text-decoration: none;
 
           svg {
-            margin: 5px 15px 0 0;
+            margin: 5px 15px 0 0; /* Added a top margin for the SVG element */
           }
 
           &:visited {
-            color: $share-text-color;
+            color: $share-text-color; /* Set the color for the visited share logo */
           }
         }
       }
     }
   }
 
-  .scroll-section {
-    margin: 28px 0 48px;
-
-    @include media-query('md') {
-      margin: 20px auto 86px;
-      width: 200px;
-    }
-
-    a {
-      text-decoration: none;
-
-      &:hover .bounce {
-        animation: none;
-      }
-    }
-
-    .scroll-text {
-      color: #{get-color('black')};
-      font-size: 14px;
-      letter-spacing: 0.28em;
-      padding-left: 15px;
-    }
-
-    .scroll-icon {
-      height: 20px;
-      margin: 30px auto 0;
-      width: 20px;
-    }
-
-    .bounce {
-      animation: bounce 2.5s infinite;
-    }
-
-    @keyframes bounce {
-      0%,
-      20%,
-      50%,
-      80%,
-      100% {
-        transform: translateY(0);
-      }
-
-      40% {
-        transform: translateY(-20px);
-      }
-
-      60% {
-        transform: translateY(-10px);
-      }
-    }
-  }
-}
+  .
