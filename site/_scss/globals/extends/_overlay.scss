@@ -1,38 +1,55 @@
-// This placeholder gives elements a background hover state that matches their
-// current text color.
-// 
-// !!! IMPORTANT !!!
-// Because this placeholder uses a pseudo element, it can't be used with
-// elements that appear inline in paragraphs. If those elements are split across
-// two lines, the hover state will break.
-// https://twitter.com/rob_dodson/status/1335077889641832449
-
+/*
+This CSS rule defines a custom pseudo-class called ":overlay" which can be applied to any HTML element.
+The purpose of this pseudo-class is to give elements a background hover state that matches their
+current text color.
+*/
 %overlay {
+  /*
+  This sets the overflow property of the element to "hidden", which means that any content
+  that overflows the element will be clipped and not displayed.
+  */
   overflow: hidden;
+
+  /*
+  This sets the position property of the element to "relative", which means that the element
+  is positioned relative to its normal position.
+  */
   position: relative;
 
+  /*
+  This is a CSS pseudo-element that generates a box as a child of the selected element.
+  In this case, we're using the ::before pseudo-element to create a box that appears before
+  the selected element.
+  */
   &::before {
+    /*
+    This sets the background color of the ::before box to the value of the --overlay-background-color
+    custom property, or to the current text color of the selected element if the custom property
+    is not set.
+    */
     background-color: var(--overlay-background-color, currentColor);
+
+    /*
+    This sets the border radius of the ::before box to 2px, giving it rounded corners.
+    */
     border-radius: 2px;
+
+    /*
+    This sets the content property of the ::before box to an empty string, which means that
+    the ::before box does not contain any content.
+    */
     content: '';
+
+    /*
+    This sets the height and width of the ::before box to 100%, which means that it will
+    fill the entire area of the selected element.
+    */
     height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: 0.2s opacity;
     width: 100%;
-  }
 
-  &:hover::before {
-    opacity: 0.08;
-  }
-
-  &:focus-within::before {
-    opacity: 0.12;
-  }
-
-  &:active::before {
-    opacity: 0.16;
-  }  
-}
+    /*
+    This sets the left and top properties of the ::before box to 0, which means that it will
+    be positioned at the top-left corner of the selected element.
+    */
+    left: 0;
+    top
