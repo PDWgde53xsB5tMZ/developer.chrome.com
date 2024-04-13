@@ -1,3 +1,12 @@
+/*
+* .landing-container class definition
+*
+* This class sets the maximum width of an HTML element to 1200 pixels.
+* This is often used for the main container of a landing page or a section
+* that needs to be horizontally centered and have a limited width.
+*
+* Note: This class does not apply any padding, margin, or background properties.
+*/
 .landing-container {
   max-width: 1200px;
 }
