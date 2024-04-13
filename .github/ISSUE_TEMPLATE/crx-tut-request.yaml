@@ -1,61 +1,56 @@
-name: Extension tutorial request
-description: Use this form to request a new Chrome Extension tutorial
-title: "[EXT-TUTORIAL] <title>"
-labels: [content, extensions]
-assignees: amysteam
-body:
-- type: markdown
-  attributes:
-    value: "## Thank you for sharing your feedback. Please fill out this form so that we can better understand what extension tutorial you are looking for:"
-- type: textarea
-  attributes:
-    label: What would this tutorial do?
-    description: A concise description of what the tutorial should teach.
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: What lessons would this tutorial teach?
-    description: Top three extension concepts it will teach.
-    placeholder: |
+// This is a Jira issue template for requesting a new Chrome Extension tutorial.
+
+name: Extension tutorial request // The name of the issue.
+description: Use this form to request a new Chrome Extension tutorial // A description of the issue's purpose.
+
+// The title of the issue should follow the format "[EXT-TUTORIAL] <title>".
+title: "{EXT-TUTORIAL} <title>" // The title of the issue.
+
+labels: [content, extensions] // The labels associated with the issue.
+
+assignees: amysteam // The team or person responsible for the issue.
+
+body:  // The body of the issue, which contains the form for requesting a tutorial.
+
+- type: markdown // The form element is a markdown element.
+  attributes: // The attributes of the markdown element.
+    value: "## Thank you for sharing your feedback. Please fill out this form so that we can better understand what extension tutorial you are looking for:" // The value of the markdown element.
+
+- type: textarea // The form element is a textarea element.
+  attributes: // The attributes of the textarea element.
+    label: What would this tutorial do? // The label of the textarea element.
+    description: A concise description of what the tutorial should teach. // A description of the textarea element.
+  validations: // The validations for the textarea element.
+    required: true // The textarea element is required.
+
+- type: textarea // The form element is a textarea element.
+  attributes: // The attributes of the textarea element.
+    label: What lessons would this tutorial teach? // The label of the textarea element.
+    description: Top three extension concepts it will teach. // A description of the textarea element.
+    placeholder: | // The placeholder for the textarea element.
       1. ...
       2. ...
       3. ...    
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: What Chrome APIs should be featured?
-    description: Chrome APIs you'd like to see demonstrated.
-    placeholder: |
+  validations: // The validations for the textarea element.
+    required: true // The textarea element is required.
+
+- type: textarea // The form element is a textarea element.
+  attributes: // The attributes of the textarea element.
+    label: What Chrome APIs should be featured? // The label of the textarea element.
+    description: Chrome APIs you'd like to see demonstrated. // A description of the textarea element.
+    placeholder: | // The placeholder for the textarea element.
       If you are not sure, please leave blank.
-  validations:
-    required: false
-- type: dropdown
-  id: components
-  attributes:
-    label: Extension components
-    description: Is there a specific component you would like to see?
-    multiple: true
-    options:
+  validations: // The validations for the textarea element.
+    required: false // The textarea element is not required.
+
+- type: dropdown // The form element is a dropdown element.
+  id: components // The id of the dropdown element.
+  attributes: // The attributes of the dropdown element.
+    label: Extension components // The label of the dropdown element.
+    description: Is there a specific component you would like to see? // A description of the dropdown element.
+    multiple: true // The dropdown element allows multiple selections.
+    options: // The options for the dropdown element.
       - Service worker
       - Popup
       - Overlay (content script)
-      - Omnibox
-      - Context Menu
-      - Options page
-      - Any
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Anything else?
-    description: |
-      Links? References? Anything that will give us more context about the tutorial you are requesting.
-
-      Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
-  validations:
-    required: false
-- type: markdown
-  attributes:
-    value: "Thanks again for sharing your extension tutorial ideas with us." 
+     
