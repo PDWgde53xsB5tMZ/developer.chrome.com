@@ -1,31 +1,48 @@
+/* Defines the footer section of the webpage */
 footer {
+  /* Defines the spacing between elements */
   --flow-space: #{px-to-rem(12px)};
+  /* Sets the background color of the footer */
   background-color: var(--color-footer-bg);
 }
 
+/* Defines a stack of elements within the footer */
 .footer__stack {
+  /* Defines a heading within the footer stack */
   .footer__heading {
+    /* Sets the color of the heading */
     color: get-color('grey-700');
+    /* Sets the font size of the heading */
     font-size: 1.25rem;
+    /* Sets the line height of the heading */
     line-height: 1.25rem;
   }
 
+  /* Defines a list within the footer stack */
   ul {
+    /* Defines the top margin of the list */
     margin-top: 1.5rem;
   }
-} 
+}
 
+/* Defines the spacing between two consecutive footer stacks */
 .footer__stack + .footer__stack {
+  /* Defines the top margin of the second footer stack */
   margin-top: get-size(500);
 
+  /* Media query to apply different styles based on screen size */
   @include media-query('lg') {
+    /* Sets the top margin of the second footer stack to 0 on large screens */
     margin-top: 0;
   }
 }
 
+/* Defines the style of a link within the footer */
 .footer__link {
+  /* Inherits styles from the surface class */
   @extend %surface;
+  /* Sets the color of the link */
   color: var(--color-secondary-text);
+  /* Removes the default text decoration of the link */
   text-decoration: none;
 }
-
