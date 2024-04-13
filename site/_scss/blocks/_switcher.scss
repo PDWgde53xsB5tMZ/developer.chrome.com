@@ -1,17 +1,24 @@
 .switcher {
+  /* Set the alignment of items to flex-start */
   align-items: flex-start;
+  /* Display the container as a flex container */
   display: flex;
+  /* Allow the items to wrap onto the next line */
   flex-wrap: wrap;
+  /* Set the gap between items */
   gap: get-size(300);
 }
 
 .switcher > * {
+  /* Set the initial value of flex-basis to 0 */
   flex-basis: 0;
+  /* Allow the item to grow and take up available space */
   flex-grow: 1;
 }
 
 /// Max 2 items, so we target everything *after* those
 .switcher > :nth-last-child(n + 3),
 .switcher > :nth-last-child(n + 3) ~ * {
+  /* Set the flex-basis of the item to 100% to make it take up the full width */
   flex-basis: 100%;
 }
