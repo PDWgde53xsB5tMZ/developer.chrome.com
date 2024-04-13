@@ -20,6 +20,7 @@ If there are more than 3 authors, it will render a condensed view
       {# Display author image if available #}
       {% if authorImage %}
         <a href="/authors/{{authorId}}/" translate="no" class="card-authors__image">
+          {# Img tag is a custom tag for rendering images, passing various attributes #}
           {% Img
             class="flex-shrink-none width-600 height-600",
             src=authorImage,
@@ -81,6 +82,7 @@ Renders a condensed view if there are 3 or more authors
       {# Display author image if available #}
       {% if authorImage %}
         <a href="/authors/{{authorId}}/" translate="no" class="post-authors__image">
+          {# Img tag is a custom tag for rendering images, passing various attributes #}
           {% Img
             class="flex-shrink-none width-750 height-750",
             src=authorImage,
@@ -98,6 +100,7 @@ Renders a condensed view if there are 3 or more authors
     <div class="gap-top-200">
       <p class="type--small">
         By
+        {# joiner is a custom filter that creates a separator between list items #}
         {% set sep = joiner(', ') %}
         {%- for authorId in authors -%}
           {%- if loop.last -%}
@@ -107,13 +110,4 @@ Renders a condensed view if there are 3 or more authors
           {%- endif -%}
           {%- if authorsData[authorId] -%}
             {% set authorTitle = 'i18n.authors.' + authorId + '.title' %}
-            {% set authorImage = authorsData[authorId].image or site.avatarPlaceholderImg %}
-            <a href="/authors/{{authorId}}/" translate="no" class="display-inline-flex color-text decoration-underline">{{ authorTitle | i18n(locale) }}</a>
-          {%- else -%}
-            {{ authorId }}
-          {%- endif -%}
-        {%- endfor -%}
-      </p>
-    </div>
-  {% endif %}
-{% endmacro %}
+            {% set authorImage = authorsData[authorId
