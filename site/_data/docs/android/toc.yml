@@ -1,36 +1,27 @@
-- title: i18n.docs.android.customtabs
-  sections:
-    - url: /docs/android/custom-tabs
-    - url: /docs/android/custom-tabs/browser-support
-    - title: i18n.docs.android.guides
-      sections:
-        - url: /docs/android/custom-tabs/guide-get-started
-        - url: /docs/android/custom-tabs/guide-ui-customization
-        - url: /docs/android/custom-tabs/guide-interactivity
-        - url: /docs/android/custom-tabs/guide-warmup-prefetch
-        - url: /docs/android/custom-tabs/guide-partial-custom-tabs
-        - url: /docs/android/custom-tabs/guide-engagement-signals
-    - title: i18n.docs.android.howtos
-      sections:
-        - url: /docs/android/custom-tabs/howto-custom-tab-native-apps
-        - url: /docs/android/custom-tabs/howto-custom-tab-from-webview
-        - url: /docs/android/custom-tabs/howto-custom-tab-check
-        - url: /docs/android/custom-tabs/howto-custom-tab-low-level-api
-        - url: /docs/android/custom-tabs/howto-custom-tab-request-headers
-- title: i18n.docs.android.trustedwebactivity
-  sections:
-    - url: /docs/android/trusted-web-activity
-    - url: /docs/android/trusted-web-activity/quick-start
-    - url: /docs/android/trusted-web-activity/android-for-web-devs
-    - url: /docs/android/trusted-web-activity/integration-guide
-    - url: /docs/android/trusted-web-activity/lay-of-the-land
-    - url: /docs/android/trusted-web-activity/whats-new
-    - title: i18n.docs.android.howtos
-      sections:
-        - url: /docs/android/trusted-web-activity/multi-origin/
-        - url: /docs/android/trusted-web-activity/query-parameters/
-        - url: /docs/android/trusted-web-activity/android-browser-helper-migration/
-        - url: /docs/android/trusted-web-activity/web-share-target/
-        - url: /docs/android/trusted-web-activity/play-billing/
-        - url: /docs/android/trusted-web-activity/receive-payments-play-billing/
-        - url: /docs/android/trusted-web-activity/offline-first/
+- title: i18n.docs.android.customtabs  // Title for the Custom Tabs documentation
+  sections:                          // A list of sections related to Custom Tabs
+    - url: /docs/android/custom-tabs   // URL for the main Custom Tabs documentation
+    - url: /docs/android/custom-tabs/browser-support  // URL for the browser support documentation
+    - title: i18n.docs.android.guides    // Title for the Guides subheading
+      sections:                       // A list of guide sections
+        - url: /docs/android/custom-tabs/guide-get-started  // URL for the getting started guide
+        - url: /docs/android/custom-tabs/guide-ui-customization  // URL for the UI customization guide
+        - url: /docs/android/custom-tabs/guide-interactivity  // URL for the interactivity guide
+        - url: /docs/android/custom-tabs/guide-warmup-prefetch  // URL for the warmup and prefetch guide
+        - url: /docs/android/custom-tabs/guide-partial-custom-tabs  // URL for the partial custom tabs guide
+        - url: /docs/android/custom-tabs/guide-engagement-signals  // URL for the engagement signals guide
+    - title: i18n.docs.android.howtos   // Title for the How-Tos subheading
+      sections:                       // A list of how-to sections
+        - url: /docs/android/custom-tabs/howto-custom-tab-native-apps  // URL for the custom tabs in native apps how-to
+        - url: /docs/android/custom-tabs/howto-custom-tab-from-webview  // URL for the custom tabs from webview how-to
+        - url: /docs/android/custom-tabs/howto-custom-tab-check  // URL for the custom tabs check how-to
+        - url: /docs/android/custom-tabs/howto-custom-tab-low-level-api  // URL for the custom tabs low-level API how-to
+        - url: /docs/android/custom-tabs/howto-custom-tab-request-headers  // URL for the custom tabs request headers how-to
+
+- title: i18n.docs.android.trustedwebactivity  // Title for the Trusted Web Activity documentation
+  sections:                                   // A list of sections related to Trusted Web Activity
+    - url: /docs/android/trusted-web-activity  // URL for the main Trusted Web Activity documentation
+    - url: /docs/android/trusted-web-activity/quick-start  // URL for the quick start guide
+    - url: /docs/android/trusted-web-activity/android-for-web-devs  // URL for the Android for web devs guide
+    - url: /docs/android/trusted-web-activity/integration-guide  // URL for the integration guide
+    - url: /docs/android/trusted
