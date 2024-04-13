@@ -25,57 +25,62 @@ const path = require('path');
 const express = require('express');
 
 /**
+ * Builds a check handler function that checks if a given URL exists in the provided
+ * static paths.
+ *
  * @param {redirectsYaml.RedirectLine[]} redirects
- * @param {string[]=} staticPaths
+ * @param {string[]=} staticPaths - An array of file paths to check for existence.
+ * @return {function(string): boolean} - A function that checks if a given URL exists
+ * in the provided static paths.
  */
 function buildCheckHandlerInternal(redirects, staticPaths = undefined) {
-  let checker = () => true;
-  if (staticPaths) {
-    // Ensure that staticPath is never blank (this ensures it's always ".").
-    const alwaysStaticPaths = staticPaths.map(staticPath => staticPath || '.');
+  // If static paths are provided, map them to an array with non-empty elements.
+  const alwaysStaticPaths = staticPaths.map(staticPath => staticPath || '.');
 
-    checker = s => {
-      for (const staticPath of alwaysStaticPaths) {
-        // This is passed the folder name, not "/index.html". We just assume that any folder that
-        // exists can be redirected to.
-        const check = path.join(staticPath, s);
-        if (fs.existsSync(check)) {
-          return true;
-        }
+  // The checker function checks if a given URL exists in the provided static paths.
+  const checker = s => {
+    for (const staticPath of alwaysStaticPaths) {
+      const check = path.join(staticPath, s);
+      if (fs.existsSync(check)) {
+        return true;
       }
-      return false;
-    };
-  }
+    }
+    return false;
+  };
 
+  // Build handlers for the redirects using the checker function.
   return redirectsYaml.buildHandlers(redirects, checker);
 }
 
 /**
- * Builds HTTP middleware that serves redirects for a redirects.yaml
+ * Builds HTTP middleware that serves redirects for a given redirects.yaml
  * configuration file.
  *
- * @param {string} filename to load configuration from
- * @param {string[]=} staticPaths to check if content exists
- * @param {number=} code to use
- * @return {express.RequestHandler}
+ * @param {string} filename - The file path to the configuration file.
+ * @param {string[]=} staticPaths - An array of file paths to check for existence.
+ * @param {number=} code - The HTTP status code to use for the redirects.
+ * @return {function(request, response, next)} - The HTTP middleware function.
  */
 function buildRedirectHandler(filename, staticPaths = undefined, code = 301) {
+  // Load the configuration file and extract the redirects.
   const raw = YAML.load(fs.readFileSync(filename, 'utf-8'));
   const {redirects} =
     /** @type {{ redirects: redirectsYaml.RedirectLine[] }} */ (raw);
 
+  // Build the check handler function using the extracted redirects.
   const handler = buildCheckHandlerInternal(redirects, staticPaths);
 
-  /** @type {express.RequestHandler} */
+  // The middleware function that serves the redirects.
   return (req, res, next) => {
+    // Get the target URL from the check handler function.
     const target = handler(req.url);
     if (target !== null && target !== req.url) {
+      // If a target URL is found, redirect to it.
       return doRedirect(res, target, code);
     }
 
-    // If we didn't match normally but the URL contains a dot, then check it again with those
-    // replaced with underscores. There are various bad links to APIs with ".", when the generated
-    // pages actually use "_".
+    // If no target URL is found, check if the URL contains a dot and replace it with an
+    // underscore to handle bad links with "." instead of "_".
     if (req.url.includes('.')) {
       let update = req.url.replace(/\./g, '_');
       if (update.endsWith('_html')) {
@@ -83,10 +88,12 @@ function buildRedirectHandler(filename, staticPaths = undefined, code = 301) {
       }
       const target = handler(update);
       if (target !== null && target !== req.url) {
+        // If a target URL is found, redirect to it.
         return doRedirect(res, target, code);
       }
     }
 
+    // If no target URL is found, continue to the next middleware function.
     return next();
   };
 }
