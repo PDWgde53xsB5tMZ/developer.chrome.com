@@ -1,23 +1,34 @@
-learn_basics:
-  en: 'Learn the basics'
+# This dictionary contains various English language terms related to software development,
+# organized into keys and values.
 
-sdk:
-  en: 'SDK'
+learn_basics = {
+    'en': 'Learn the basics'  # This key-value pair provides a term in English for learning the fundamentals of software development.
+}
 
-tutorial:
-  en: 'Tutorial'
+sdk = {
+    'en': 'SDK'  # This key-value pair provides a term in English for a software development kit.
+}
 
-dev_cycle:
-  en: 'Development cycle'
+tutorial = {
+    'en': 'Tutorial'  # This key-value pair provides a term in English for a step-by-step guide for learning a new skill or technology.
+}
 
-distribute:
-  en: 'Distribute your apps'
+dev_cycle = {
+    'en': 'Development cycle'  # This key-value pair provides a term in English for the process of creating and improving a software product.
+}
 
-pepper_api:
-  en: 'Pepper API Reference'
+distribute = {
+    'en': 'Distribute your apps'  # This key-value pair provides a term in English for making your software applications available to users.
+}
 
-additional_reference:
-  en: 'Additional reference & versions'
+pepper_api = {
+    'en': 'Pepper API Reference'  # This key-value pair provides a term in English for a reference guide for using the Pepper API.
+}
 
-help:
-  en: 'Help'
+additional_reference = {
+    'en': 'Additional reference & versions'  # This key-value pair provides a term in English for additional resources and versions of software or documentation.
+}
+
+help = {
+    'en': 'Help'  # This key-value pair provides a term in English for assistance or support in using a software product or technology.
+}
