@@ -1,75 +1,39 @@
-.fugu-showcase {
-  .search-box {
-    align-items: center;
-    gap: 1rem;
+.fugu-showcase { /* Overall container for the showcase section */
+  .search-box { /* Container for the search box */
+    align-items: center; /* Centers the child elements vertically */
+    gap: 1rem; /* Adds horizontal spacing between child elements */
   }
 
-  .search-box__input {
-    background: var(--color-bg-shade);
-    border: 0;
-    border-radius: px-to-rem(100px);
-    display: block;
-    margin: 0;
-    padding: get-size(200) get-size(700);
+  .search-box__input { /* Input field for the search box */
+    background: var(--color-bg-shade); /* Background color for the input field */
+    border: 0; /* Removes border around the input field */
+    border-radius: px-to-rem(100px); /* Sets border radius for rounded corners */
+    display: block; /* Makes the input field a block-level element */
+    margin: 0; /* Removes margin around the input field */
+    padding: get-size(200) get-size(700); /* Sets padding for the input field */
 
-    &::placeholder {
-      color: var(--color-secondary-text);
+    &::placeholder { /* Placeholder text for the input field */
+      color: var(--color-secondary-text); /* Sets color for the placeholder text */
     }
   }
 
-  .search-box__btn--close {
-    justify-self: end;
+  .search-box__btn--close { /* Close button for the search box */
+    justify-self: end; /* Aligns the button to the right of the container */
   }
 
-  .search-box__btn--close {
-    svg {
-      height: 18px;
-      width: 18px;
-    }
+  .search-box__btn--close svg { /* SVG icon for the close button */
+    height: 18px; /* Sets height for the SVG icon */
+    width: 18px; /* Sets width for the SVG icon */
   }
 
-  label[for='api-select'] {
-    text-transform: uppercase;
+  label[for='api-select'] { /* Label for the API select dropdown */
+    text-transform: uppercase; /* Converts text to uppercase */
   }
 
-  .enhanced-select__wrapper {
-    border: 0;
-    color: var(--color-primary);
+  .enhanced-select__wrapper { /* Container for the API select dropdown */
+    border: 0; /* Removes border around the container */
+    color: var(--color-primary); /* Sets color for the text inside the container */
   }
 
-  .blog-grid {
-    justify-content: space-evenly;
-  }
-
-  .fugu-card__actions {
-    align-items: center;
-    border-bottom: 1px solid var(--color-hairline);
-    justify-content: space-between;
-    width: 100%;
-
-    a {
-      align-items: center;
-      text-decoration: none;
-    }
-
-    svg {
-      margin-right: 8px;
-    }
-
-    &--secondary {
-      border-bottom: 0;
-      border-top: 1px solid var(--color-hairline);
-    }
-  }
-
-  .blog-card__thumbnail img {
-    max-height: unset;
-  }
-
-  .web-share {
-    appearance: none;
-    background: none;
-    border: 0;
-    cursor: pointer;
-  }
-}
+  .blog-grid { /* Container for the grid of blog cards */
+    justify-content: space-evenly; /* Evenly distributes the blog
