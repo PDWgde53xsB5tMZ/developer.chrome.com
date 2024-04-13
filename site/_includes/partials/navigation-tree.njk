@@ -1,21 +1,31 @@
 {% from 'macros/icon.njk' import icon with context %}
 
-<navigation-tree role="navigation" class="flex-shrink-none" aria-label="{{ 'i18n.common.project_docs' | i18n(locale) }}" tabindex="-1">
+<navigation-tree role="navigation" class="flex-shrink-none"
+  aria-label="{{ 'i18n.common.project_docs' | i18n(locale) }}" tabindex="-1">
+  <!-- The navigation tree is used to display a tree-like structure for navigation.
+        It has a role of navigation, indicating that it's used for navigation purposes.
+        The class flex-shrink-none ensures that the element does not shrink.
+        An aria-label is provided for accessibility, and tabindex is set to -1
+        to prevent it from being focusable. -->
+
   <div class="display-flex lg:display-none align-center pad-200 hairline-bottom">
-    <button class="navigation-tree__back button display-flex align-center justify-content-center width-700 height-700" aria-label="{{ 'i18n.common.back' | i18n(locale) }}">
+    <!-- This div contains the back button and the project title.
+         It's only displayed on larger screens (lg and above). -->
+
+    <button class="navigation-tree__back button display-flex align-center justify-content-center width-700 height-700"
+      aria-label="{{ 'i18n.common.back' | i18n(locale) }}">
+      <!-- The back button, hidden visually using the hidden attribute in the icon.
+            It has a navigation-tree__back class, indicating its position and role.
+            The button has an aria-label for accessibility. -->
+
       {{ icon('arrow-back', {hidden: true}) }}
     </button>
+
     {% set projectPost = helpers.findByProjectKey(collections.all, project_key, locale) %}
     <div class="navigation-tree__title pad-left-200 pad-right-200 user-select-none">{{ projectPost.data.title }}</div>
+    <!-- The project title is fetched using the helpers.findByProjectKey function
+         and displayed using the title property of the fetched data. -->
+
   </div>
 
-  <div class="display-flex direction-column pad-top-300 lg:pad-top-200 pad-right-200 lg:pad-right-0">
-    {# Render nested sections. #}
-    {% from 'macros/navigation-tree-sections.njk' import navigationTreeSections with context %}
-    {{ navigationTreeSections() }}
-  </div>
-
-{% set additionalClasses = 'display-none md:display-block xl:display-none pad-right-400' %}
-{% include 'partials/toc-side.njk' %}
-
-</navigation-tree>
+  <div class="display-flex direction-column pad-top-300 lg:pad-top-200 pad
