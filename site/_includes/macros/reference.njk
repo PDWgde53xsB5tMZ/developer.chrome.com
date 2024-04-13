@@ -1,4 +1,3 @@
-
 {% import 'macros/render-type.njk' as macros with context %}
 
 {#
@@ -11,31 +10,43 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th class="reference-collapse">Description</th>
+      <th class="reference-collapse">Description</th>   
     </tr>
   </thead>
   <tbody>
 
+  {# Loop through all the pages in the 'all' collection #}
   {% for page in all %}
+
+    {# Get the namespace and its feature from the page data #}
     {% set namespace = page.data.namespace %}
     {% set f = namespace.root._feature %}
 
+    {# Check if the current namespace matches the given channel and platformAppsOnly filter.
+         If no filter is given, it will match all namespaces. #}
     {% if (not channel or channel === f.channel) and (platformAppsOnly === f.platformAppsOnly) %}
+
       <tr>
         <td>
+          {# Generate the namespace path and create a link to it #}
           {% set namespacePath = namespace.shortName | namespaceToPath %}
           <a class="link weight-medium" href="{{ namespacePath }}">{{ namespace.shortName }}</a>
         </td>
         <td class="reference-collapse type">
+
+          {# Render the availability of the namespace #}
           {{ macros.renderAvailability(namespace.root, 'pad-bottom-300') }}
-          {# We have a "_comment" extended field but we use shortText here in case it references peer files #}
+
+          {# Display the short text comment of the namespace, processed as markdown and made safe for HTML #}
           {{ namespace.root.comment.shortText | md | safe }}
         </td>
       </tr>
+
     {% endif %}
+
   {% endfor %}
 
   </tbody>
 </table>
 
-{% endmacro %}
+{% endmacro
