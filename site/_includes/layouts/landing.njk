@@ -1,11 +1,26 @@
 {% extends "layouts/base.njk" %}
 
-{% block css %}
+{# Include the CSS for this template #}
 {% InlineCss '/css/landing.css' %}
-{% endblock %}
 
 {% block content %}
   <div class="landing-container width-full pad-400">
     {{ content | safe }}
   </div>
 {% endblock %}
+
+
+
+{# Extend the base template #}
+{% extends "layouts/base.njk" %}
+
+{# Include the CSS for this template #}
+{% InlineCss '/css/landing.css' %}
+
+{# Define the content block for this template #}
+{% block content %}
+  <div class="landing-container width-full pad-400">
+    {{ content | safe }}
+  </div>
+{% endblock %}
+
