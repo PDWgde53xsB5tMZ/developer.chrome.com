@@ -1,7 +1,7 @@
 /*
  * Copyright 2022 Google LLC
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * This file is licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -19,6 +19,7 @@
  * to use for posts that don't have one.
  */
 
+// Define the list of available thumbnails
 const THUMBNAILS = [
   'image/lKgJZH2YLpV46uAKAtfp4jfvXhx2/vAFVtpJhUqiCMljeW1v6.png',
   'image/lKgJZH2YLpV46uAKAtfp4jfvXhx2/0F5N3AWuDqrqOQdCljvA.png',
@@ -26,11 +27,7 @@ const THUMBNAILS = [
   'image/lKgJZH2YLpV46uAKAtfp4jfvXhx2/MbTXdCO0RKvRpBMrAGNU.png',
 ];
 
-function randomThumbnail() {
-  const index = Math.floor(Math.random() * THUMBNAILS.length);
-  return THUMBNAILS[index];
-}
-
-module.exports = {
-  randomThumbnail,
-};
+/**
+ * Returns a random thumbnail from the predefined list.
+ * @function
+ * @
