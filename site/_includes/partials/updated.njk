@@ -1,12 +1,17 @@
+<!-- Display the date that the article was last updated or published -->
 <p class="color-secondary-text type--caption">
   {% if updated %}
+    {# If the article has been updated, display the updated date #}
     {{ 'i18n.common.updated_on' | i18n(locale) }} <time datetime="{{ helpers.formatDateNumeric(updated) }}">{{ helpers.formatDateLong(updated, locale) }}</time>
     <span>•</span>
   {% elif date %}
+    {# If the article has not been updated, display the published date #}
     {{ 'i18n.common.published_on' | i18n(locale) }} <time datetime="{{ helpers.formatDateNumeric(date) }}">{{ helpers.formatDateLong(date, locale) }}</time>
     <span>•</span>
   {% endif %}
+  <!-- Provide a link to the article's source code on GitHub, allowing users to contribute improvements -->
   <a href="{{ page.inputPath | githubLink }}">
     {{ 'i18n.common.improve_article' | i18n(locale) }}
   </a>
 </p>
+
