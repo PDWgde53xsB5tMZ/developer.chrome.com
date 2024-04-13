@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// Importing the required dependencies
 const {Video: BuildVideoShortcode} = require('webdev-infra/shortcodes/Video');
 const {bucket, imgixDomain} = require('../_data/site.json');
 
@@ -21,6 +22,8 @@ const {bucket, imgixDomain} = require('../_data/site.json');
  * @param {import('webdev-infra/types').VideoArgs} args Named arguments
  * @returns {string}
  */
+// Creating the Video function using the BuildVideoShortcode function
 const Video = BuildVideoShortcode(bucket, imgixDomain);
 
+// Exporting the Video function as a module
 module.exports = {Video};
