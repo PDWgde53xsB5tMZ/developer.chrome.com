@@ -1,15 +1,27 @@
+// Defines the styles for the `.card-title-bar` class.
 .card-title-bar {
+  // Applies a font setup with a font size of 14px and a line height of 24px.
   @include font-setup(14px, 24px);
+  
+  // Applies the 'google-sans' font utility to the text.
   @include apply-utility('font', 'google-sans');
+  
+  // Centers the items vertically and horizontally within the element.
   align-items: center;
   display: flex;
 
+  // Defines the styles for the nested `&__controls` class.
   &__controls {
+    // Centers the items vertically and horizontally within the element.
     align-items: center;
     display: flex;
+
+    // Positions the `&__controls` element to the right of the parent element.
     margin-left: auto;
 
+    // Applies styles to any `svg` elements within the `&__controls` element.
     > svg {
+      // Sets the height and width of the `svg` element to 24px.
       height: px-to-rem(24px);
       width: px-to-rem(24px);
     }
