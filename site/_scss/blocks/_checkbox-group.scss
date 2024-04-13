@@ -1,12 +1,17 @@
+/* The checkbox-group selector targets a group of checkboxes and their associated labels. */
 checkbox-group {
   label {
+    /* The label styles are centered, with a grey-700 color, and a font weight of 500. */
     align-items: center;
     color: get-color('grey-700');
-    cursor: pointer;
-    display: flex;
     font-weight: 500;
+    /* The label text is displayed as a flex container, with a cursor of pointer to indicate that it is clickable. */
+    display: flex;
+    cursor: pointer;
+    /* The margin-bottom property adds space between the label and the next element. */
     margin-bottom: 0.75rem;
 
+    /* The :has pseudo-class checks if the input element inside the label is disabled. If it is, the color is changed to grey-400 and the cursor is set to initial. */
     &:has(input:disabled) {
       color: get-color('grey-400');
       cursor: initial;
@@ -14,31 +19,6 @@ checkbox-group {
   }
 
   input {
-    cursor: pointer;
+    /* The input styles have a height and width of 24px, with a margin-right of 0.6875rem. */
     height: 24px;
-    margin-right: 0.6875rem;
-    width: 24px;
-
-    &:disabled {
-      cursor: initial;
-    }
-  }
-}
-
-.checkbox-group__mass-select {
-  font-weight: 500;
-}
-
-.checkbox-group__show-more {
-  margin-top: 1.25rem;
-
-  svg {
-    margin-right: 0.8125rem;
-
-    path {
-      fill: var(--color-primary);
-    }
-  }
-}
-
-
+    margin-right: 0.687
