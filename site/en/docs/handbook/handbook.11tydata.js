@@ -15,9 +15,12 @@
  */
 
 /**
- * @return {EleventyData}
+ * Returns an object with two properties, `disable_algolia` and `noindex`, set to `true`.
+ * This configuration is used in an Eleventy project to disable Algolia search and add a `noindex` meta tag to the generated HTML pages.
+ *
+ * @return {EleventyData} The object with `disable_algolia` and `noindex` properties.
  */
 module.exports = {
-  disable_algolia: true,
-  noindex: true,
+  disable_algolia: true, // Set to true to disable Algolia search in the Eleventy project.
+  noindex: true, // Set to true to add a `noindex` meta tag to the generated HTML pages.
 };
