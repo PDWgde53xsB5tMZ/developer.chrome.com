@@ -15,27 +15,33 @@
  */
 
 /**
- * A filter to remove draft pages. We allow drafts to appear in a dev
- * environment, but omit them from collections in a production environment.
+ * A filter function to remove draft pages from a collection. This filter
+ * allows drafts to appear in a development environment but omits them
+ * from collections in a production environment. This is useful for
+ * keeping drafts in the development environment while excluding them
+ * from production collections.
  *
- * This is purely here as a convenience so drafts still get included in dev.
- *
- * @param {EleventyCollectionItem} item
- * @return {boolean}
+ * @param {EleventyCollectionItem} item - An item from the collection.
+ * @return {boolean} - True if the item should be included in the collection,
+ *                     false if it should be excluded (i.e., if it is a draft
+ *                     page in a production environment).
  */
 const filterOutDrafts = item => {
   if (process.env.NODE_ENV === 'production') {
     return !item.data.draft;
   }
-  return true; // include everything in non-prod
+  return true; // include everything in non-production environments
 };
 
 /**
- * Checks if the provided date is later than current date and time.
+ * Checks if the provided date is later than the current date and time.
+ * This function is useful for determining if a post is scheduled for
+ * future publication.
  *
- * @param {Date=} postDate Date to be compared.
- * @param {Date?} now Used to override the current date and time e.g. in tests.
- * @return {boolean} True if the date is in the future.
+ * @param {Date=} postDate - The date to be compared. If not provided, the
+ *                           current date and time is used.
+ * @param {Date?} now - Used to override the current date and time, e.g., in tests.
+ * @return {boolean} - True if the date is in the future, false otherwise.
  */
 function isScheduledForFuture(postDate, now = new Date()) {
   if (!(now instanceof Date)) {
@@ -46,11 +52,11 @@ function isScheduledForFuture(postDate, now = new Date()) {
 }
 
 /**
- * Checks if the post is in the publishable state: it is not a draft nor
- * scheduled for future.
+ * Checks if the post is in a publishable state, meaning it is not a draft
+ * and is not scheduled for future publication.
  *
- * @param {EleventyData} data 11ty data available for a given post.
- * @return {boolean} True if the post is publishable.
+ * @param {EleventyData} data - The 11ty data available for a given post.
+ * @return {boolean} - True if the post is publishable, false otherwise.
  */
 function isPublished(data) {
   return !(data.draft || isScheduledForFuture(data.page?.date));
