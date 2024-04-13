@@ -1,23 +1,23 @@
-select_api:
-  en: Select API
+# select_api: Select API
+# Function to select the API to be used.
 
-search_apps:
-  en: Search apps
+# search_apps: Search apps
+# Function to search for available apps.
 
-screenshot_not_available:
-  en: Screenshot not available
+# screenshot_not_available: Screenshot not available
+# Constant string to indicate that a screenshot is not available.
 
-share_app:
-  en: Share app
+# share_app: Share app
+# Function to share the given app with others.
 
-copy_link:
-  en: Copy link
+# copy_link: Copy link
+# Function to copy the link of the given app to the clipboard.
 
-i_just_found_the_app:
-  en: "👀 I just found the app"
+# i_just_found_the_app: 
+# Exclamation message indicating that the app has been found.
 
-it_uses_these_fugu_apis:
-  en: "Among others, it uses these cool Project Fugu APIs"
+# it_uses_these_fugu_apis:
+# Description of the APIs used by the app, specifically the Project Fugu APIs.
 
-via_the_fugu_showcase:
-  en: "via the 🐡 Project Fugu API Showcase"
+# via_the_fugu_showcase:
+# Information about where the APIs are being showcased, specifically the Project Fugu API Showcase.
