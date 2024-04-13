@@ -1,38 +1,49 @@
 .project-card {
+  // Set the color of the text to inherit the color of its parent element
   color: inherit;
+  // Display the element as a block-level element
   display: block;
+  // Add padding to the top and bottom of the element
   padding: 1rem 0;
+  // Center the text within the element
   text-align: center;
+  // Remove any underlines from the element
   text-decoration: none;
+  // Add a smooth transition effect to the background color
   transition: 0.3s background-color;
 
+  // If the viewport is larger than or equal to "lg", apply the following styles
   @include media-query('lg') {
+    // Add padding to the left and right of the element
     padding: get-size(600) get-size(300) get-size(300);
   }
 
+  // When the element is focused or hovered over, apply the following styles
   &:focus,
   &:hover {
+    // Change the background color to a shaded version of the background color
     background-color: var(--color-bg-shade);
+    // Round the corners of the element
     border-radius: 12px;
   }
 }
 
 .project-card--sm {
+  // If the viewport is larger than or equal to "lg", apply the following styles
   @include media-query('lg') {
+    // Add padding to the left, top, and bottom of the element
     padding: get-size(300);
   }
 
+  // Style for the project icon
   .project-icon {
+    // If the viewport is larger than or equal to "lg", apply the following styles
     @include media-query('lg') {
+      // Scale the icon down to 68.75% of its original size
       transform: scale(0.6875);
     }
   }
+
   // This is a bit of a weird exception because the project-icon is a bit of a
   // weird element :)
-  // .project-icon--sm will scale() the icon down, but it seems to leave a bit
-  // of extra whitespace between the icon and the title.
-  // This exception just accounts for that extra vertical whitespace.
-  .project-icon + .project-card__title {
-    margin-top: -0.5rem;
-  }
-}
+  // .project-icon--sm will scale() the icon
