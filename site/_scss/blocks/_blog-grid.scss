@@ -1,13 +1,22 @@
 .blog-grid {
+  /* Sets the alignment of items along the cross axis to the start */
   align-items: start;
+  /* Creates a grid container */
   display: grid;
+  /* Sets the gap between grid items in both the row and column directions */
   gap: get-size(400);
+  /* Sets the grid template columns to one fraction of the available space */
   grid-template-columns: 1fr;
+  /* Aligns the content along the main axis to the center */
   justify-content: center;
+  /* Aligns the content along the cross axis to the center */
   justify-items: center;
 
+  /* Media query for medium-sized screens */
   @include media-query('md') {
+    /* Increases the gap between grid items */
     gap: get-size(500);
+    /* Sets the grid template columns to repeat along the row axis, with each grid item taking up the value of $blog-card-size */
     grid-template-columns: repeat(auto-fit, $blog-card-size);
   }
 }
