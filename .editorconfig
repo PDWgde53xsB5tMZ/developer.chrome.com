@@ -1,19 +1,25 @@
-# https://EditorConfig.org
+# This is the top-most EditorConfig file, which sets default formatting rules for all files in the project.
 
-# top-most EditorConfig file
+# The 'root' option is set to 'true', indicating that this is the top-level config file.
 root = true
 
-# Make sure every file:
-# - Uses utf-8
-# - Indents with spaces instead of tabs
-# - Uses two space indents
-# - Uses Unix-style newlines
-# - Has a newline at the end of every file
-# - Trims trailing whitespace
+# The following rules apply to all files:
+
+# The 'charset' option is set to 'utf-8', ensuring that all files use the UTF-8 character encoding.
 [*]
 charset = utf-8
+
+# The 'indent_style' option is set to 'space', indicating that all indentation should be done with spaces instead of tabs.
 indent_style = space
+
+# The 'indent_size' option is set to '2', specifying that all indentations should be two spaces deep.
 indent_size = 2
+
+# The 'end_of_line' option is set to 'lf', indicating that Unix-style newlines (LF) should be used instead of Windows-style newlines (CRLF).
 end_of_line = lf
+
+# The 'insert_final_newline' option is set to 'true', ensuring that there is always a newline character at the end of every file.
 insert_final_newline = true
+
+# The 'trim_trailing_whitespace' option is set to 'true', which removes any trailing whitespace characters from the end of each line.
 trim_trailing_whitespace = true
