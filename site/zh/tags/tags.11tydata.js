@@ -1,20 +1,9 @@
-/*
- * Copyright 2021 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+// Import the required modules: the 'locale' object from '../zh.11tydata' and the 'tags11tyData' function from '../../_utils/tags-11tydata'.
 const {locale} = require('../zh.11tydata');
 const tags11tyData = require('../../_utils/tags-11tydata');
 
+// Call the 'tags11tyData' function with the 'locale' object as its argument, and export the result.
 module.exports = tags11tyData(locale);
+
+// This line is necessary to indicate that the file is a CommonJS module and should be interpreted using the Node.js module system.
+// The module exports a single function that generates 11ty data for tags using a specific locale.
