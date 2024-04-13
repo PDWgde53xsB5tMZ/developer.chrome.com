@@ -1,7 +1,7 @@
 /*
  * Copyright 2020 Google LLC
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * This file is licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
+// Declare a global interface 'PaginatedPage' that extends 'VirtualCollectionItem'
 declare global {
   export interface PaginatedPage extends VirtualCollectionItem {
+    // The 'date' property is of type 'Date'
     date: Date;
+    // The 'href' property is a string
     href: string;
+    // The 'elements' property is an array of 'FrontMatterData' objects
     elements: FrontMatterData[];
+    // The 'pagination' property is an 'EleventyPagination' object
     pagination: EleventyPagination;
+    // The 'permalink' property is a string
     permalink: string;
   }
 }
 
-// empty export to keep file a module
+// Export an empty module to avoid conflicts with other scripts
 export {};
