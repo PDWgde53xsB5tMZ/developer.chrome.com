@@ -21,25 +21,35 @@
  * the list of changed files.
  */
 
+// Import required libraries
 const micromatch = require('micromatch');
 const fs = require('fs/promises');
 const path = require('path');
 
+// Import custom libraries
 const {requestGitHubApi} = require('./lib/gitHubApi');
 const {isGoogleCloudBuild} = require('./lib/isGoogleCloudBuild');
 
+// Define glob patterns for app and static files
 const APP_GLOB = ['package.json', 'server/**/*.js'];
 const STATIC_GLOB = ['site/**/*'];
 
+// Define output paths for app and static builds
 const OUTPUT_APP_BUILD = 'app';
 const OUTPUT_STATIC_BUILD = 'static';
 
+// Define the path to the file where the deployment type will be written
 const DEPLOYMENT_TYPE_PATH = path.join(__dirname, 'tmp', 'deploymentType.txt');
 
+// Define the function to determine the deployment type
 async function determineDeploymentType() {
+  // Check if the code is running in Google Cloud Build
   isGoogleCloudBuild();
 
+  // Get the pull request number from the environment variables
   const prNumber = process.env.PR_NUMBER;
+
+  // Get the list of changed files from the GitHub API
   let {data: changedFiles} = await requestGitHubApi(
     'GET',
     `pulls/${prNumber}/files?per_page=100`
@@ -48,10 +58,7 @@ async function determineDeploymentType() {
     return file.filename;
   });
 
-  // Then check if any of the changed files either matches
-  // the APP_GLOB or the STATIC_GLOB, to determine the build
-  // type. Or return nothing - that would mean nothing chaged
-  // that altered the build output
+  // Check if any of the changed files match the app or static glob patterns
   let output = '';
   if (micromatch(changedFiles, APP_GLOB).length) {
     output = OUTPUT_APP_BUILD;
@@ -59,13 +66,14 @@ async function determineDeploymentType() {
     output = OUTPUT_STATIC_BUILD;
   }
 
-  // There is no way to pass data between build steps on
-  // Google Cloud Build, except the file system as of 12/2022. See:
-  // https://cloud.google.com/build/docs/configuring-builds/pass-data-between-steps
+  // Write the deployment type to a file, as Google Cloud Build does not support
+  // passing data between build steps using any other method.
   await fs.writeFile(DEPLOYMENT_TYPE_PATH, output, {encoding: 'utf-8'});
   console.log(`Wrote deployment type (${output}) to`, DEPLOYMENT_TYPE_PATH);
 }
 
+// Export the determineDeploymentType function and the DEPLOYMENT_TYPE_PATH
+// constant for use in other modules
 module.exports = {
   determineDeploymentType,
   DEPLOYMENT_TYPE_PATH,
