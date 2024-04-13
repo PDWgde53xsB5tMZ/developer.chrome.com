@@ -1,22 +1,32 @@
+/* The .stats container sets the background color, text color, and display style */
 .stats {
   background: var(--color-blue-lightest);
   color: var(--color-blue-darkest);
   display: grid;
+  /* The grid template columns are set to repeat(auto-fill, minmax(12rem, 1fr)), which creates a grid with columns that are at least 12rem wide and fill the available space */
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   padding: 2em 2em 3em;
 }
 
+/* The .stats__item selector sets styles for each item in the stats grid */
 .stats__item {
+  /* The --flow-space variable is used to create consistent spacing between elements */
   --flow-space: 0.3rem;
+  /* The line-height is set to 1.2 to create consistent spacing between lines of text */
   line-height: 1.2;
+  /* The padding is set to create consistent spacing around the content */
   padding: 2em;
+  /* The text is aligned to the center */
   text-align: center;
 }
 
+/* The .stats__figure selector styles the figure element within each stats item */
 .stats__figure {
+  /* The %type--var-large utility class is applied to the figure element */
   @extend %type--var-large;
-
+  /* The sub element within the figure is styled */
   sub {
+    /* The font-size is set to 0.6em and the vertical-align is set to baseline */
     font-size: 0.6em;
     vertical-align: baseline;
   }
