@@ -1,23 +1,23 @@
-{% extends "layouts/base.njk" %}
+{% extends "layouts/base.njk" %}  <!-- This line extends the base layout for this template. -->
 
 
 {% block css %}
-{% InlineCss '/css/overview.css' %}
+{% InlineCss '/css/overview.css' %}  <!-- This line inlines the CSS from the specified file. -->
 {% endblock %}
 
-{% from 'macros/cards/author-card.njk' import authorCard with context %}
+{% from 'macros/cards/author-card.njk' import authorCard with context %}  <!-- This line imports the 'authorCard' macro from the specified file. -->
 
 {% block title_bar %}
-  {% include 'partials/breadcrumbs.njk' %}
+  {% include 'partials/breadcrumbs.njk' %}  <!-- This line includes the 'breadcrumbs' partial. -->
 {% endblock %}
 
 {% block content %}
   <div class="measure-1280 width-full center-margin pad-left-400 pad-right-400">
     <div class="blog-grid">
       {% for author in pagination.items %}
-        {{ authorCard(author) }}
+        {{ authorCard(author) }}  <!-- This line calls the 'authorCard' macro and passes in the 'author' variable as an argument. -->
       {% endfor %}
     </div>
-    {% include 'partials/pagination.njk' %}
+    {% include 'partials/pagination.njk' %}  <!-- This line includes the 'pagination' partial. -->
   </div>
 {% endblock %}
