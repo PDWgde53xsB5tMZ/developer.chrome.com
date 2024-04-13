@@ -1,10 +1,15 @@
-intro:
-  en: "Lighthouse documentation"
-intro_description:
-  en: |
-    To do.
-seo:
-  en: "SEO Audits"
-seo_description:
-  en: |
-    To do.
+# Introduction
+# -----------
+# This section of the code contains the documentation for the Lighthouse project.
+#
+# SEO Audits
+# ----------
+# This section is dedicated to the audits related to Search Engine Optimization (SEO).
+#
+# Note: The following sections provide more detailed descriptions of each part of the code.
+
+# SEO Audits Description
+# ----------------------
+# This section provides a more detailed description of the SEO audits.
+#
+# Note: This code is responsible for conducting various SEO audits to ensure that the website is optimized for search engines.
