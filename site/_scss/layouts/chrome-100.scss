@@ -1,20 +1,9 @@
 // Globals
+// This is where you import any global styles or variables that are used throughout the project.
 @import '../global';
 
 //blocks
+// Here, you import various reusable components, or "blocks", that can be used in different parts of the application.
 @import '../blocks/hero-section';
 @import '../blocks/card-section';
-@import '../blocks/footer-section';
-@import '../blocks/like-icon';
 
-// Utilities
-@import '../utilities/center-margin';
-@import '../utilities/center-images';
-@import '../utilities/floats';
-@import '../utilities/elevation';
-@import '../utilities/hairline';
-@import '../utilities/colors';
-@import '../utilities/scrollbars';
-@import '../utilities/surface';
-@import '../utilities/visually-hidden';
-@import '../utilities/wrapper';
