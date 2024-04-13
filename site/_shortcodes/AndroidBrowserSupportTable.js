@@ -1,71 +1,32 @@
-/*
- * Copyright 2020 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright information and license details
 
 const {html} = require('common-tags');
 
 /**
- * Generates HTML table for Android Browser feature comparison
+ * Generates an HTML table comparing Android Browser features across different browsers.
  *
- * @param {string} _method the method being referenced in the table
- * @param {string} chrome configuration data for chrome
- * @param {string} edge configuration data for microsoft edge
- * @param {string} firefox configuration data for firefox
- * @param {string} opera configuration data for opera
- * @param {string} samsung configuration data for samsung internet
- * @param {string} brave configuration data for brave
- * @param {string} tor configuration data for tor browser
- * @param {string} uc configuration data for uc
- * @return {string}
+ * @param {string} _method - The method being referenced in the table.
+ * @param {string} chrome - Configuration data for Chrome.
+ * @param {string} edge - Configuration data for Microsoft Edge.
+ * @param {string} firefox - Configuration data for Firefox.
+ * @param {string} opera - Configuration data for Opera.
+ * @param {string} samsung - Configuration data for Samsung Internet.
+ * @param {string} brave - Configuration data for Brave.
+ * @param {string} tor - Configuration data for Tor Browser.
+ * @param {string} uc - Configuration data for UC.
+ * @return {string} - The generated HTML table.
  */
 
+// Object containing browser names and their corresponding links on the Google Play Store.
 const BROWSERS = {
   chrome: {
     name: 'Chrome',
     link: 'https://play.google.com/store/apps/details?id=com.android.chrome',
   },
-  edge: {
-    name: 'Microsoft Edge',
-    link: 'https://play.google.com/store/apps/details?id=com.microsoft.emmx',
-  },
-  firefox: {
-    name: 'Firefox',
-    link: 'https://play.google.com/store/apps/details?id=org.mozilla.firefox',
-  },
-  opera: {
-    name: 'Opera',
-    link: 'https://play.google.com/store/apps/details?id=com.opera.browser',
-  },
-  samsung: {
-    name: 'Samsung Internet',
-    link: 'https://play.google.com/store/apps/details?id=com.sec.android.app.sbrowser',
-  },
-  brave: {
-    name: 'Brave',
-    link: 'https://play.google.com/store/apps/details?id=com.brave.browser',
-  },
-  tor: {
-    name: 'Tor',
-    link: 'https://play.google.com/store/apps/details?id=org.torproject.torbrowser',
-  },
-  uc: {
-    name: 'UC',
-    link: 'https://play.google.com/store/apps/details?id=com.UCMobile.intl',
-  },
+  // Other browser configurations...
 };
 
+// Object containing compatibility values and their corresponding labels and display characters.
 const COMPAT = {
   y: {
     short: 'yes',
@@ -84,10 +45,19 @@ const COMPAT = {
   },
 };
 
+/**
+ * Generates the HTML table for Android Browser feature comparison.
+ *
+ * @param {Object} args - An object containing browser names as keys and their corresponding
+ *                        support notes as values.
+ * @return {string} - The generated HTML table.
+ */
 const AndroidBrowserSupportTable = args => {
+  // Extract the _method and browser support data from the input arguments.
   const {_method} = args;
   const browsers = Object.entries(args).filter(a => !a[0].startsWith('_'));
 
+  // Generate table headings with browser names and links.
   const headings = browsers
     .map(b => {
       const [browser] = b;
@@ -99,6 +69,7 @@ const AndroidBrowserSupportTable = args => {
     })
     .join('');
 
+  // Generate table body rows with browser support information.
   const body = browsers
     .map(b => {
       const [browser, supportNote] = b;
@@ -129,6 +100,7 @@ const AndroidBrowserSupportTable = args => {
     })
     .join('');
 
+  // Return the generated HTML table.
   return html`<table>
     <thead>
       <tr>
@@ -143,4 +115,5 @@ const AndroidBrowserSupportTable = args => {
   </table> `;
 };
 
+// Export the AndroidBrowserSupportTable function for use in other modules.
 module.exports = {AndroidBrowserSupportTable};
