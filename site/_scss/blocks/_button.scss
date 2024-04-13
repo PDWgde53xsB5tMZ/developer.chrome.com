@@ -1,101 +1,89 @@
+/* Defines a base style for a button */
 %button,
 .button {
+  /* Makes the button background transparent */
   background: transparent;
+  /* Removes the border around the button */
   border: 0;
+  /* Changes the cursor to a pointer when hovering over the button */
   cursor: pointer;
+  /* Removes the underline from the button */
   text-decoration: none;
 
+  /* SVG elements inside the button */
   svg {
+    /* Vertically aligns the SVG element with the middle of the button */
     vertical-align: middle;
   }
 
+  /* Disabled state for the button */
   &:disabled,
   &[disabled] {
+    /* Reduces the opacity of the button */
     opacity: 0.6;
+    /* Prevents the button from being clicked */
     pointer-events: none;
   }
 }
 
+/* Defines a style for a material button */
 %material-button,
 .material-button {
+  /* Extends the base button style */
   @extend %button;
+  /* Extends the overlay style */
   @extend %overlay;
+  /* Applies the small type style */
   @extend %type--small;
+  /* Applies the Google Sans font */
   @include apply-utility('font', 'google-sans');
+  /* Sets the border radius of the button */
   border-radius: get-size(100);
+  /* Sets the color of the button text */
   color: var(--button-color, inherit);
+  /* Sets the padding of the button */
   padding: get-size(200) get-size(400);
+  /* Prevents the button text from wrapping to the next line */
   white-space: nowrap;
 
+  /* Disabled state for the button */
   &:disabled,
   &[disabled] {
+    /* Reduces the opacity of the button */
     opacity: 0.6;
+    /* Prevents the button from being clicked */
     pointer-events: none;
   }
 }
 
-// Note: Because text buttons define their own left and top margin, they should
-// typically be wrapped in a containing div for positioning.
-// The negative margin makes the text inside of the text button line up with
-// the left edge of any text above it.
+/* Defines a style for a text button */
 .button-text {
+  /* Sets the padding of the button text */
   $padding: #{get-size(200)};
   margin-left: -$padding;
   margin-top: -$padding;
   padding: $padding;
+
+  /* Adds margin to the left of subsequent text buttons */
+  .button-text + .button-text {
+    margin-left: get-size(300);
+  }
 }
 
-.button-text + .button-text {
-  margin-left: get-size(300);
-}
-
+/* Defines a style for a filled button */
 .button-filled {
+  /* Positions the button relative to its normal position */
   position: relative;
+  /* Adds a transition effect to the box shadow */
   transition: box-shadow 0.1s;
+  /* Increases the stacking order of the button */
   z-index: 1;
 }
 
-.button-filled::before { // Color overlay
+/* Defines a style for the color overlay of a filled button */
+.button-filled::before {
+  /* Sets the background color of the overlay */
   background: rgba(var(--rgb-button-overlay), 1);
+  /* Inherits the border radius of the button */
   border-radius: inherit;
-  bottom: 0;
-  content: '';
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity 0.1s;
-  z-index: -1;
-}
-
-.button-filled:hover {
-  box-shadow: rgba(var(--rgb-button-overlay), 0.3) 0 1px 2px 0, rgba(var(--rgb-button-overlay), 0.15) 0 1px 3px 1px;
-}
-
-.button-filled:active {
-  box-shadow: rgba(var(--rgb-button-overlay), 0.3) 0 1px 2px 0, rgba(var(--rgb-button-overlay), 0.15) 0 2px 6px 2px;
-}
-
-.button-filled:hover::before {
-  opacity: 0.16;
-}
-
-.button-filled:focus::before {
-  opacity: 0.24;
-}
-
-.button-filled:active::before {
-  opacity: 0.36;
-}
-
-.button-round {
-  border-radius: get-size(400);
-}
-
-.button-collapsible {
-  @include media-query('md-max') {
-    border-radius: 0;
-    padding: 0;
-  }
-}
+  /*
