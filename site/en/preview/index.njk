@@ -1,4 +1,5 @@
 ---
+// Configuring the page title and description for the post preview
 eleventyComputed:
   title: "Post preview"
   description: ''
@@ -8,18 +9,25 @@ layout: 'layouts/landing.njk'
 {% set script %}
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
+  // onSignIn function is called when the user signs in with Google
   window.onSignIn = function(googleUser) {
+    // Set the value of the 't' field in the form to the user's credential
     document.dcc_preview_form.t.value = googleUser.credential;
+    // Remove the 'hidden' attribute from the preview form
     document.dcc_preview_form.removeAttribute('hidden');
+    // Hide the Google sign-in button
     document.querySelector('.g_id_signin').setAttribute('hidden', true);
   }
 
+  // onSubmit function is called when the user submits the form
   window.onSubmit = function(form) {
+    // Disable the form fields and change the submit button text
     form.fm.readOnly = true;
     form.md.readOnly = true;
     form.s.disabled = true;
     form.s.value = "Generating";
 
+    // Allow form submission
     return true;
   };
 
@@ -52,9 +60,4 @@ layout: 'layouts/landing.njk'
       rows="15"
       class="width-full rounded-200 pad-200 hairline"
       placeholder="---&#10;layout: 'layouts/blog-post.njk'&#10;date: 2020-07-27&#10;title: Test title TBD&#10;desciption: Test description TBD&#10;authors: &#10;  - rachelandrew&#10;---
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    ></textarea>
-  </div>
-  <input type="hidden" name="t" />
-  <input name="s" type="submit" class="button-filled material-button color-bg bg-primary"/>
-</form>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
