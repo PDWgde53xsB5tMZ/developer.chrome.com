@@ -1,7 +1,9 @@
 // Globals
+// @import statement to import global styles from '../global' file
 @import '../global';
 
 //blocks
+// @import statements to import various blocks/components used in this file
 @import '../blocks/event-card';
 @import '../blocks/events-hero';
 @import '../blocks/events-list';
@@ -13,6 +15,7 @@
 @import '../blocks/tabs';
 
 // Utilities
+// @import statements to import various utility styles used in this file
 @import '../utilities/center-margin';
 @import '../utilities/center-images';
 @import '../utilities/floats';
@@ -25,15 +28,21 @@
 @import '../utilities/wrapper';
 
 .events-container {
+  // Sets the maximum width of the container to 1290px plus 3rem of horizontal margin
   max-width: calc(1290px + 3rem);
 
+  //events-container__filters
+  // This class is used for the filters section within the events container
   &__filters {
+    // Initially sets the display to 'none'
     display: none;
 
+    // At the 'lg' media query breakpoint, sets the display to 'flex'
     @include media-query('lg') {
       display: flex;
     }
 
+    // Styles for the span elements within the filters section
     > span {
       color: var(--color-grey-medium);
       font-size: 1rem;
@@ -42,34 +51,18 @@
       margin-right: 0.75rem;
     }
 
+    // Hides the native select elements by setting their display to 'none'
     select {
       display: none;
     }
 
+    // Styles for the enhanced-select component
     .enhanced-select__wrapper {
       border: 0;
     }
   }
 
+  //events-container__filters label
+  // Styles for the labels within the filters section
   &__filters label {
-    color: var(--color-blue-medium);
-
-    path {
-      fill: var(--color-blue-medium);
-    }
-  }
-
-  dialog {
-    border: 0;
-    border-radius: 4px;
-    height: auto;
-    margin: get-size(1000) 0 0 auto;
-    max-height: 80vh;
-    overflow-y: scroll;
-
-    &::backdrop {
-      background: var(--color-inverse);
-      opacity: 0.48;
-    }
-  }
-}
+    color
