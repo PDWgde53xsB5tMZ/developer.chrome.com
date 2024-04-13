@@ -1,6 +1,13 @@
-type: info
-text: Thanks for tuning in to Google I/O. Watch the Chrome content on-demand.
-actions:
-  - text: Watch now.
-    href: https://io.google/2023/?utm_source=chrome&utm_medium=embedded_marketing&utm_campaign=hpp_ondemand_banner&utm_content=
-  - text: Dismiss
+{
+  "type": "info", // Specifies the type of the message (e.g., info, warning, error)
+  "text": "Thanks for tuning in to Google I/O. Watch the Chrome content on-demand.", // The main message to be displayed
+  "actions": [ // An array of actions the user can take
+    {
+      "text": "Watch now.", // The text displayed for the action
+      "href": "https://io.google/2023/?utm_source=chrome&utm_medium=embedded_marketing&utm_campaign=hpp_ondemand_banner&utm_content=" // The URL to redirect the user to when the action is clicked
+    },
+    {
+      "text": "Dismiss" // The text displayed for the action
+    }
+  ]
+}
