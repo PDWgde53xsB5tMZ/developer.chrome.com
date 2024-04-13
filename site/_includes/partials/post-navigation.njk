@@ -1,3 +1,7 @@
+{% comment %} 
+This block of code is used to determine the previous and next posts in a collection based on the current page. 
+{% endcomment %}
+
 {% if type === 'article' %}
   {% set collectionName = 'articles-' + locale %}
 {% endif %}
