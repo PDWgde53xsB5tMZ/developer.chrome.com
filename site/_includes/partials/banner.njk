@@ -1,30 +1,45 @@
 {% if banner %}
-  {# Supports 'info' or 'warning' banners. #}
-  <announcement-banner class="banner banner--{{ banner.type or 'info' }}" storage-key="user-banner">
+  {# Check if the 'banner' variable is truthy #}
+  
+  <announcement-banner 
+    class="banner banner--{{ banner.type or 'info' }}" 
+    storage-key="user-banner">
+    {# Render the banner component with the specified class and storage key.
+     The banner type is set to the value of 'banner.type', or 'info' if 'banner.type' is falsy #}
+
     <div class="banner__inner">
       <div class="banner__text">
-        {# These inline block wrappers are a little hack to make content #}
-        {# properly align with the last baseline. #}
-        {# https://stackoverflow.com/questions/32209427/align-flex-box-items-to-baseline-of-last-text-line-in-a-block #}
-        {# Because the button-text element has padding we can't rely on #}
-        {# align-items: last baseline. But the inline-block hack seems to #}
-        {# do the trick. #}
+        {# Wrap the banner text in a div with the class 'banner__text' #}
+
         <div class="display-inline-block">
           {{ banner.text | md | safe }}
+          {# Display the banner text, which has been marked down processed and sanitized #}
         </div>
       </div>
+
       <div class="banner__actions">
         <div class="display-inline-block">
+          {# Wrap the banner actions in a div with the class 'banner__actions' #}
+
           {% if banner.actions %}
+            {# Check if the 'banner.actions' variable is truthy #}
+
             {% for action in banner.actions %}
+              {# Loop through each action in 'banner.actions' #}
+
               {% if action.href %}
                 <a class="banner__action material-button button-text" href="{{ action.href }}" data-banner-close-btn>
                   {{ action.text }}
                 </a>
+                {# Render a link with the specified classes, href, and data attribute.
+                 The link text is set to the value of 'action.text' #}
+
               {% else %}
                 <button class="banner__action material-button button-text" data-banner-close-btn>
                   {{ action.text }}
                 </button>
+                {# Render a button with the specified classes and data attribute.
+                 The button text is set to the value of 'action.text' #}
               {% endif %}
             {% endfor %}
           {% endif %}
@@ -33,3 +48,4 @@
     </div>
   </announcement-banner>
 {% endif %}
+
