@@ -18,31 +18,52 @@
  * @fileoverview Posts a comment to the PR, that the deployment has started.
  */
 
+// Import required modules
 const {isGoogleCloudBuild} = require('./lib/isGoogleCloudBuild');
 const {getDeploymentType} = require('./lib/getDeploymentType');
 const {updateStickyComment} = require('./lib/updateStickyComment');
 
+/**
+ * buildStaticSite - Builds the static site using Google Cloud Build.
+ *
+ * This function checks if the code is running in Google Cloud Build and gets the PR number, commit SHA, and deployment type.
+ * It then builds the static site using the 'npm run production' command and updates the sticky comment in the PR with the build status.
+ * If the build fails, the function throws an error and updates the sticky comment with the error message.
+ *
+ * @returns {Promise} A promise that resolves when the build is complete.
+ */
 async function buildStaticSite() {
+  // Check if the code is running in Google Cloud Build
   isGoogleCloudBuild();
+
+  // Get the PR number and commit SHA from the environment variables
   const prNumber = process.env.PR_NUMBER;
   const commitSha = process.env.COMMIT_SHA;
 
+  // Get the deployment type
   const deploymentType = await getDeploymentType();
   if (!deploymentType) {
+    // If no deployment type is found, exit the function
     return;
   }
 
-  // eslint-disable-next-line node/no-unsupported-features/es-syntax
-  const exaca = await import('execa');
+  // Import the 'execa' module to execute the 'npm run production' command
+  const {execaCommand} = await import('execa');
+
   try {
-    const build = exaca.execaCommand('npm run production');
+    // Execute the 'npm run production' command
+    const build = execaCommand('npm run production');
+
+    // Pipe the error output to the standard error stream
     build.stderr.pipe(process.stderr);
+
+    // Pipe the standard output to the standard output stream
     build.stdout.pipe(process.stdout);
 
+    // Wait for the build to complete
     await build;
   } catch (e) {
-    // Google Cloud Build has no proper way to react to failing steps, hence
-    // the comment already needs to be updated here, before failing the entire job
+    // If the build fails, update the sticky comment with the error message
     await updateStickyComment(
       prNumber,
       `:x: Failed to build (${deploymentType}) the site for commit ${commitSha}. ` +
@@ -54,10 +75,6 @@ async function buildStaticSite() {
         'Check the `Stage (dcc-staging)` check status for more details.'
     );
 
+    // Throw the error to fail the entire job
     throw e;
-  }
-}
 
-module.exports = {
-  buildStaticSite,
-};
