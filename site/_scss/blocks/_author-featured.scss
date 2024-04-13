@@ -1,46 +1,55 @@
+/* Author featured section */
 .author-featured {
+  /* Style for author card links */
   a {
-    flex-flow: column;
-  }
-
-  .card {
-    align-items: flex-start;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    max-width: 25rem;
+  }
+
+  /* Card container styles */
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
     padding: 25px;
     position: relative;
     text-decoration: none;
     word-break: break-word;
   }
 
+  /* Content area within the card */
   .card__content {
     margin: 20px 0 10px;
   }
 
+  /* h4 heading style */
   .type--h4 {
     font-size: 20px;
   }
 
+  /* Image styling within the card */
   .card > img {
     border-radius: 5px;
     height: 220px;
-    margin-top: 10px;
     object-fit: cover;
     object-position: center;
     width: 100%;
+    margin-top: 10px;
   }
 
+  /* Eyebrow area with icon and text */
   .card__eyebrow {
     align-items: center;
     display: flex;
 
+    /* Icon styling */
     .icon {
       height: 20px;
       width: 20px;
     }
 
+    /* Text styling */
     span {
       font-size: 14px;
       margin-left: 0.5rem;
@@ -48,31 +57,38 @@
   }
 }
 
+/* Media query for medium-sized screens */
 @include media-query('md') {
   .author-featured {
+    /* h4 heading style for medium-sized screens */
     .type--h4 {
       font-size: 28px;
     }
 
+    /* Content area margin for medium-sized screens */
     .card__content {
       margin: 20px 0 25px;
     }
 
+    /* Image styling for medium-sized screens */
     .card > img {
       margin-top: 0;
     }
   }
 }
 
+/* Styles for backgrounds with different colors */
 .bg-tertiary,
 .bg-quaternary,
 .bg-pink,
 .bg-dark,
 .bg-blue {
+  /* Styles for SVG elements */
   svg {
     fill: #fff;
   }
 
+  /* Styles for p, span, h4, h3 elements */
   p,
   span,
   h4,
@@ -81,56 +97,13 @@
   }
 }
 
+/* Styles for .bg-quaternary class */
 .bg-quaternary {
   $core-quaternary: #007b83;
   background-color: $core-quaternary;
 
+  /* Hover, focus, and active styles */
   &:hover,
   &:focus,
   &:active {
-    background-color: rgba($core-quaternary, 0.9);
-  }
-}
-
-.bg-dark {
-  background-color: #26373d;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba(#26373d, 0.9);
-  }
-}
-
-.bg-tertiary {
-  $core-tertiary: #9f1c59;
-  background-color: $core-tertiary;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba($core-tertiary, 0.9);
-  }
-}
-
-.bg-pink {
-  $core-secondary-shade: #9c166b;
-  background-color: $core-secondary-shade;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba($core-secondary-shade, 0.9);
-  }
-}
-
-.bg-blue {
-  $core-primary: #183691;
-  background-color: $core-primary;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba($core-primary, 0.9);
-  }
-}
+    background-color: rgba($core-quaternary, 0
