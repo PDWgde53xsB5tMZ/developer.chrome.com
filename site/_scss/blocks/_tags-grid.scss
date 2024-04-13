@@ -1,27 +1,32 @@
 .tags-grid {
+  /* Set the display property to grid and define a single column template layout. */
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: get-size(600);
+  row-gap: get-size(600); /* Define the row gap using the get-size mixin. */
 
+  /* Media query to adjust the grid layout for medium-sized devices. */
   @include media-query('md') {
-    column-gap: get-size(1000);
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: get-size(600);
+    column-gap: get-size(1000); /* Define the column gap. */
+    grid-template-columns: repeat(3, 1fr); /* Define three columns. */
+    row-gap: get-size(600); /* Readjust the row gap. */
   }
 
+  /* Media query to adjust the grid layout for large-sized devices. */
   @include media-query('lg') {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Define four columns. */
   }
 
+  /* Style for the tag card component. */
   .tag-card {
-    border-top: 1px solid var(--color-hairline);
-    padding: get-size(300) 0;
+    border-top: 1px solid var(--color-hairline); /* Add a top border. */
+    padding: get-size(300) 0; /* Define the padding using the get-size mixin. */
   }
 }
 
 .tag-card__header {
-  // Mobile-only
-  // Every card except for the first one should have a top border.
+  /* Style for the tag card header. */
+
+  /* Media query to add a top border to every card except for the first one on mobile devices. */
   &:not(:first-child) {
     @include media-query('md-max') {
       border-top: 1px solid var(--color-hairline);
