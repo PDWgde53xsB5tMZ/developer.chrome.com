@@ -1,11 +1,21 @@
-# This Cloud Build task can kick off our actual deploy if the hash has changed.
+# This Cloud Build configuration file defines a pipeline with two steps.
 
+# Step 1: 'Install dependencies'
+# This step uses the node:16.14.2 Docker image and runs the 'npm ci' command.
+# This command is used to install the project dependencies specified in the package-lock.json file.
+# The 'id' field assigns a unique identifier to this step, which can be used to reference this step's output later in the configuration.
 steps:
   - name: node:16.14.2
     id: 'Install dependencies'
     entrypoint: npm
     args: ['ci']
 
+# Step 2: 'Verify and maybe kick off build for new version'
+# This step also uses the node:16.14.2 Docker image and runs the 'npm run version-check' command.
+# This command is a custom script that checks if the current version of the project has changed and if so, triggers a new build.
+# The 'env' field sets environment variables that are passed to the step's command.
+# In this case, the $PROJECT_ID and $NODE_ENV variables are set to the values of the PROJECT_ID and NODE_ENV environment variables, respectively.
+steps:
   - name: node:16.14.2
     id: 'Verify and maybe kick off build for new version'
     entrypoint: npm
@@ -14,6 +24,9 @@ steps:
       - 'PROJECT_ID=$PROJECT_ID'
       - 'NODE_ENV=production'
 
+# The 'options' field sets default environment variables for all steps in the pipeline.
+# In this case, the $PROJECT_ID variable is set to the value of the PROJECT_ID environment variable.
 options:
   env:
     - 'PROJECT_ID=$PROJECT_ID'
+
