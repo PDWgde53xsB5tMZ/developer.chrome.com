@@ -1,7 +1,11 @@
+/* The .tag-pill class is used to style HTML elements as pills or tags. */
 .tag-pill {
+  /* Adds some spacing between the pill and surrounding elements. */
   margin-bottom: px-to-rem(8px);
+  /* Adds some padding to the inside of the pill. */
   padding: px-to-rem(4px) px-to-rem(12px);
 
+  /* If the pill has a title attribute, the cursor will change to a help icon. */
   &[title] {
     cursor: help;
   }
