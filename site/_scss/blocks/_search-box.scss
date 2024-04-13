@@ -1,116 +1,101 @@
 search-box {
+  /* Sets the minimum height of the search box */
   min-height: $search-box-height;
   position: relative;
 }
 
 search-box[active] {
+  /* Applies utility class 'stack' with a value of '500' */
   @include apply-utility('stack', '500');
+  /* Sets the background color of the search box when active */
   background-color: var(--color-bg);
 
   .search-box__input {
+    /* Displays the input element as a block element */
     display: block;
   }
 }
 
 .search-box__inner {
+  /* Aligns items center vertically and horizontally */
   align-items: center;
+  /* Displays the child elements in a grid container */
   display: grid;
+  /* Takes up the full height of the search box */
   height: 100%;
 }
 
 // Force items to overlap by putting them in the same column and row.
 // This is how we position the magnifying glass icon over the search input.
 .search-box__inner > * {
+  /* Positions the child elements in the same column and row */
   grid-column: 1;
   grid-row: 1;
 }
 
 .search-box__btn {
+  /* Extends the %button utility class */
   @extend %button;
+  /* Applies utility class 'stack' with a value of '400' */
   @include apply-utility('stack', '400');
+  /* Aligns the items center vertically and horizontally */
   align-items: center;
+  /* Displays the child elements as a flex container */
   display: flex;
+  /* Sets the height of the button to 100% */
   height: 100%;
+  /* Aligns the items center horizontally */
   justify-content: center;
+  /* Sets the width of the button */
   width: get-size(700);
 
   > svg {
+    /* Fills the SVG icon with the current color */
     fill: currentColor;
   }
 }
 
 .search-box__input {
+  /* Sets the background color of the input element */
   background: var(--color-bg-shade);
+  /* Removes the border of the input element */
   border: 0;
+  /* Rounds the corners of the input element */
   border-radius: px-to-rem(100px);
+  /* Hides the input element */
   display: none;
+  /* Inherits the font from the parent element */
   font: inherit;
+  /* Removes the margin of the input element */
   margin: 0;
+  /* Sets the padding of the input element */
   padding: get-size(200) get-size(300) get-size(200) get-size(700);
 
   @include media-query('lg') {
+    /* Displays the input element on large screens */
     display: block;
+    /* Sets the width of the input element to 100% */
     width: 100%;
   }
 
+  /* Sets the color of the placeholder text */
   &::placeholder {
     color: var(--color-secondary-text);
   }
 }
 
 .search-box__results {
-  --flow-space: #{get-size(400)};
+  /* Extends the %stack utility class */
   @extend %stack;
+  /* Sets the height of the results container */
   height: calc(100vh - #{$search-box-height});
+  /* Sets the maximum width of the results container */
   max-width: 100%;
+  /* Hides the horizontal scrollbar */
   overflow-x: hidden;
-  // Add some extra padding to the bottom so there's whitespace after the last
-  // result on mobile.
+  /* Adds some extra padding to the bottom of the results container */
   padding-bottom: get-size(1000);
+  /* Positions the results container absolutely */
   position: absolute;
-  // top = search-box's height + top-nav's bottom padding + gap
-  top: calc(#{$search-box-height} + #{nth(map-get($top-nav-padding, 'lg'), 1)} + #{get-size(400)});
-  // Helpful for smaller screens in case we end up with long text in search results.
-  word-break: break-word;
-
-  strong {
-    color: var(--color-primary);
-  }
-}
-
-.search-box__result-heading {
-  color: var(--color-secondary-text);
-}
-
-.search-box__result-heading ~ .search-box__result-heading {
-  border-top: 1px solid var(--color-hairline);
-  padding-top: get-size(400);
-}
-
-.search-box__link {
-  --overlay-background-color: var(--color-primary);
-  @extend %overlay;
-  align-items: center;
-  display: inline-flex;
-  text-decoration: none;
-}
-
-.search-box__link[aria-selected='true']::before {
-  opacity: 0.1;
-}
-
-.search-box__title {
-  color: var(--color-text);
-}
-
-.search-box__snippet {
-  color: var(--color-secondary-text);
-}
-
-.search-box__thumbnail {
-  margin-left: get-size(200);
-
-  @include media-query('md') {
-    margin-left: get-size(300);
-  }
-}
+  /* Sets the top position of the results container */
+  top: calc(#{$search-box-height} + #{
