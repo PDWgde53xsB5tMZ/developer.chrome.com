@@ -1,18 +1,29 @@
 {% from 'macros/icon.njk' import icon with context %}
 
+{# Initialize an empty string variable to store a list of used APIs in lowercase and with spaces replaced by hyphens #}
 {% set apis = "" %}
+
+{# Initialize an empty string variable to store a list of used APIs for search functionality in regular form #}
 {% set searchApis = "" %}
+
 {% for api in item.usedAPIs %}
+  {# Add the API name to the apis variable in lowercase and with spaces replaced by hyphens #}
   {% set apis = apis + " " + api.name | replace(" ", '-') %}
+  {# Add the API name to the searchApis variable in regular form #}
   {% set searchApis = searchApis + " " + api.name %}
 {% endfor %}
-{% set apis = apis | trim | lower | replace("(", "") | replace(")", "") %}
+
+{# Replace the file extension of the item.screenshot variable with an empty string and store the result in the id variable #}
 {% set id = item.screenshot | replace('.webp', '') %}
 
 <div
+  # Add an id attribute to the div element with the value of the id variable
   id="{{ id }}"
+  # Add a data-terms attribute to the div element with a value consisting of the id variable, the lowercase title variable, the lowercase searchApis variable, and the lowercase appURL variable
   data-terms="{{ id + (item.title | lower) + " " + (searchApis | lower) + " " + (item.appURL | lower) }}"
+  # Add a data-used-apis attribute to the div element with the value of the apis variable
   data-used-apis="{{ apis }}"
+  # Add a class attribute to the div element with the value "blog-card fugu-card rounded-lg pad-300 md:pad-400 width-full"
   class="blog-card fugu-card rounded-lg pad-300 md:pad-400 width-full"
 >
   <div class="blog-card__thumbnail gap-bottom-300">
@@ -26,9 +37,11 @@
   </div>
 
   <div class="fugu-card__actions display-inline-flex gap-bottom-300 pad-bottom-300">
+    {# If the appURL variable is defined #}
     {% if item.appURL %}
       <a class="display-flex align-center color-primary type--small" href="{{ item.appURL }}" rel="noopener" target="_blank">
         {{ icon('external-link') }}
+        {# If the isElectronApp variable is defined and true #}
         {% if item.isElectronApp %}
           {{ 'i18n.common.download_app' | i18n(locale) }}
         {% else %}
@@ -36,9 +49,11 @@
         {% endif %}
       </a>
     {% endif %}
+    {# If the isElectronApp variable is defined and true #}
     {% if item.isElectronApp %}
       <span class="type--xsmall">(Electron.js)</span>
     {% endif %}
+    {# If the sourceURL variable is defined #}
     {% if item.sourceURL %}
       <a class="display-flex align-center color-primary type--small" href="{{ item.sourceURL }}" rel="noopener" target="_blank">
         {{ icon('code') }}
@@ -62,22 +77,6 @@
     <div>
       {% for api in item.usedAPIs %}
         <a
+          # Add a class attribute to the a element with the value "tag-pill surface decoration-none hairline color-secondary-text type--label weight-regular rounded-lg"
           class="tag-pill surface decoration-none hairline color-secondary-text type--label weight-regular rounded-lg"
-          href="{{ api.url }}"
-          rel="noopener"
-          target="_blank">{{ api.name }}</a>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="fugu-card__actions fugu-card__actions--secondary display-inline-flex gap-top-400 gap-bottom-300 pad-top-300">
-    <button class="visibility-hidden display-flex align-center color-secondary-text type--small web-share">
-      {{ icon('share') }}
-      {{ 'i18n.fugu_showcase.share_app' | i18n(locale) }}
-    </button>
-    <a class="display-flex align-center color-secondary-text type--small fugu-app-link" href="/fugu-showcase/#{{ id }}">
-      {{ icon('link') }}
-      {{ 'i18n.fugu_showcase.copy_link' | i18n(locale) }}
-    </a>
-  </div>
-</div>
+          # Add a
