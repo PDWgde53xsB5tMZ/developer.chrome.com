@@ -1,63 +1,42 @@
-top-nav {
-  padding: map-get($top-nav-padding, 'sm');
-
-  @include media-query('lg') {
-    padding: map-get($top-nav-padding, 'lg');
-  }
-
-  nav {
-    gap: get-size(300);
-    grid-template-columns: min-content auto min-content;
-    position: relative;
-
-    @include media-query('lg') {
-      gap: get-size(800);
-      grid-template-columns: 1fr 2fr 1fr;
-    }
-  }
+@include media-query('lg') {
+  gap: get-size(800);
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
+
+}
+
+// When the data-search-active attribute is present on the top-nav element,
+// the following styles are applied.
 top-nav[data-search-active] {
-  // Mobile-only
-  // When a user clicks on the search button everything else should collapse
-  // so the search can take the full width of the top-nav.
-  @include media-query('lg-max') {
-    nav {
-      grid-template-columns: 1fr;
-      padding: 0 get-size(400);
-    }
-  
-    .top-nav__hamburger,
-    .top-nav__logo {
-      display: none;
-    }
-  }
-
-  // Recreate the hairline that appears at the bottom of the top-nav.
-  // This will appear above the overlay, in between the search box and the
-  // search results.
-  nav::before {
-    @include apply-utility('stack', '500');
-    @include full-bleed();
-    background-color: var(--color-hairline);
-    content: '';
-    display: block;
-    height: 1px;
-    position: absolute;
-    // top = search-box's height + top-nav's bottom padding
-    top: calc(#{$search-box-height} + #{nth(map-get($top-nav-padding, 'lg'), 1)});
-  }
-  
-  // A full screen overlay that hides the page underneath and creates a
-  // background for the search results.
-  nav::after {
-    @include apply-utility('stack', '400');
-    @include full-bleed();
-    background: var(--color-bg);
-    content: '';
-    height: 100vh;
-    left: 0;
-    position: absolute;
-    top: 0;
-  }
+// On screens smaller than large, the following styles are applied.
+@include media-query('lg-max') {
+// The grid-template-columns are set to 1fr, and the padding is set to 0 on the
+// left side and 400 on the right side.
+nav {
+grid-template-columns: 1fr;
+padding: 0 get-size(400);
 }
+
+
+
+}
+
+// A pseudo-element is created before the nav element to recreate the hairline
+// that appears at the bottom of the top-nav.
+// This will appear above the overlay, in between the search box and the
+// search results.
+nav::before {
+@include apply-utility('stack', '500');
+@include full-bleed();
+background-color: var(--color-hairline);
+content: '';
+display: block;
+height: 1px;
+position: absolute;
+// The top property is set to the sum of the search-box's height and the top-nav's
+// bottom padding on larger screens.
+top: calc(#{$search-box-height} + #{nth(map-get($top-nav-padding, 'lg'), 1)});
+}
+
+// A full-screen overlay
