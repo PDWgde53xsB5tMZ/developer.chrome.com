@@ -8,13 +8,23 @@ nunjucks.configure({
   tags: {blockStart: '<%', blockEnd: '%>'},
 });
 
+// The `blogTemplate` and `bannerTemplate` constants hold the file paths for
+// the Nunjucks templates used to generate the blog post and banner for
+// "What's New in DevTools" posts.
 const blogTemplate = './tools/devtools/templates/new-in-devtools.md';
 const bannerTemplate = './tools/devtools/templates/new-in-devtools-banner.svg';
 
+// The `blogDest`, `outlineDest`, and `bannerDest` constants are used to
+// render the file paths for the generated files. They include placeholders
+// for the language and version, which will be replaced when generating files
+// for multiple languages and versions.
 const blogDest = './site/{{lang}}/blog/new-in-devtools-{{version}}/index.md';
 const outlineDest = './site/{{lang}}/_partials/devtools/whats-new.md';
 const bannerDest = './tools/devtools/_temp/new-in-devtools-banner-{{lang}}.svg';
 
+// The `blogPostData` object contains data used for generating the blog posts.
+// It includes an array of locales and a `translation` object with translations
+// for different languages.
 export const locales = [
   {lang: 'en', isDefault: true},
   {lang: 'es'},
@@ -74,202 +84,6 @@ const translation = {
  * @returns YYYY-MM-DD
  */
 function getToday() {
-  return new Intl.DateTimeFormat('fr-CA', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(Date.now());
-}
-
-/**
- * Generate What's New in DevTools blog post banner
- * @param {String} version - release version
- * @param {String[]} langs - languages you want to generate
- */
-export async function createWndtBanners(version, langs) {
-  for (const lang of langs) {
-    const output = nunjucks.render(bannerTemplate, {
-      banner: translation.banner[lang],
-      version: version,
-    });
-
-    // TODO: Upload images to CDN
-    const fileName = nunjucks.renderString(bannerDest, {lang});
-    await mkdir(dirname(fileName), {recursive: true});
-    await writeFile(fileName, output, 'utf-8');
-  }
-  console.log(`Created WNDT banners for: ${langs.join(', ')}`);
-}
-
-/**
- * Generate What's New in DevTools blog posts templates
- * @param {String} version - release version
- * @param {String[]} langs - languages you want to generate
- */
-export async function createWndtBlogPosts(version, langs, images = {}) {
-  for (const lang of langs) {
-    const output = nunjucks
-      .render(blogTemplate, {
-        title: nunjucks.renderString(translation.title[lang], {version}),
-        thankful: translation.thankful[lang] || '',
-        date: getToday(),
-        lang: lang,
-        version: version,
-        image: images[lang] || '{{image}}',
-        desc: lang === 'en' ? '""' : '{{desc}}',
-        content: lang === 'en' ? '' : '{{content}}',
-      })
-      .replaceAll('\n\n\n', '\n');
-
-    const fileName = nunjucks.renderString(blogDest, {lang, version});
-
-    await mkdir(dirname(fileName), {recursive: true});
-    await writeFile(fileName, output, 'utf-8');
-  }
-  console.log(`Created WNDT blog posts for: ${langs.join(', ')}`);
-}
-
-/**
- * Populate What's New in DevTools blog posts content to translation templates
- * @param {String} version - release version
- * @param {String[]} langs - languages you want to generate
- */
-export async function populateTranslationContent(version, langs) {
-  const enFileName = nunjucks.renderString(blogDest, {lang: 'en', version});
-  const enFile = await readFile(enFileName, 'utf-8');
-
-  // Extract English description and content paragraph
-  const enDesc = enFile.match(/(?<=description: )(.*)/gm)?.[0] || '""';
-  let enContent =
-    enFile.match(
-      /(?<=<!-- \$contentStart -->)(.+?)(?=<!-- \$contentEnd -->)/s
-    )?.[0] || '';
-
-  const enParagraphs = (
-    enContent.match(
-      /(?<=\n)((?!{%|\s*{%|{#|Chromium issue: |Chromium issues: ).*)(?=\n)$/gm
-    ) || []
-  ).filter(x => x);
-
-  for (const p of enParagraphs) {
-    if (p.startsWith('```'))
-      console.warn(
-        "Output contains code sample. Please check if it's commented correctly."
-      );
-
-    enContent = enContent.replace(p, `<!-- ${p} -->`);
-  }
-
-  // Append the English description and commented content to translation files
-  for (const lang of langs) {
-    const fileName = nunjucks.renderString(blogDest, {lang, version});
-
-    const output = nunjucks.render(fileName, {
-      desc: enDesc,
-      content: enContent,
-    });
-
-    await writeFile(fileName, output, 'utf-8');
-  }
-  console.log(`Populated commented content for: ${langs.join(', ')}`);
-}
-
-/**
- * Append What's New in DevTools outline in 7 languages
- * @param {String} version - release version
- * @param {String[]} langs - languages you want to generate
- */
-export async function createWndtOutline(version, langs) {
-  // Read the file
-  const fileName = nunjucks.renderString(blogDest, {lang: 'en', version});
-  const content = await readFile(fileName, 'utf-8');
-
-  // Abstract the title and hash id
-  const list = (content.match(/^(## |### )(.*)$/gm) || []).map(x => {
-    const title = x.match(/(?<=## )(.*?)(?= {:)/gm);
-    const hash = x.match(/(?<={: )(.*?)(?= })/g);
-
-    return `* [${title}]({{hashLang}}/blog/new-in-devtools-{{version}}/${hash})`;
-  });
-
-  const output =
-    '### Chrome {{version}} {: #chrome{{version}} }\n\n' +
-    list.join('\n') +
-    '\n';
-
-  // Append outline to translation files
-  for (const lang of langs) {
-    let langOutput = nunjucks.renderString(output, {
-      hashLang: lang === 'en' ? '' : `/${lang}`,
-      version,
-    });
-
-    if (lang !== 'en') {
-      langOutput = `{# ${langOutput} #}`;
-    }
-
-    const outlineFileName = nunjucks.renderString(outlineDest, {lang});
-    const outlineFileContent = await readFile(outlineFileName, 'utf-8');
-
-    const contentHolder = '{# $content #}';
-
-    const out = outlineFileContent.replace(
-      contentHolder,
-      contentHolder + '\n\n' + langOutput
-    );
-
-    await writeFile(outlineFileName, out, 'utf-8');
-  }
-
-  console.log(`Appended WNDT outlines for: ${langs.join(', ')}`);
-}
-
-/**
- * Create Github Issues for translators to work on
- * @param {String} version - release version
- * @param {String} dueDate - due date to translate
- * @param {String[]} langs - languages you want to generate
- * @param {String} auth - GitHub Token
- * @param {Object} translators - Translators of different locales { en: 'githubHandler' }
- */
-export async function createGitHubIssues(
-  version,
-  dueDate,
-  langs,
-  auth,
-  translators = {}
-) {
-  // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({auth});
-
-  const {data} = await octokit.rest.users.getAuthenticated();
-  console.log(`Login to GitHub successfully: ${data.login}`);
-
-  for (const lang of langs) {
-    const translator = translators[lang] ? `@${translators[lang]}` : '...';
-    const reviewers = translation.reviewers[lang]
-      .map(r => `@${r}`)
-      .filter(r => r !== translator);
-
-    const {status} = await octokit.request(
-      'POST /repos/GoogleChrome/developer.chrome.com/issues',
-      {
-        owner: 'GoogleChrome',
-        repo: 'developer.chrome.com',
-        title: `[devtools-translate] ${translation.language[lang]} - What's New in DevTools (Chrome ${version})`,
-        body:
-          `Post: https://developer.chrome.com/blog/new-in-devtools-${version}/\n` +
-          `Translated by: ${dueDate}\n` +
-          '\n' +
-          `Translator: ${translator}\n` +
-          `Reviewers: ${reviewers.join(', ')}`,
-        assignees: ['jecfish'],
-        labels: ['devtools-translate', 'content', 'translation'],
-      }
-    );
-
-    console.log(
-      `Created Github issue for WNDT ${translation.language[lang]}: status ${status}`
-    );
-  }
-}
+  // The `getToday` function returns the current date in the ISO 8601 format
+  // (YYYY-MM-DD) using the Intl.DateTimeFormat object.
+  return new Intl.DateTime
