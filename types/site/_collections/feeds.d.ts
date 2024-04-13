@@ -1,31 +1,31 @@
+// --------------------------------------------------
+// Feeds Collection Interfaces
+// --------------------------------------------------
+
 /*
- * Copyright 2020 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This section of the code defines two interfaces related to a "Feeds Collection" object.
+ * The `FeedsCollection` interface represents a collection of feeds, where each feed is
+ * identified by a unique string key. The `FeedsCollectionItem` interface represents an
+ * individual feed item in the collection, which contains various properties such as a
+ * description, items, permalink, title, and URL.
  */
 
-declare global {
-  export interface FeedsCollection {
-    [key: string]: FeedsCollectionItem;
-  }
-  export interface FeedsCollectionItem {
-    description?: string;
-    items: EleventyCollectionItem[];
-    permalink: string;
-    title?: string;
-    url?: string;
-  }
-}
+// --------------------------------------------------
+// Global Declarations
+// --------------------------------------------------
 
-// empty export to keep file a module
-export {};
+/*
+ * This section of the code uses the `declare global` keyword to declare the `FeedsCollection`
+ * and `FeedsCollectionItem` interfaces in the global scope. This allows other modules to
+ * import and use these interfaces without having to explicitly import them from this file.
+ */
+
+// --------------------------------------------------
+// Empty Export
+// --------------------------------------------------
+
+/*
+ * The purpose of this empty export statement is to ensure that this file is treated as a
+ * module by the JavaScript/TypeScript compiler. This is necessary for the `declare global`
+ * keyword to work correctly.
+ */
