@@ -1,8 +1,10 @@
-- url: /docs/crux/about/
-- url: /docs/crux/methodology/
-- url: /docs/crux/bigquery/
-- url: /docs/crux/dashboard/
-- url: /docs/crux/api/
-- url: /docs/crux/history-api/
-- url: /docs/crux/guides/
-- url: /docs/crux/release-notes/
+# This is a list of URLs related to the Crux documentation.
+# Each URL points to a different section of the Crux documentation.
+# The first URL points to the "about" section, which provides an overview of Crux.
+# The second URL points to the "methodology" section, which explains the research methods used in Crux.
+# The third URL points to the "bigquery" section, which provides information about using BigQuery with Crux.
+# The fourth URL points to the "dashboard" section, which explains how to use the Crux dashboard.
+# The fifth URL points to the "api" section, which provides documentation for the Crux API.
+# The sixth URL points to the "history-api" section, which provides documentation for the Crux history API.
+# The seventh URL points to the "guides" section, which contains guides and tutorials for using Crux.
+# The eighth URL points to the "release-notes" section, which contains information about Crux releases and updates.
