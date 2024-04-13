@@ -1,52 +1,45 @@
 ---
-title: 'Password Manager Compatible'
+title: 'Password Manager Compatible' // Title of the page
 description: >
   Help your users stay safe and secure by integrating with password managers for
   seamless cross-device sign-in across sites and apps along with automated
-  password updates.
-layout: 'layouts/landing.njk'
+  password updates. // Description of the page
+layout: 'layouts/landing.njk' // Layout of the page
 collection_tag: 'password-manager-compatible'
 sections:
   implementation:
-    - url: https://web.dev/sign-up-form-best-practices/
-      title: Sign-up
-      description: Make sure your sign-up forms are properly marked up so the password manager can save that brand new account.
-    - url: https://web.dev/sign-in-form-best-practices/
-      title: Sign-in
-      description: Keep that mark-up best practice going for sign-in forms so that the password manager can drop those credentials in the right place.
-    - url: https://web.dev/change-password-url/
-      title: Change password
-      description: Set up /.well-known/change-password to redirect to your change password page so the password manager can bring users straight there.
-    - url: /blog/site-affiliation/
-      title: Link sites and apps
-      description: For sites (and apps!) that share a single sign-on make use of Digital Asset Links to make sure the password manager knows it's all the same account.
+    - url: https://web.dev/sign-up-form-best-practices/ // URL for sign-up best practices
+      title: Sign-up // Title for sign-up
+      description: Make sure your sign-up forms are properly marked up so the password manager can save that brand new account. // Description for sign-up
+    - url: https://web.dev/sign-in-form-best-practices/ // URL for sign-in best practices
+      title: Sign-in // Title for sign-in
+      description: Keep that mark-up best practice going for sign-in forms so that the password manager can drop those credentials in the right place. // Description for sign-in
+    - url: https://web.dev/change-password-url/ // URL for change password
+      title: Change password // Title for change password
+      description: Set up /.well-known/change-password to redirect to your change password page so the password manager can bring users straight there. // Description for change password
+    - url: /blog/site-affiliation/ // URL for linking sites and apps
+      title: Link sites and apps // Title for linking sites and apps
+      description: For sites (and apps!) that share a single sign-on make use of Digital Asset Links to make sure the password manager knows it's all the same account. // Description for linking sites and apps
 ---
-{% from 'macros/cards/hero-card-wide.njk' import heroCardWide with context %}
-{% from 'macros/landing-section-expanded.njk' import landingSectionExpanded with context %}
+{% from 'macros/cards/hero-card-wide.njk' import heroCardWide with context %} // Importing the heroCardWide macro from the specified file
+{% from 'macros/landing-section-expanded.njk' import landingSectionExpanded with context %} // Importing the landingSectionExpanded macro from the specified file
 
 {{ heroCardWide(
-  "Password Manager Compatible",
-  "Help your users stay safe and secure by integrating with password managers for seamless cross-device sign-in across sites and apps along with automated password updates.",
-  "",
-  "",
-  "image/VWw0b3pM7jdugTkwI6Y81n6f5Yc2/hktLGMLoCB1ipj9U37Du.png",
-  "Safely save and share passwords across devices with a password manager",
-  "",
-  ""
+  "Password Manager Compatible", // Title for the hero card
+  "Help your users stay safe and secure by integrating with password managers for seamless cross-device sign-in across sites and apps along with automated password updates.", // Description for the hero card
+  "", // Empty string, not sure what it's for
+  "", // Empty string, not sure what it's for
+  "image/VWw0b3pM7jdugTkwI6Y81n6f5Yc2/hktLGMLoCB1ipj9U37Du.png", // Image source for the hero card
+  "Safely save and share passwords across devices with a password manager", // Call to action for the hero card
+  "", // Empty string, not sure what it's for
+  "" // Empty string, not sure what it's for
   ) }}
 
 {{ landingSectionExpanded(
-  "Check and update each part of your password process",
-  "",
-  sections.implementation,
-  "blue",
-  "top-4",
-  true,
+  "Check and update each part of your password process", // Title for the landing section
+  "", // Empty string, not sure what it's for
+  sections.implementation, // The implementation sections
+  "blue", // Color for the landing section
+  "top-4", // Position for the landing section
+  true, // Show the call to action button
   "image/VWw0b3pM7jdugTkwI6Y81n6f5Yc2/l3ZibRgYJPkeOyRDcpin.png",
-  "Password field with asterisks",
-  200,
-  112,
-  "image/VWw0b3pM7jdugTkwI6Y81n6f5Yc2/l3ZibRgYJPkeOyRDcpin.png",
-  ""
-  )
-}}
