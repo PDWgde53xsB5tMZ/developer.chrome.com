@@ -1,57 +1,56 @@
-blog:
-  en: 'Engineering blog'
-blog_description:
-  en: 'Learn how the team builds new features in DevTools.'
-dom:
-  en: 'DOM'
-css:
-  en: 'CSS'
-tips:
-  en: 'DevTools tips'
-tips_description:
-  en: 'A series of bite-size videos for you to learn features in DevTools.'
-console:
-  en: 'Console'
-new_in_devtools:
-  en: >
-    What's new in DevTools
-new_in_devtools_description:
-  en: 'Stay up to date with the latest DevTools changes.'
-network:
-  en: 'Network'
-storage:
-  en: 'Storage'
-mobile:
-  en: 'Mobile simulation'
-javascript:
-  en: 'JavaScript'
-performance:
-  en: 'Performance'
-accessibility:
-  en: 'Accessibility'
-memory:
-  en: 'Memory'
-customization:
-  en: 'Settings and customization'
-remotedebug:
-  en: 'Remote debugging'
-commands_shortcuts:
-  en: 'Commands and shortcuts'
-elements:
-  en: 'Elements'
-sources:
-  en: 'Sources'
-application:
-  en: 'Application'
-lighthouse:
-  en: 'Lighthouse'
-sensors:
-  en: 'Sensors'
-rendering:
-  en: 'Rendering'
-changes:
-  en: 'Changes'
-recorder:
-  en: 'Recorder'
-settings:
-  en: 'Settings reference'
+# This is a dictionary that contains various features of the DevTools
+# Each key in the dictionary represents a feature, and the value is a string
+# that describes the feature in English
+
+blog = {
+  'en': 'Engineering blog' # The DevTools engineering blog
+}
+
+blog_description = {
+  'en': 'Learn how the team builds new features in DevTools.' # A description of the engineering blog
+}
+
+dom = {
+  'en': 'DOM' # Stands for Document Object Model, which is a programming interface for HTML and XML documents
+}
+
+css = {
+  'en': 'CSS' # Stands for Cascading Style Sheets, which is a style sheet language used for describing the look and formatting of a document written in HTML
+}
+
+# This is a list of DevTools tips
+# Each tip is represented as a dictionary with two keys: 'en' and 'video'
+# 'en' is a string that contains a written version of the tip
+# 'video' is a URL that points to a video version of the tip
+
+tips = [
+  {
+    'en': 'DevTools tips', # A title for the list of tips
+    'video': None # A placeholder for the video URL
+  },
+  {
+    'en': 'Learn how to inspect and modify the DOM in real time.',
+    'video': None
+  },
+  {
+    'en': 'Find out how to debug JavaScript code and fix errors.',
+    'video': None
+  },
+  {
+    'en': 'See how to measure and improve your website\'s performance.',
+    'video': None
+  },
+  {
+    'en': 'Discover how to test your website for accessibility issues.',
+    'video': None
+  }
+]
+
+console = {
+  'en': 'Console' # The DevTools console, which allows you to run JavaScript code and see log messages
+}
+
+# This is a dictionary that contains information about the latest changes in DevTools
+
+new_in_devtools = {
+  'en': 'What\'s
