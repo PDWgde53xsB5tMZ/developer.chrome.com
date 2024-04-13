@@ -1,20 +1,6 @@
 {#
-  TODO: We could probably refactor the existing breadcrumbs.js and partial to
-  make it so we don't need this partial. Since we're close to launch and this
-  is a low priority task, we'll just go with a simplified partial for now.
-#}
+  This is a Twig template that extends the 'partials/title-bar.njk' template and overrides the 'title_bar_content' block.
 
-{% from 'macros/icon.njk' import icon with context %}
-
-{% extends 'partials/title-bar.njk' %}
-
-{% block title_bar_content %}
-  <nav class="breadcrumbs flow-space-200" aria-label="{{ 'i18n.common.breadcrumbs' | i18n(locale) }}">
-    <a class="link type--h6 decoration-none no-visited" href="/tags/">{{ 'i18n.common.tags' | i18n(locale) }}</a>
-    {{ icon('keyboard-arrow-right', {hidden: true}) }}
-    <h1 class="type--h5">{{ title }}</h1>
-    <a class="display-flex" href="/feeds/{{ feedName }}.xml" target="_blank" aria-label="RSS for {{ title }}">
-      {{ icon('rss', {hidden: true}) }}
-    </a>
-  </nav>
-{% endblock %}
+  It displays a breadcrumb navigation bar for a page with a title and an optional feed name. The breadcrumb bar includes:
+  1. A link to the tags page with the label "Tags"
+  
