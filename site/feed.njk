@@ -1,26 +1,28 @@
----
-permalink: '{{feed.permalink}}'
-disable_algolia: true
-pagination:
-  data: collections.feeds
-  size: 1
-  alias: feed
-  resolve: values
----
+<!-- XML declaration -->
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  {% set absoluteFeedUrl %}{{ site.url }}{% if feed.url %}{{ feed.url | url }}{% endif  %}{% endset %}
+
+  {# Define the absolute URL for the feed #}
+  {% set absoluteFeedUrl %}{{ site.url }}{{ feed.url | url }}{% endset %}
+
+  {# Set the feed's title, subtitle, and URL #}
   <title>{{ site.title }}{% if feed.title %} - {{ feed.title }}{% endif %}</title>
   <subtitle>{{ feed.description or site.description }}</subtitle>
   <link href="{{ site.url }}{{ feed.permalink | url }}" rel="self"/>
   <link href="{{ absoluteFeedUrl }}" />
+
+  {# If there are any items in the feed, set the updated date #}
   {% if feed.items and feed.items.length  %}
     <updated>{{ feed.items | rssLastUpdatedDate }}</updated>
   {% endif %}
+
+  {# Set the feed's unique identifier and author #}
   <id>{{ absoluteFeedUrl }}</id>
   <author>
     <name>{{ site.title }}</name>
   </author>
+
+  {# Loop through each item in the feed and generate its entry #}
   {% for item in feed.items %}
   {% set absolutePostUrl %}{{ site.url }}{{ item.url | url }}{% endset %}
   <entry>
@@ -28,6 +30,8 @@ pagination:
     <link href="{{ absolutePostUrl }}" />
     <updated>{{ item.date | rssDate }}</updated>
     <id>{{ absolutePostUrl }}</id>
+
+    {# If the item has authors, loop through them and generate an author entry #}
     {% if item.data.authors.length %}
       {% for authorId in item.data.authors %}
       {% set authorTitle = 'i18n.authors.' + authorId + '.title' %}
@@ -38,10 +42,4 @@ pagination:
       {% endfor %}
     {% else %}
     <author>
-      <name>{{ site.title }}</name>
-    </author>
-    {% endif %}
-    <content type="html">{{ item.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
-  </entry>
-  {% endfor %}
-</feed>
+      <name>{{ site.title }}
