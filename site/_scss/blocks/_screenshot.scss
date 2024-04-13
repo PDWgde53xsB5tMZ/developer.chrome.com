@@ -1,16 +1,27 @@
 .screenshot {
+  /* Sets a 1px solid border with the color var(--color-hairline) */
   border: 1px solid var(--color-hairline);
-  // This ensures images are scaled to the exact size specified by the
-  // width attribute, preventing HiDPI screenshots from being blurry:
-  //  <img src="800x500.png" width="400" class="screenshot">
+  
+  /* This comment explains the purpose of the next line:
+  It ensures that images have a clear and sharp appearance by scaling them
+  to the exact size specified by the 'width' attribute, even on HiDPI screens. */
   box-sizing: content-box;
+  
+  /* Sets the padding to the value returned by the get-size(100) function */
   padding: get-size(100);
 }
 
 .screenshot--filled {
+  /* Sets the background color to the value of var(--color-code-bg) */
   background-color: var(--color-code-bg);
-  // This ensures image size fits to content width with padding(16 * 2)
-  // while specifying `box-sizing: content-box;` in .screenshot
+  
+  /* This comment explains the purpose of the next line:
+  It sets the maximum width of the .screenshot--filled element to 100% of its
+  parent container, minus twice the value of get-size(400), which is the padding
+  value for this element. This ensures that the image fits to the content width
+  with padding on both sides. */
   max-width: calc(100% - 2 * #{get-size(400)});
+  
+  /* Sets the padding to the value returned by the get-size(400) function */
   padding: get-size(400);
 }
