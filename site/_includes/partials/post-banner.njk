@@ -1,9 +1,22 @@
 <div class="post-banner">
+  <!-- The post-banner div is used as a container for the banner content. -->
   <div class="post-banner__content">
+    <!-- The post-banner__content div holds the actual content of the banner. -->
+
     {% if new_available_content_url %}
+      <!-- Check if there's a new_available_content_url variable available.
+           If it is, proceed with the following block. -->
+
       {% set material_url = helpers.findByUrl(collections.all, new_available_content_url, locale) %}
+      <!-- Set the material_url variable to the result of the findByUrl function,
+           which searches for a matching URL in the collections.all array. -->
+
     {% endif %}
 
+    <!-- Display the outdated banner content with the translated text.
+         If new_available_content_url is set, display a link to the new material. -->
     {{ 'i18n.common.outdated_banner.content' | i18n(locale) }} {% if material_url %}<a href={{ material_url.url }}>{{ 'i18n.common.outdated_banner.new_material' | i18n(locale) }}</a>.{% endif %}
+
   </div>
 </div>
+
