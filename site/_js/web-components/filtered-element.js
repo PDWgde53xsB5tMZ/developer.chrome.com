@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,41 +15,54 @@
  */
 
 /**
- * @fileoverview A component for displaying items on a table that can be filtered. If the filter
- * selection doesn't match the filter data specified the component results hidden
+ * A component for displaying items on a table that can be filtered.
+ * If the filter selection doesn't match the filter data specified,
+ * the component results will be hidden.
  */
-import {BaseStateElement} from './base-state-element';
-//import {html} from 'lit-element';
-
-export class FilteredElement extends BaseStateElement {
+class FilteredElement extends BaseStateElement {
+  // Declare the properties of the component
   static get properties() {
     return {
       hidden: {type: Boolean, reflect: true},
     };
   }
 
+  /**
+   * Constructor for the FilteredElement class.
+   */
   constructor() {
     super();
-    this.hidden = false;
+    this.hidden = false; // Initialize the hidden property to false
   }
 
+  /**
+   * Called automatically by the browser when the element is attached to the DOM.
+   */
   connectedCallback() {
     super.connectedCallback();
-    this.content = this.innerHTML;
+    this.content = this.innerHTML; // Store the initial content of the element
 
-    this.filters = {};
+    this.filters = {}; // Initialize the filters object
+
+    // Iterate over the attributes of the element
     const attributes = this.getAttributeNames();
     for (const attribute of attributes) {
       if (!attribute.startsWith('data-filter-')) {
         continue;
       }
+
+      // Extract the filter name and value from the attribute
       const name = attribute.replace('data-filter-', '');
       this.filters[name] = this.getAttribute(attribute);
     }
   }
 
+  /**
+   * Called when the state of the component changes.
+   * @param {Object} state - The new state of the component.
+   */
   onStateChanged(state) {
-    const activeFilters = state.filters || {};
+    const activeFilters = state.filters || {}; // Get the active filters
 
     // Remove any empty filter arrays
     for (const key in activeFilters) {
@@ -69,11 +82,13 @@ export class FilteredElement extends BaseStateElement {
     this.hidden = false;
 
     for (const [filterName, filterInput] of Object.entries(activeFilters)) {
-      const values = filterInput.map(input => input.value);
+      const values = filterInput.map(input => input.value); // Get the values of the filter inputs
       if (this.filters && !values.includes(this.filters[filterName])) {
-        this.hidden = true;
+        this.hidden = true; // Hide the element if it doesn't match the filter
       }
     }
   }
 }
+
+// Register the FilteredElement component
 customElements.define('filtered-element', FilteredElement);
