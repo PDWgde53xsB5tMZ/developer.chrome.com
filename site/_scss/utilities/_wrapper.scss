@@ -1,7 +1,11 @@
 /**
- * WRAPPER
- * Sets a max width, adds a consisten gutter and horizontally
- * centers the contents
+ * The `.wrapper` class is a container that sets a maximum width for its contents,
+ * adds a consistent gutter around all sides, and horizontally centers the contents
+ * within the available space. The maximum width is set to 70 rems, which is
+ * equivalent to 1120 pixels (assuming a base font size of 16 pixels). The gutter
+ * is added using the `get-size()` function with a parameter of 500, which should
+ * be defined elsewhere in the codebase. The `position` property is set to `relative`
+ * to establish a new context for absolutely positioned children.
  */
 .wrapper {
   margin-left: auto;
