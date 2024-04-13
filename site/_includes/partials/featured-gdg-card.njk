@@ -1,18 +1,22 @@
 {% from 'macros/icon.njk' import icon with context %}
-
 <div class="featured-card hairline rounded-lg width-full">
+  <!-- This is a card title bar with a blue-medium color. The GDG icon is hidden. -->
   <div class="card-title-bar color-blue-medium">
     {{ icon('gdg', {hidden: true}) }}
     <span class="gap-left-300 flex-1 user-select-none">
+      <!-- This is the title of the card, displayed in the user's current language. -->
       {{ 'i18n.common.featured_cards.gdg.title' | i18n(locale) }}
     </span>
   </div>
 
+  <!-- This is the body of the card. -->
   <p class="gap-top-200">
     {{ 'i18n.common.featured_cards.gdg.body' | i18n(locale) }} 
   </p>
 
+  <!-- This is the call-to-action section of the card. -->
   <div class="gap-top-400">
+    <!-- This is a link to the GDG developers website. The text of the link is displayed in the user's current language. -->
     <a href="https://developers.google.com/community/gdg" class="material-button button-text display-inline-flex color-primary">
       {{ 'i18n.common.featured_cards.gdg.cta' | i18n(locale) }} 
     </a>
