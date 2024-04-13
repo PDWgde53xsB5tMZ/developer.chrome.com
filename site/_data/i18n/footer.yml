@@ -1,50 +1,46 @@
-follow_us:
-  en: Follow us
+# This dictionary contains various links and resources related to web development.
+# The keys are translated into different languages, while the values are the corresponding links.
 
-contribute:
-  en: Contribute
+follow_us = {    'en': 'Follow us' # Link to the website's social media or newsletter sign-up page
+}
 
-file_a_bug:
-  en: File a bug
+contribute = {    'en': 'Contribute' # Link to the website's contribution guidelines or repository
+}
 
-view_source:
-  en: View source
+file_a_bug = {    'en': 'File a bug' # Link to the website's bug reporting system
+}
 
-related_content:
-  en: Related content
+view_source = {    'en': 'View source' # Link to the website's source code repository or documentation
+}
 
-web_dev:
-  en: web.dev
+related_content = {    'en': 'Related content' # Link to related articles, tutorials, or resources
+}
 
-web_fundamentals:
-  en: Web Fundamentals
+web_dev = {    'en': 'web.dev' # Link to the web.dev website, which provides web development best practices and resources
+}
 
-case_studies:
-  en: Case studies
+web_fundamentals = {    'en': 'Web Fundamentals' # Link to the Web Fundamentals section of the Google Developers website, which provides in-depth guides and tutorials on various web development topics
+}
 
-podcasts:
-  en: Podcasts
+case_studies = {    'en': 'Case studies' # Link to case studies of successful web development projects
+}
 
-twitter:
-  en: Twitter
+podcasts = {    'en': 'Podcasts' # Link to web development podcasts or audio resources
+}
 
-youtube:
-  en: YouTube
+twitter = {    'en': 'Twitter' # Link to the website's Twitter account
+}
 
-github:
-  en: GitHub
+youtube = {    'en': 'YouTube' # Link to the website's YouTube channel
+}
 
-connect:
-  en: Connect
+github = {    'en': 'GitHub' # Link to the website's GitHub repository
+}
 
-all_products:
-  en: All products
+connect = {    'en': 'Connect' # Link to a page where users can connect with the website's community or support team
+}
 
-privacy:
-  en: Privacy
+all_products = {    'en': 'All products' # Link to a page showcasing all of the website's products or services
+}
 
-terms:
-  en: Terms
-
-content_license:
-  en: Content available under the CC-BY-SA-4.0 license
+privacy = {    'en': 'Privacy' # Link to the website's privacy policy
