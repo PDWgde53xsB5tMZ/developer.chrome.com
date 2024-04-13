@@ -1,22 +1,20 @@
 {#
-  This is run for every top-level API namespace, e.g., for "chrome.accessibilityFeatures".
+  This template is used to render a top-level API namespace, such as "chrome.accessibilityFeatures".
 #}
 
-{% extends "layouts/base.njk" %}
-
+{% extends "layouts/base.njk" %} {# Inherits the base layout #}
 
 {% block css %}
-{% InlineCss '/css/main.css' %}
+  {% InlineCss '/css/main.css' %} {# Inlines the main.css file #}
 {% endblock %}
 
 {% block title_bar %}
-  {% include 'partials/breadcrumbs.njk' %}
+  {% include 'partials/breadcrumbs.njk' %} {# Includes the breadcrumbs partial #}
 {% endblock %}
 
-{% import 'macros/render-type.njk' as macros with context %}
+{% import 'macros/render-type.njk' as macros with context %} {# Imports the render-type macro #}
 
-{# Update "content" with additional headings and so forth, so we can pass it
-   through the toc filter. #}
+{# Updates the "content" variable with additional headings and so forth, so it can be passed through the toc filter #}
 {% set content %}
   <div class="type stack">
     {{ content | safe }}
@@ -30,7 +28,7 @@
   </ul>
 
   {% for group in namespace.groups %}
-   {{ macros.renderGroupAll(group) }}
+    {{ macros.renderGroupAll(group) }}
   {% endfor %}
 
 {% endset %}
