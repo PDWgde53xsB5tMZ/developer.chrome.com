@@ -1,41 +1,53 @@
-// The Cluster layout is effectively similar to flexbox's new `gap` property.
-// It evenly wraps margin around its children so they can wrap and still have
-// a nice top gap.
-// https://every-layout.dev/layouts/cluster/
+/* 
+ * The Cluster layout is a way to evenly wrap margin around its children so they
+ * can wrap and still have a nice top gap. This layout is similar to flexbox's
+ * new `gap` property. 
+ *
+ * Reference: https://every-layout.dev/layouts/cluster/
+ */
 
-// Note — This layout requires an extra container div:
-// <div class="cluster">
-//   <div> <!-- intermediary wrapper -->
-//     <div><!-- child --></div>
-//     <div><!-- child --></div>
-//     <div><!-- etc --></div>
-//   </div>
-// </div>
+/* 
+ * Note: This layout requires an extra container div to work properly. 
+ *
+ * <div class="cluster">
+ *   <div> <!-- intermediary wrapper -->
+ *     <div><!-- child --></div>
+ *     <div><!-- child --></div>
+ *     <div><!-- etc --></div>
+ *   </div>
+ * </div>
+ */
 
-// Important — When flexbox `gap` is better supported then we can
-// ditch the negative margin and switch to that.
-
-// /* ↓ No need for an additional, outer wrapping element */
-// .cluster {
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 1rem;
-// }
+/* 
+ * Important: When flexbox `gap` is better supported, we can switch to that
+ * and ditch the negative margin. 
+ *
+ * .cluster {
+ *   display: flex;
+ *   flex-wrap: wrap;
+ *   gap: 1rem;
+ * }
+ */
 
 .cluster {
-  /* ↓ Suppress horizontal scrolling caused by
-  the negative margin in some circumstances */
+  /* 
+   * Suppress horizontal scrolling caused by the negative margin in some
+   * circumstances.
+   */
   overflow: hidden;
 }
 
 .cluster > * {
-  display: flex;
-  flex-wrap: wrap;
-  /* ↓ multiply by -1 to negate the halved value */
+  /* 
+   * Negate the halved value of the margin to create a consistent gap
+   * between elements.
+   */
   margin: calc(var(--flow-space) / 2 * -1);
 }
 
 .cluster > * > * {
-  /* ↓ half the value, because of the 'doubling up' */
+  /* 
+   * Half the value, because of the 'doubling up' of margin.
+   */
   margin: calc(var(--flow-space) / 2);
 }
