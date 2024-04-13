@@ -8,7 +8,7 @@
         </h3>
           <ul class="related-items">
          {% for item in relatedItems %}
-           {% set post = null %} {# Reset #}
+           {% set post = null %} {# Reset the 'post' variable #}
               {% if item.url and item.title %}
               {% set post = item %}
            {% else %}
@@ -33,3 +33,4 @@
 	</div>
   </div>
 {% endmacro %}
+
