@@ -1,23 +1,29 @@
-// An overlay that takes on the color of the content (either the primary icon,
-// or text if there is no icon) at varying opacities depending on the level of
-// interaction. The surface overlay is placed *between* the content and the
-// container.
-// The surface also adds an underline to links.
-// 
-// // !!! IMPORTANT !!!
-// Because this class uses a pseudo element, it can't be used with
-// elements that appear inline in paragraphs. If those elements are split across
-// two lines, the hover state will break.
-// https://twitter.com/rob_dodson/status/1335077889641832449
+// Defines a CSS custom property for the surface overlay's background color.
+// This color will vary depending on the color of the content (either the primary icon or text) underneath the overlay.
+:root {
+  --surface-overlay-bg: transparent;
+}
 
+// Defines a CSS class for the surface overlay that can be applied to any element.
+// This class extends the :hover, :focus, and :active pseudo-classes of the element,
+// allowing the surface overlay to respond to user interactions.
 %surface,
 .surface {
+  // Inherits the styles defined in the :hover, :focus, and :active pseudo-classes of the element's parent.
   @extend %overlay;
 
+  // Removes the default text decoration for links.
   text-decoration: none;
 
+  // Defines the styles for the :hover, :focus, and :active pseudo-classes of the surface overlay.
+  // Adds an underline to the text decoration to indicate that the link is clickable.
   &:hover,
   &:focus {
     text-decoration: underline;
   }
 }
+
+// Important note:
+// This surface overlay class uses a pseudo-element, which means it can't be used with elements that appear inline in paragraphs.
+// If those elements are split across two lines, the hover state will break.
+// For more information, see this Twitter thread: https://twitter.com/rob_dodson/status/1335077889641832449
