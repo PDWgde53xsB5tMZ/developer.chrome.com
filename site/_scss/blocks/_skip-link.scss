@@ -1,10 +1,17 @@
+/* The .skip-link selector targets the "skip link" HTML element, which allows users to skip to the main content of the page. */
 .skip-link {
+  /* The @extend directive is used to inherit the styles defined in the %material-button utility class. This helps to maintain consistency and reduce redundancy in the code. */
   @extend %material-button;
 
+  /* This sets the background color of the .skip-link element to the value of the --color-bg custom property. This property is likely defined elsewhere in the CSS and allows for easy color customization. */
   background-color: var(--color-bg);
 
+  /* The &:focus pseudo-class selector targets the .skip-link element when it is in focus. This is typically achieved through keyboard navigation or when the element is selected with a mouse. */
   &:focus {
+    /* The clip property is set to auto to ensure that the element is displayed properly when it is in focus. */
     clip: auto;
+
+    /* The padding, width, and z-index properties are reset to their default values to prevent any unintended styling that may have been inherited from other classes or styles. */
     padding: inherit;
     width: auto;
     z-index: 1;
