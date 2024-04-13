@@ -1,11 +1,19 @@
+// Exports an object containing configuration settings for Lighthouse CI.
 module.exports = {
+  // The 'ci' property is required and contains settings for Lighthouse CI.
   ci: {
+    // The 'upload' property specifies where to upload the Lighthouse reports.
     upload: {
+      // The 'target' property specifies the target for uploading the Lighthouse reports.
       target: 'temporary-public-storage',
     },
+    // The 'collect' property contains settings for collecting Lighthouse data.
     collect: {
+      // The 'startServerCommand' property specifies the command to start the server.
       startServerCommand: 'npm start',
-      startServerTimeout: 60 * 1000, // allow our build to take 60s
+      // The 'startServerTimeout' property specifies the timeout for starting the server.
+      startServerTimeout: 60 * 1000, // Timeout is set to 60 seconds.
+      // The 'url' property is an array of URLs to test with Lighthouse.
       url: [
         'http://localhost:8080/',
         'http://localhost:8080/blog/',
@@ -13,40 +21,32 @@ module.exports = {
         'http://localhost:8080/docs/extensions/',
       ],
     },
+    // The 'assert' property contains settings for Lighthouse assertions.
     assert: {
-      // @see https://github.com/GoogleChrome/lighthouse-ci/blob/master/docs/configuration.md#preset
+      // The 'preset' property specifies the Lighthouse preset to use.
       preset: 'lighthouse:no-pwa',
+      // The 'assertions' property is an object containing Lighthouse assertions.
       assertions: {
+        // The 'categories:performance' assertion checks the performance score.
         'categories:performance': ['error', {minScore: 0.9}],
 
-        /**
-         * Canonical URL will not match the domain while being tested.
-         */
+        // The 'canonical' assertion checks the canonical URL.
         canonical: 'off',
 
-        /**
-         * Disable until #71 is fixed.
-         */
+        // The 'tap-targets' assertion is disabled until issue #71 is fixed.
         'tap-targets': 'off',
 
-        /**
-         * Gtag and GTM cause the unused-javascript audit to fail, but out of our control.
-         * So only error if over 2 resources cause this audit to fail
-         */
+        // The 'unused-javascript' assertion checks for unused JavaScript.
         'unused-javascript': ['error', {maxLength: 2}],
 
-        /**
-         * We don't care about preconnect to Analytics and friends.
-         */
+        // The 'uses-rel-preconnect' assertion is disabled.
         'uses-rel-preconnect': 'off',
 
-        /**
-         * For now, we allow a single resource with a long cache TTL: Analytics, whose 2h TTL
-         * raises the ire of this assertion.
-         * (This was always a warning, but we can hide it for now.)
-         */
+        // The 'uses-long-cache-ttl' assertion checks for long cache TTLs.
         'uses-long-cache-ttl': ['warn', {maxLength: 1}],
       },
     },
   },
 };
+
+
