@@ -1,33 +1,49 @@
+/* Hides the cookie banner when the "data-cookies-answered" attribute is present */
 [data-cookies-answered] .cookie-banner {
   display: none;
 }
 
+/* Defines the styles for the cookie banner */
 .cookie-banner {
+  /* Applies the "stack" utility class with a value of 700 */
   @include apply-utility('stack', '700');
+  /* Sets the background color to the value of the --color-bg variable */
   background-color: var(--color-bg);
+  /* Positions the banner at the bottom of the viewport */
   bottom: 0;
+  /* Makes the banner a flex container with a column direction */
   display: flex;
+  /* Sets the flex-direction to column */
   flex-direction: column;
+  /* Adds padding to the banner */
   padding: get-size(400);
+  /* Positions the banner fixed at the bottom of the viewport */
   position: fixed;
+  /* Sets the width of the banner to 100% */
   width: 100%;
 
+  /* Media query for medium-sized screens */
   @include media-query('md') {
+    /* Centers the banner content horizontally */
     align-items: center;
+    /* Changes the flex-direction to row */
     flex-direction: row;
   }
 }
 
+/* Defines the styles for the controls within the cookie banner */
 .cookie-banner__controls {
+  /* Adds margin to the top of the controls */
   margin-top: get-size(300);
 
+  /* Media query for medium-sized screens */
   @include media-query('md') {
+    /* Adds margin to the left and top of the controls */
     margin-left: get-size(400);
     margin-top: 0;
   }
 
+  /* Selects the button elements within the controls */
   > button {
-    margin-bottom: get-size(300);
-    min-width: 8rem;
-  }
-}
+    /* Adds margin to the bottom of the button */
+    margin-bottom: get-size
