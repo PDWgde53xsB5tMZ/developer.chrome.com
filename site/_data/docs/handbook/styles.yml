@@ -1,2 +1,2 @@
-# Color (CSS theme variable) to use for this project page
+# Define the CSS theme variable for the color of the project icon within the project handbook
 project_icon_color: 'color-project-handbook'
