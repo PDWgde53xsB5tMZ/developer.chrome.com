@@ -1,7 +1,7 @@
 /*
  * Copyright 2020 Google LLC
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * This file is licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,39 +14,34 @@
  * limitations under the License.
  */
 
+// Declare global interfaces for EventsCollectionItem, EventSessionCollectionItem, and EventPersonCollectionItem
 declare global {
+  // An item in the EventsCollection, representing an event with various properties
   export interface EventsCollectionItem {
-    summary: string,
-    date: string,
-    image: string,
-    externalUrl: string,
-    sessions: EventsSessionCollectionItem[],
-    location: string,
-    id: string,
-    title: string,
-    isPastEvent: boolean
+    summary: string, // A brief summary of the event
+    date: string, // The date of the event
+    image: string, // A URL for the event's image
+    externalUrl: string, // A URL for more information about the event
+    sessions: EventsSessionCollectionItem[], // An array of sessions in the event
+    location: string, // The location of the event
+    id: string, // A unique identifier for the event
+    title: string, // The title of the event
+    isPastEvent: boolean // Whether the event has already occurred
   }
 
+  // An item in the EventSessionCollection, representing a session with various properties
   export interface EventSessionCollectionItem {
-    title:string,
-    description:string,
-    type:string,
-    topics:string[],
-    slidesUrl:string,
-    videoUrl:string,
-    image?:string,
-    speaker?:EventPersonCollectionItem,
-    participants?:EventPersonCollectionItem[]
+    title: string, // The title of the session
+    description: string, // A description of the session
+    type: string, // The type of the session (e.g., talk, workshop, etc.)
+    topics: string[], // An array of topics covered in the session
+    slidesUrl: string, // A URL for the session's slides
+    videoUrl: string, // A URL for the session's video recording
+    image?: string, // An optional URL for the session's image
+    speaker?: EventPersonCollectionItem, // An optional speaker for the session
+    participants?: EventPersonCollectionItem[] // An optional array of participants in the session
   }
 
+  // An item in the EventPersonCollection, representing a person with various properties
   export interface EventPersonCollectionItem {
-    image: string,
-    twitter: string|undefined,
-    linkedin: string|undefined,
-    title: string,
-    handle: string
-  }
-}
-
-// empty export to keep file a module
-export {};
+    image
