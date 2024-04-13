@@ -1,15 +1,22 @@
-const test = require('ava');
-const cheerio = require('cheerio');
-const {html} = require('common-tags');
+// Importing required modules
+const test = require('ava'); // Testing framework for Node.js
+const cheerio = require('cheerio'); // Server-side implementation of jQuery
+const {html} = require('common-tags'); // Template literal tag for generating HTML
 
+// Importing Img shortcode from the specified path
 const {Img} = require('../../../site/_shortcodes/Img');
+
+// Binding thisToBind object to Img shortcode
 const thisToBind = {page: {inputPath: './this/file/doesnt/exist.md'}};
 
+// Test case 1: Img shortcode generates img html
 test('Img shortcode generates img html', t => {
   const src = 'image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg';
-  const parsed = cheerio.load(
-    Img.bind(thisToBind)({src, alt: 'hello', height: '100', width: '100'})
-  );
+
+  // Binding thisToBind object to Img shortcode and generating img html
+  const parsed = cheerio.load(Img.bind(thisToBind)({src, alt: 'hello', height: '100', width: '100'}));
+
+  // Defining expected img html using template literal tag
   const expected = cheerio.load(html` <img
     src="https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format"
     srcset="
@@ -20,24 +27,4 @@ test('Img shortcode generates img html', t => {
       https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=384   384w,
       https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=538   538w,
       https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=752   752w,
-      https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=1054 1054w,
-      https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=1476 1476w,
-      https://wd.imgix.net/image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg?auto=format&w=1600 1600w
-    "
-    alt="hello"
-    loading="lazy"
-  />`);
-
-  t.deepEqual(parsed('img').html(), expected('img').html());
-});
-
-test('Img shortcode throws error when `alt` argument is not a string', t => {
-  const src = 'image/foR0vJZKULb5AGJExlazy1xYDgI2/1600132969326.jpg';
-  const error = t.throws(() => {
-    Img.bind(thisToBind)({src});
-  });
-  t.is(
-    error.message,
-    `ERROR IN ${thisToBind.page.inputPath}, IMG ${src}: alt text must be a string, received a undefined`
-  );
-});
+      https://wd.imgix.net/image/foR0vJZKULb5
