@@ -1,11 +1,11 @@
+// Import required modules: 'ava' for testing, 'path' for file path manipulation, and custom modules
+// 'BreadcrumbBuilder' and 'buildAllBreadcrumbs' for building breadcrumbs.
 const test = require('ava');
 const path = require('path');
-const {
-  BreadcrumbBuilder,
-  buildAllBreadcrumbs,
-} = require('../../../../site/_data/lib/breadcrumbs');
+const { BreadcrumbBuilder, buildAllBreadcrumbs } = require('../../../../site/_data/lib/breadcrumbs');
 
 /**
+ * A function that returns a virtual EleventyCollectionItem with the given title and project_key.
  * @return {EleventyCollectionItem}
  */
 function virtualItem(title, project_key) {
@@ -18,19 +18,27 @@ function virtualItem(title, project_key) {
 }
 
 /**
+ * A function that builds breadcrumbs based on the provided lookup function, URL, and index.
  * @param {(path: string) => EleventyCollectionItem|undefined} callback
  * @param {string} url
  * @param {AllProjectIndex} index
  */
 function run(callback, url, index) {
+  // Initialize a new BreadcrumbBuilder instance with a custom URL generator that uses the
+  // provided callback function to resolve URLs.
   const builder = new BreadcrumbBuilder(url => {
     url = path.join(url, '/');
     return callback(url);
   });
+
+  // Build all breadcrumbs for the given URL using the BreadcrumbBuilder instance.
   buildAllBreadcrumbs(url, builder, index);
+
+  // Return the built breadcrumbs for the given URL.
   return builder.build(url);
 }
 
+// Test suites for the 'run' function with different test cases.
 test('i18n URLs', t => {
   const lookup = url => {
     switch (url) {
@@ -43,6 +51,7 @@ test('i18n URLs', t => {
     }
   };
 
+  // The expected breadcrumbs for the given URL and lookup function.
   t.deepEqual(run(lookup, '/pt/blog/article'), [{title: 'Blog', url: '..'}]);
 });
 
@@ -58,6 +67,7 @@ test('real URLs only', t => {
     }
   };
 
+  // The expected breadcrumbs for the given URL and lookup function.
   t.deepEqual(run(lookup, '/en/foo/bar'), [{title: 'Foo', url: '..'}]);
   t.deepEqual(run(lookup, '/en/foo/bar/zing'), [
     {title: 'Foo', url: '../..'},
@@ -75,6 +85,7 @@ test('always includes single breadcrumb', t => {
     }
   };
 
+  // The expected breadcrumbs for the given URL and lookup function.
   t.deepEqual(run(lookup, '/en/'), []);
   t.deepEqual(run(lookup, '/en/foo'), [{title: 'Foo', url: ''}]);
   t.deepEqual(run(lookup, '/en/foo/bar'), [{title: 'Foo', url: '..'}]);
@@ -94,8 +105,7 @@ test('URLs with project section', t => {
     }
   };
 
-  // Note that the TOC index contains URLs without a locale prefix, and i18n keys rather than real
-  // titles. These keys actually exist and are looked up in the i18n data.
+  // The index object used for building breadcrumbs with real URLs.
   const index = {
     extensions: {
       // This page is under two virtual sections.
@@ -112,6 +122,7 @@ test('URLs with project section', t => {
     },
   };
 
+  // The expected breadcrumbs for the given URL, lookup function, and index.
   t.deepEqual(run(lookup, '/en/docs/extensions/page/', index), [
     {title: 'Documentation', url: '../..'},
     {title: 'Extensions', url: '..'},
@@ -119,11 +130,10 @@ test('URLs with project section', t => {
     {title: 'Overview'},
   ]);
 
+  // The expected breadcrumbs for the given URL, lookup function, and index.
   t.deepEqual(run(lookup, '/en/docs/extensions/page/subpage/', index), [
     {title: 'Documentation', url: '../../..'},
     {title: 'Extensions', url: '../..'},
     {title: 'Overview'},
     {title: 'Overview'},
-    {title: 'Random Page', url: '..'},
-  ]);
-});
+    {title: 'Random Page
