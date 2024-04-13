@@ -1,14 +1,26 @@
+<!-- The 'events-hero' div is the container for the event hero section -->
 <div class="events-hero">
+  <!-- The 'events-hero__image' figure displays the event hero image -->
   <figure class="events-hero__image">
     {% Img src=hero, alt=alt, width="800", height="400", loading="eager" %}
+    <!-- The 'src' attribute specifies the URL of the hero image -->
+    <!-- The 'alt' attribute provides alternative text for the image, which is important for accessibility -->
+    <!-- The 'width' and 'height' attributes specify the dimensions of the image -->
+    <!-- The 'loading' attribute specifies when the image should be loaded (eager loading in this case) -->
   </figure>
 
+  <!-- The 'events-hero__content' div contains the event hero title and description -->
   <div class="events-hero__content">
+    <!-- The 'type--h1' class sets the title to a large font size -->
     <h1 class="type--h1">
+      <!-- The first span displays the localized text 'i18n.events.meet_the' -->
       <span>{{ 'i18n.events.meet_the' | i18n(locale) }}</span>
+      <!-- The second span displays the localized text 'i18n.events.chrome_team' -->
       <span>{{ 'i18n.events.chrome_team' | i18n(locale) }}</span>
     </h1>
 
+    <!-- The 'p' tag displays the event hero description -->
     <p>{{ 'i18n.events.intro' | i18n(locale) }}</p>
+    <!-- The 'i18n' filter is used to localize the event hero description text -->
   </div>
 </div>
