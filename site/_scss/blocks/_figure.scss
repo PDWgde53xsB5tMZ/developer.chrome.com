@@ -1,15 +1,20 @@
 /// COMPONENT LIBRARY LOCATION
-/// https://web.dev/design-system/component/figure
+/// <https://web.dev/design-system/component/figure>
+
 figure {
+  /* Figure element is a block-level element that can contain any content,
+     including images, videos, and captions. */
   display: block;
   width: 100%;
 
+  /// Applies block display and margin auto to all child elements except figcaption
   > *:not(figcaption) {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
 
+  /// Styles for figcaption element
   > figcaption {
     display: block;
     max-width: 100%;
@@ -17,27 +22,32 @@ figure {
   }
 }
 
+/// Applies specific margin and width to figures with data-float attribute
 figure[data-float] {
   margin-bottom: get-size(200);
   width: auto;
 }
 
+/// Styles for figures with data-float='left' attribute
 figure[data-float='left'] {
   float: left;
   margin-inline-end: get-size(300);
 }
 
+/// Styles for figures with data-float='right' attribute
 figure[data-float='right'] {
   float: right;
   margin-inline-start: get-size(300);
 }
 
+/// Applies 100% width to child elements of figures with data-size='full' attribute
 figure[data-size='full'] {
   > * {
     width: 100%;
   }
 }
 
+/// Adds border to figures with data-screenshot attribute
 figure[data-screenshot] {
   border: 1px solid var(--color-hairline);
 }
