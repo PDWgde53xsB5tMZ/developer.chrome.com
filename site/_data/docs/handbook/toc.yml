@@ -1,24 +1,15 @@
-- url: /docs/handbook/where-to-publish
-- url: /docs/handbook/components
-- url: /docs/handbook/content-types
-- title: i18n.docs.handbook.how_to
-  sections:
-    - url: /docs/handbook/how-to/add-a-project
-    - url: /docs/handbook/how-to/add-a-doc
-    - url: /docs/handbook/how-to/add-a-blog-post
-    - url: /docs/handbook/how-to/schedule-a-post
-    - url: /docs/handbook/how-to/add-an-api
-    - url: /docs/handbook/how-to/add-a-collection-page
-    - url: /docs/handbook/how-to/add-a-collection-docs-page
-    - url: /docs/handbook/how-to/add-media
-    - url: /docs/handbook/how-to/add-an-author
-    - url: /docs/handbook/how-to/add-a-tag
-    - url: /docs/handbook/how-to/add-an-iframe
-    - url: /docs/handbook/how-to/add-a-glitch-embed
-    - url: /docs/handbook/how-to/add-a-youtube-embed
-    - url: /docs/handbook/how-to/add-a-landing-page
-    - url: /docs/handbook/how-to/display-a-banner
-    - url: /docs/handbook/how-to/create-anchor-redirects
-    - url: /docs/handbook/style-guide
-- url: /docs/handbook/extensions
-- url: /docs/handbook/web-platform
+- url: /docs/handbook/where-to-publish (This is the URL for the "where-to-publish" section of the handbook)
+- url: /docs/handbook/components (This is the URL for the "components" section of the handbook)
+- url: /docs/handbook/content-types (This is the URL for the "content-types" section of the handbook)
+- title: i18n.docs.handbook.how_to (This sets the title using a localized string)
+  sections: (This is a list of sections for the "how-to" part of the handbook)
+    - url: /docs/handbook/how-to/add-a-project (This is the URL for the "add-a-project" section)
+    - url: /docs/handbook/how-to/add-a-doc (This is the URL for the "add-a-doc" section)
+    - url: /docs/handbook/how-to/add-a-blog-post (This is the URL for the "add-a-blog-post" section)
+    - url: /docs/handbook/how-to/schedule-a-post (This is the URL for the "schedule-a-post" section)
+    - url: /docs/handbook/how-to/add-an-api (This is the URL for the "add-an-api" section)
+    - url: /docs/handbook/how-to/add-a-collection-page (This is the URL for the "add-a-collection-page" section)
+    - url: /docs/handbook/how-to/add-a-collection-docs-page (This is the URL for the "add-a-collection-docs-page" section)
+    - url: /docs/handbook/how-to/add-media (This is the URL for the "add-media" section)
+    - url: /docs/handbook/how-to/add-an-author (This is the URL for the "add-an-author" section)
+    - url: /docs/handbook/how-to
