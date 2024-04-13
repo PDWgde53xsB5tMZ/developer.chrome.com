@@ -1,3 +1,8 @@
-dist/*
-types/*
-tests/**/dist/*
+# This is a multi-line comment in bash
+
+# The first line specifies a list of globs (wildcard expressions) for files and directories
+# in the current working directory that should be ignored by version control
+
+dist/*   # Ignore the 'dist' directory and its contents
+types/*  # Ignore the 'types' directory and its contents
+tests/**/dist/*  # Ignore the 'dist' directory and its contents within any 'tests' subdirectory
