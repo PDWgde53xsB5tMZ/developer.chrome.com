@@ -26,32 +26,26 @@ const {i18n} = require('../_filters/i18n');
  * @return {Partial<EleventyData>}
  */
 module.exports = locale => ({
+  // eleventyComputed is a property that allows you to compute values based on
+  // the input data.
   eleventyComputed: {
-    /**
-     * Generates tags for the stable release and higher. Ordered by earliest release first (i.e.,
-     * 'Stable' > 'Beta' > 'Dev' > 'Canary'). Only names 'Stable' and 'Beta'.
-     */
+    // Generates tags for the stable release and higher. Ordered by earliest release first.
     currentChromeReleaseTags: data => {
       const out = (data.releaseTags || []).filter(({isCurrent}) => isCurrent);
       out.reverse();
       return out;
     },
 
-    /**
-     * Return tag information for any Chrome release prior to the current stable.
-     */
+    // Return tag information for any Chrome release prior to the current stable.
     historicChromeReleaseTags: data => {
       return (data.releaseTags || []).filter(({isCurrent}) => !isCurrent);
     },
 
+    // Create an array of tags related to releases.
     releaseTags: data => {
-      /** @type {{[name: string]: ChromeReleaseData}} */
       const rawChannels = data.chrome.channels;
-
-      /** @type {Tags} */
       const rawTags = data.collections.tags;
 
-      // Create an array of tags releated to releases.
       const out = Object.values(rawTags)
         .filter(tag => tag.release)
         .map(tag => {
@@ -80,11 +74,10 @@ module.exports = locale => ({
       return out;
     },
 
+    // Create an array of tags unrelated to releases.
     displayTags: data => {
-      /** @type {Tags} */
       const rawTags = data.collections.tags;
 
-      // Create an array of tags unrelated to releases.
       const all = Object.values(rawTags)
         .filter(tag => !tag.release)
         .map(tag => {
