@@ -1,55 +1,37 @@
-.banner {
-  @extend %type--small;
-  background: var(--color-bg-shade);
-  display: flex;
-  justify-content: center;
-  padding: get-size(300);
+.banner { /* Defines a banner style */
+  @extend %type--small; /* Extends the small type style */
+  background: var(--color-bg-shade); /* Sets the background color using a CSS custom property */
+  display: flex; /* Establishes a flex container */
+  justify-content: center; /* Centers the content horizontally */
+  padding: get-size(300); /* Sets padding using a Sass function */
 
-  &--info {
-    --button-color: var(--color-blue-medium);
-    background-color: var(--color-blue-lightest);
+  &--info { /* Defines the info banner variant */
+    --button-color: var(--color-blue-medium); /* Sets the button color using a CSS custom property */
+    background-color: var(--color-blue-lightest); /* Sets the background color using a CSS custom property */
   }
 
-  &--warning {
-    --button-color: var(--color-red-medium);
-    background-color: var(--color-red-lightest);
+  &--warning { /* Defines the warning banner variant */
+    --button-color: var(--color-red-medium); /* Sets the button color using a CSS custom property */
+    background-color: var(--color-red-lightest); /* Sets the background color using a CSS custom property */
   }
 
-  &__inner {
-    @include apply-utility('measure', 'long');
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
+  &__inner { /* Defines the inner content structure */
+    @include apply-utility('measure', 'long'); /* Applies the long measure utility class */
+    display: flex; /* Establishes a flex container */
+    flex-direction: column; /* Arranges items vertically */
+    justify-content: space-between; /* Distributes items evenly along the vertical axis */
+    width: 100%; /* Sets the width to 100% */
 
-    @include media-query('lg') {
-      align-items: baseline;
-      flex-direction: row;
+    @include media-query('lg') { /* Applies styles for large screens */
+      align-items: baseline; /* Aligns items along the baseline */
+      flex-direction: row; /* Arranges items horizontally */
     }
   }
 
-  &__text {
-    max-width: 65ch;
+  &__text { /* Defines the banner text style */
+    max-width: 65ch; /* Sets the maximum width using a CSS length unit */
   }
 
-  &__actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: get-size(300);
-    white-space: nowrap;
-
-    @include media-query('lg') {
-      align-items: flex-end;
-      margin-left: get-size(300);
-      margin-top: 0;
-    }
-  }
-
-  &__action {
-    @include apply-utility('weight', 'medium');
-  }
-}
-
-[data-banner-dismissed] .banner {
-  display: none;
-}
+  &__actions { /* Defines the banner action buttons container */
+    display: flex; /* Establishes a flex container */
+    justify-
