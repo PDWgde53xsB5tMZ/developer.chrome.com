@@ -1,11 +1,20 @@
+<!--- The layout file for the Aurora Project landing page --->
 ---
+<!--- The title of the page, displayed in the browser tab --->
 layout: 'layouts/landing.njk'
+<!--- The title of the page, used for SEO purposes --->
 title: 'The Aurora Project'
+<!--- The description of the page, used for SEO purposes --->
 description: 'A collaboration between Chrome and open-source web frameworks to improve user experience on the web'
+<!--- The main sections of the page --->
 sections:
+  <!--- The introduction section --->
   intro:
+    <!--- An array of objects, each representing a subsection of the intro --->
     - url: /blog/introducing-aurora
+      <!--- The title of the subsection --->
       title: What is the Aurora Project?
+      <!--- A brief description of the subsection --->
       description: Aurora is an initiative where Chrome engineers partner with open-source web frameworks to improve user experience across the web, with a special emphasis on performance.
     - url: /blog/introducing-aurora
       title: Why is Aurora important?
@@ -13,7 +22,9 @@ sections:
     - url: /blog/aurora-update-2023
       title: What is Aurora focusing on now?
       description: In 2023, the Aurora team is focusing on improving Core Web Vitals for applications using web frameworks. We are currently partnering with Next.js, Angular, and Nuxt to ship performance features.
+  <!--- The projects section --->
   projects:
+    <!--- An array of objects, each representing a project --->
     - url: /blog/framework-tools-font-fallback/ 
       title: "Framework tools for font fallbacks"
       description: "Master how to adjust the size of your font fallbacks to prevent Cumulative Layout Shift (CLS), using tools in Next.js, Nuxt, Vite, and Capsize."
@@ -23,7 +34,9 @@ sections:
     - url: /blog/script-component/ 
       title: "Optimizing third-party script loading in Next.js"
       description: "Understand the vision behind the Next.js Script component—a built-in solution to optimize the loading of third-party scripts."
+  <!--- The videos section --->
   videos:
+    <!--- An array of objects, each representing a video --->
     - url: https://www.youtube.com/watch?v=UGiG6u5UvUQ
       title: "Fireside Chat: Chrome Aurora"
       description: "useReactNYC 2023: Fireside Chat with Houssein Djirdeh from the Chrome Aurora team. "
@@ -42,19 +55,19 @@ sections:
     - url: https://www.youtube.com/watch?v=jXZd-HzKgM4 
       title: "What's New in Performance"
       description: "perf.now() 2022: Get up-to-date on the latest performance APIs, tools, and metrics and how you can apply them to your site."    
----
-
+<!--- Macros for rendering components --->
 {% from 'macros/cards/hero-card-wide.njk' import heroCardWide with context %}
 {% from 'macros/landing-section.njk' import landingSection with context %}
 {% from 'macros/landing-section-expanded.njk' import landingSectionExpanded with context %}
 
-{# unique styles, needed only for Aurora hero card. #}
+<!--- Styles specific to the Aurora hero card --->
 <style>
 .project-icon__cover {
   color: var(--color-purple-darkest);
 }
 </style>
 
+<!--- Renders the Aurora hero card --->
 {{ heroCardWide(
   "The Aurora Project",
   "A collaboration between Chrome and open-source web frameworks to improve user experience on the web.",
@@ -66,6 +79,7 @@ sections:
   "image/IypihH3o5cSpEMVp5i08dp69otp2/iH9REOvijTScBvs3Ne43.png"
   ) }}
 
+<!--- Renders the introduction section --->
 {{ landingSectionExpanded(
   "Introduction",
   "",
@@ -74,42 +88,4 @@ sections:
   "top-3",
   true,
   "",
-  "",
-  200,
-  129,
-  "",
-  "",
-  ""
-  )
-}}
-
-{{ landingSection(
-  'Recent Projects',
-  'Read about our 2022-2023 focus areas in more detail.',
-  sections.projects,
-  'green',
-  'top-3',
-  true,
-  'image/jxu1OdD7LKOGIDU7jURMpSH2lyK2/n9vOrhzQ2QEwhI2MQ7G3.svg',
-  '',
-  333,
-  165,
-  'image/jxu1OdD7LKOGIDU7jURMpSH2lyK2/n9vOrhzQ2QEwhI2MQ7G3.svg'
-  )
-}}
-
-
-{{ landingSection(
-  "Recent tech talks",
-  "Watch tech talk videos to learn about the latest Aurora projects, features, and best practices.",
-  sections.videos,
-  "purple",
-  "top-3",
-  false,
-  "image/IypihH3o5cSpEMVp5i08dp69otp2/5VGYv1xvHzsjzXCvi4Nl.svg",
-  "Movie icon.",
-  150,
-  150,
-  "image/IypihH3o5cSpEMVp5i08dp69otp2/5VGYv1xvHzsjzXCvi4Nl.svg"
-  )
-}}
+ 
