@@ -1,4 +1,4 @@
-%scrollbar,
-.scrollbar {
-  @include scrollbars();
+%scrollbar, /* This is a SCSS placeholder selector that targets the scrollbar element. It is used to apply common styles to all scrollbars. */
+.scrollbar { /* This is a class selector that targets HTML scrollbar elements. It includes the scrollbars() mixin to apply a set of predefined styles. */
+  @include scrollbars(); /* This line invokes the scrollbars() mixin, passing none of its arguments. The mixin applies a set of default styles to the scrollbar element. */
 }
