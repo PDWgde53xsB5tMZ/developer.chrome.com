@@ -19,13 +19,23 @@
  * on Google Cloud Build
  */
 
+// The function `isGoogleCloudBuild()` checks if the code is running in the Google Cloud Build environment
 function isGoogleCloudBuild() {
+  // The `process.env.PR_NUMBER` is a property available in the Node.js process environment.
+  // It is used to determine if the code is running in the Google Cloud Build environment.
+  // If this property is not set, the function throws an error.
   if (!process.env.PR_NUMBER) {
+    // The error message explains that the task is intended to run on Google Cloud Build,
+    // which exports the $PR_NUMBER environment variable.
+    // It suggests using 'npm run stage:personal' locally instead.
     throw new Error(
-      'This task is inteded to run on Google Cloud Build, which exports $PR_NUMBER. ' +
+      'This task is intended to run on Google Cloud Build, which exports $PR_NUMBER. ' +
         'Use npm run stage:personal locally instead.'
     );
   }
 }
 
+// The `module.exports` object is a special object in Node.js that is used to export functions,
+// objects, or values from a module.
+// In this case, the `isGoogleCloudBuild()` function is exported.
 module.exports = {isGoogleCloudBuild};
