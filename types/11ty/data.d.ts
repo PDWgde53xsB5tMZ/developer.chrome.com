@@ -14,21 +14,31 @@
  * limitations under the License.
  */
 
+// This declare global statement is used to add new properties to the global EleventyData interface
 declare global {
   export interface EleventyData extends Partial<FrontMatterData> {
+    // The title property is a string that represents the title of the page
     title: string;
+    // The locale property is a string that represents the locale of the page
     locale: string;
+    // The eleventyComputed property is an optional object that contains functions to compute values based on the data object
     eleventyComputed?: {
       [key: string]: (data: EleventyData) => TODO;
     };
+    // The paged property is optional and its type is TODO
     paged?: TODO;
+    // The permalink property is optional and can be a string or a boolean
     permalink?: string | boolean;
+    // The layout property is a string that represents the layout to use for the page
     layout?: string;
+    // The page property is an optional EleventyPage object that contains information about the current page
     page?: EleventyPage;
+    // The pagination property is an optional EleventyPagination object that contains information about pagination
     pagination?: EleventyPagination;
+    // Any other properties can be added to the EleventyData interface as needed
     [key: string]: TODO;
   }
 }
 
-// empty export to keep file a module
+// This empty export statement is used to ensure that the file is treated as a module
 export {};
